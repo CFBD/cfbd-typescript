@@ -1,6 +1,19 @@
 {
   "name": "cfbd",
-  "version": "5.0.1-alpha.0",
+  "version": "5.0.0-alpha.1",
+  "description": "This API is in limited Beta for Patreon subscribers. It may have bugs and is subject to changes. API keys can be acquired from the CollegeFootballData.com website.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CFBD/cfbd-typescript.git"
+  },
+  "author": "BlueSCar",
+  "keywords": [
+    "football",
+    "cfb",
+    "ncaaf",
+    "data",
+    "statistics"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -11,6 +24,7 @@
     "@hey-api/client-fetch": "^0.2.4"
   },
   "devDependencies": {
+    "@hey-api/openapi-ts": "^0.52.9",
     "@types/node": "^22.5.0",
     "typescript": "^5.5.4"
   }
