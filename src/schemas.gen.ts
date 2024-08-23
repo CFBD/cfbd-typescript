@@ -4401,7 +4401,7 @@ export const $Coach = {
         },
         hireDate: {
             type: 'string',
-            format: 'date',
+            format: 'date-time',
             nullable: true
         },
         seasons: {
