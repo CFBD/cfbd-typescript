@@ -3368,8 +3368,7 @@ export const $Game = {
                 format: 'double'
             },
             type: 'array',
-            nullable: true,
-            minItems: 4
+            nullable: true
         },
         homePostgameWinProbability: {
             type: 'number',
@@ -3416,8 +3415,7 @@ export const $Game = {
                 format: 'double'
             },
             type: 'array',
-            nullable: true,
-            minItems: 4
+            nullable: true
         },
         awayPostgameWinProbability: {
             type: 'number',
