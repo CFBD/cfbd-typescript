@@ -1064,7 +1064,7 @@ export type ScoreboardGame = {
     venue: {
         state: (string) | null;
         city: (string) | null;
-        name: string;
+        name: (string) | null;
     };
     homeTeam: {
         points: (number) | null;
