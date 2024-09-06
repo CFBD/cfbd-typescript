@@ -3942,6 +3942,14 @@ export const ScoreboardGameSchema = {
         },
         homeTeam: {
             properties: {
+                lineScore: {
+                    items: {
+                        type: 'integer',
+                        format: 'int32'
+                    },
+                    type: 'array',
+                    nullable: true
+                },
                 points: {
                     type: 'integer',
                     format: 'int32',
@@ -3967,11 +3975,19 @@ export const ScoreboardGameSchema = {
                     format: 'int32'
                 }
             },
-            required: ['points', 'classification', 'conference', 'name', 'id'],
+            required: ['lineScore', 'points', 'classification', 'conference', 'name', 'id'],
             type: 'object'
         },
         awayTeam: {
             properties: {
+                lineScore: {
+                    items: {
+                        type: 'integer',
+                        format: 'int32'
+                    },
+                    type: 'array',
+                    nullable: true
+                },
                 points: {
                     type: 'integer',
                     format: 'int32',
@@ -3997,7 +4013,7 @@ export const ScoreboardGameSchema = {
                     format: 'int32'
                 }
             },
-            required: ['points', 'classification', 'conference', 'name', 'id'],
+            required: ['lineScore', 'points', 'classification', 'conference', 'name', 'id'],
             type: 'object'
         },
         weather: {
