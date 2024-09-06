@@ -1067,7 +1067,7 @@ export type ScoreboardGame = {
         name: (string) | null;
     };
     homeTeam: {
-        lineScore: Array<(number)> | null;
+        lineScores: Array<(number)> | null;
         points: (number) | null;
         classification: ((DivisionClassification) | null);
         conference: (string) | null;
@@ -1075,7 +1075,7 @@ export type ScoreboardGame = {
         id: number;
     };
     awayTeam: {
-        lineScore: Array<(number)> | null;
+        lineScores: Array<(number)> | null;
         points: (number) | null;
         classification: ((DivisionClassification) | null);
         conference: (string) | null;
