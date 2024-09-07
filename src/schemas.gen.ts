@@ -3922,6 +3922,10 @@ export const ScoreboardGameSchema = {
             type: 'string',
             nullable: true
         },
+        lastPlay: {
+            type: 'string',
+            nullable: true
+        },
         venue: {
             properties: {
                 state: {
@@ -4068,7 +4072,7 @@ export const ScoreboardGameSchema = {
             type: 'object'
         }
     },
-    required: ['id', 'startDate', 'startTimeTBD', 'tv', 'neutralSite', 'conferenceGame', 'status', 'period', 'clock', 'situation', 'possession', 'venue', 'homeTeam', 'awayTeam', 'weather', 'betting'],
+    required: ['id', 'startDate', 'startTimeTBD', 'tv', 'neutralSite', 'conferenceGame', 'status', 'period', 'clock', 'situation', 'possession', 'lastPlay', 'venue', 'homeTeam', 'awayTeam', 'weather', 'betting'],
     type: 'object',
     additionalProperties: false
 } as const;

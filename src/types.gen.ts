@@ -1061,6 +1061,7 @@ export type ScoreboardGame = {
     clock: (string) | null;
     situation: (string) | null;
     possession: (string) | null;
+    lastPlay: (string) | null;
     venue: {
         state: (string) | null;
         city: (string) | null;
