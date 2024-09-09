@@ -3860,16 +3860,26 @@ export const CalendarWeekSchema = {
         seasonType: {
             '$ref': '#/components/schemas/SeasonType'
         },
-        firstGameStart: {
+        startDate: {
             type: 'string',
             format: 'date-time'
         },
-        lastGameStart: {
+        endDate: {
             type: 'string',
             format: 'date-time'
+        },
+        firstGameStart: {
+            type: 'string',
+            format: 'date-time',
+            deprecated: true
+        },
+        lastGameStart: {
+            type: 'string',
+            format: 'date-time',
+            deprecated: true
         }
     },
-    required: ['season', 'week', 'seasonType', 'firstGameStart', 'lastGameStart'],
+    required: ['season', 'week', 'seasonType', 'startDate', 'endDate', 'firstGameStart', 'lastGameStart'],
     type: 'object',
     additionalProperties: false
 } as const;

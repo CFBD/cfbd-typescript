@@ -1043,7 +1043,15 @@ export type CalendarWeek = {
     season: number;
     week: number;
     seasonType: SeasonType;
+    startDate: string;
+    endDate: string;
+    /**
+     * @deprecated
+     */
     firstGameStart: string;
+    /**
+     * @deprecated
+     */
     lastGameStart: string;
 };
 
