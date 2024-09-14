@@ -1164,6 +1164,144 @@ export const AdvancedGameStatSchema = {
     additionalProperties: false
 } as const;
 
+export const AdjustedMetricsSchema = {
+    properties: {
+        year: {
+            type: 'integer',
+            format: 'int32'
+        },
+        teamId: {
+            type: 'integer',
+            format: 'int32'
+        },
+        team: {
+            type: 'string'
+        },
+        conference: {
+            type: 'string'
+        },
+        epa: {
+            properties: {
+                rushing: {
+                    type: 'number',
+                    format: 'double'
+                },
+                passing: {
+                    type: 'number',
+                    format: 'double'
+                },
+                total: {
+                    type: 'number',
+                    format: 'double'
+                }
+            },
+            required: ['rushing', 'passing', 'total'],
+            type: 'object'
+        },
+        epaAllowed: {
+            properties: {
+                rushing: {
+                    type: 'number',
+                    format: 'double'
+                },
+                passing: {
+                    type: 'number',
+                    format: 'double'
+                },
+                total: {
+                    type: 'number',
+                    format: 'double'
+                }
+            },
+            required: ['rushing', 'passing', 'total'],
+            type: 'object'
+        },
+        successRate: {
+            properties: {
+                passingDowns: {
+                    type: 'number',
+                    format: 'double'
+                },
+                standardDowns: {
+                    type: 'number',
+                    format: 'double'
+                },
+                total: {
+                    type: 'number',
+                    format: 'double'
+                }
+            },
+            required: ['passingDowns', 'standardDowns', 'total'],
+            type: 'object'
+        },
+        successRateAllowed: {
+            properties: {
+                passingDowns: {
+                    type: 'number',
+                    format: 'double'
+                },
+                standardDowns: {
+                    type: 'number',
+                    format: 'double'
+                },
+                total: {
+                    type: 'number',
+                    format: 'double'
+                }
+            },
+            required: ['passingDowns', 'standardDowns', 'total'],
+            type: 'object'
+        },
+        rushing: {
+            properties: {
+                openFieldYards: {
+                    type: 'number',
+                    format: 'double'
+                },
+                secondLevelYards: {
+                    type: 'number',
+                    format: 'double'
+                },
+                lineYards: {
+                    type: 'number',
+                    format: 'double'
+                }
+            },
+            required: ['openFieldYards', 'secondLevelYards', 'lineYards'],
+            type: 'object'
+        },
+        rushingAllowed: {
+            properties: {
+                openFieldYards: {
+                    type: 'number',
+                    format: 'double'
+                },
+                secondLevelYards: {
+                    type: 'number',
+                    format: 'double'
+                },
+                lineYards: {
+                    type: 'number',
+                    format: 'double'
+                }
+            },
+            required: ['openFieldYards', 'secondLevelYards', 'lineYards'],
+            type: 'object'
+        },
+        explosiveness: {
+            type: 'number',
+            format: 'double'
+        },
+        explosivenessAllowed: {
+            type: 'number',
+            format: 'double'
+        }
+    },
+    required: ['year', 'teamId', 'team', 'conference', 'epa', 'epaAllowed', 'successRate', 'successRateAllowed', 'rushing', 'rushingAllowed', 'explosiveness', 'explosivenessAllowed'],
+    type: 'object',
+    additionalProperties: false
+} as const;
+
 export const RecruitClassificationSchema = {
     enum: ['JUCO', 'PrepSchool', 'HighSchool'],
     type: 'string'

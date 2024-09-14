@@ -311,6 +311,45 @@ export type AdvancedGameStat = {
     };
 };
 
+export type AdjustedMetrics = {
+    year: number;
+    teamId: number;
+    team: string;
+    conference: string;
+    epa: {
+        rushing: number;
+        passing: number;
+        total: number;
+    };
+    epaAllowed: {
+        rushing: number;
+        passing: number;
+        total: number;
+    };
+    successRate: {
+        passingDowns: number;
+        standardDowns: number;
+        total: number;
+    };
+    successRateAllowed: {
+        passingDowns: number;
+        standardDowns: number;
+        total: number;
+    };
+    rushing: {
+        openFieldYards: number;
+        secondLevelYards: number;
+        lineYards: number;
+    };
+    rushingAllowed: {
+        openFieldYards: number;
+        secondLevelYards: number;
+        lineYards: number;
+    };
+    explosiveness: number;
+    explosivenessAllowed: number;
+};
+
 export type RecruitClassification = 'JUCO' | 'PrepSchool' | 'HighSchool';
 
 export type Recruit = {
@@ -1543,6 +1582,27 @@ export type GetAdvancedGameStatsData = {
 export type GetAdvancedGameStatsResponse = (Array<AdvancedGameStat>);
 
 export type GetAdvancedGameStatsError = unknown;
+
+export type GetAdjustedTeamSeasonStatsData = {
+    query?: {
+        /**
+         * Optional conference filter
+         */
+        conference?: string;
+        /**
+         * Optional team filter
+         */
+        team?: string;
+        /**
+         * Optional year filter
+         */
+        year?: number;
+    };
+};
+
+export type GetAdjustedTeamSeasonStatsResponse = (Array<AdjustedMetrics>);
+
+export type GetAdjustedTeamSeasonStatsError = unknown;
 
 export type GetRecruitsData = {
     query?: {
