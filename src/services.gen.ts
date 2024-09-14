@@ -106,7 +106,7 @@ export const getAdvancedGameStats = <ThrowOnError extends boolean = false>(optio
  */
 export const getAdjustedTeamSeasonStats = <ThrowOnError extends boolean = false>(options?: Options<GetAdjustedTeamSeasonStatsData, ThrowOnError>) => { return (options?.client ?? client).get<GetAdjustedTeamSeasonStatsResponse, GetAdjustedTeamSeasonStatsError, ThrowOnError>({
     ...options,
-    url: '/stats/team/season/adjusted'
+    url: '/stats/season/adjusted'
 }); };
 
 /**
