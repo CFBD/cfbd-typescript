@@ -26,11 +26,13 @@ export type AdjustedTeamMetrics = {
         total: number;
     };
     rushing: {
+        highlightYards: number;
         openFieldYards: number;
         secondLevelYards: number;
         lineYards: number;
     };
     rushingAllowed: {
+        highlightYards: number;
         openFieldYards: number;
         secondLevelYards: number;
         lineYards: number;

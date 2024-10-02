@@ -90,6 +90,10 @@ export const AdjustedTeamMetricsSchema = {
         },
         rushing: {
             properties: {
+                highlightYards: {
+                    type: 'number',
+                    format: 'double'
+                },
                 openFieldYards: {
                     type: 'number',
                     format: 'double'
@@ -103,11 +107,15 @@ export const AdjustedTeamMetricsSchema = {
                     format: 'double'
                 }
             },
-            required: ['openFieldYards', 'secondLevelYards', 'lineYards'],
+            required: ['highlightYards', 'openFieldYards', 'secondLevelYards', 'lineYards'],
             type: 'object'
         },
         rushingAllowed: {
             properties: {
+                highlightYards: {
+                    type: 'number',
+                    format: 'double'
+                },
                 openFieldYards: {
                     type: 'number',
                     format: 'double'
@@ -121,7 +129,7 @@ export const AdjustedTeamMetricsSchema = {
                     format: 'double'
                 }
             },
-            required: ['openFieldYards', 'secondLevelYards', 'lineYards'],
+            required: ['highlightYards', 'openFieldYards', 'secondLevelYards', 'lineYards'],
             type: 'object'
         },
         explosiveness: {
