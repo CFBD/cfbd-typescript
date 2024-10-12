@@ -4037,7 +4037,8 @@ export const TeamRecordsSchema = {
         },
         expectedWins: {
             type: 'number',
-            format: 'double'
+            format: 'double',
+            nullable: true
         },
         total: {
             '$ref': '#/components/schemas/TeamRecord'
