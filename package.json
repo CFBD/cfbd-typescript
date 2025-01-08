@@ -21,11 +21,12 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@hey-api/client-fetch": "^0.2.4"
+    "@hey-api/client-fetch": "^0.6.0"
   },
   "devDependencies": {
-    "@hey-api/openapi-ts": "^0.52.9",
-    "@types/node": "^22.5.0",
-    "typescript": "^5.5.4"
+    "@hey-api/openapi-ts": "^0.61.1",
+    "@types/node": "^22.10.5",
+    "tsc": "^2.0.4",
+    "typescript": "^5.7.2"
   }
 }
