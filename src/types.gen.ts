@@ -41,139 +41,115 @@ export type AdjustedTeamMetrics = {
     explosivenessAllowed: number;
 };
 
-export type PlayerWeightedEPA = {
-    year: number;
-    athleteId: string;
-    athleteName: string;
-    position: string;
-    team: string;
-    conference: string;
-    wepa: number;
-    plays: number;
+export type AdvancedBoxScore = {
+    gameInfo: {
+        excitement: number;
+        homeWinner: boolean;
+        awayWinProb: number;
+        awayPoints: number;
+        awayTeam: string;
+        homeWinProb: number;
+        homePoints: number;
+        homeTeam: string;
+    };
+    teams: {
+        fieldPosition: Array<TeamFieldPosition>;
+        scoringOpportunities: Array<TeamScoringOpportunities>;
+        havoc: Array<TeamHavoc>;
+        rushing: Array<TeamRushingStats>;
+        explosiveness: Array<TeamExplosiveness>;
+        successRates: Array<TeamSuccessRates>;
+        cumulativePpa: Array<TeamPPA>;
+        ppa: Array<TeamPPA>;
+    };
+    players: {
+        ppa: Array<PlayerPPA>;
+        usage: Array<PlayerGameUsage>;
+    };
 };
 
-export type KickerPAAR = {
-    year: number;
-    athleteId: string;
-    athleteName: string;
-    team: string;
-    conference: string;
-    paar: number;
-    attempts: number;
-};
-
-export type Venue = {
-    id: (number) | null;
-    name: (string) | null;
-    city: (string) | null;
-    state: (string) | null;
-    zip: (string) | null;
-    countryCode: (string) | null;
-    timezone: (string) | null;
-    latitude: (number) | null;
-    longitude: (number) | null;
-    elevation: (string) | null;
-    capacity: (number) | null;
-    constructionYear: (number) | null;
-    grass?: (boolean) | null;
-    dome?: (boolean) | null;
-};
-
-export type Team = {
-    id: number;
-    school: string;
-    mascot: (string) | null;
-    abbreviation: (string) | null;
-    alternateNames: Array<(string)> | null;
-    conference: (string) | null;
-    division: (string) | null;
-    classification: (string) | null;
-    color: (string) | null;
-    alternateColor: (string) | null;
-    logos: Array<(string)> | null;
-    twitter: (string) | null;
-    location: ((Venue) | null);
-};
-
-export type MatchupGame = {
+export type AdvancedGameStat = {
+    gameId: number;
     season: number;
     week: number;
-    seasonType: string;
-    date: string;
-    neutralSite: boolean;
-    venue: string;
-    homeTeam: string;
-    homeScore: number;
-    awayTeam: string;
-    awayScore: number;
-    winner: (string) | null;
-};
-
-export type Matchup = {
-    team1: string;
-    team2: string;
-    startYear?: number;
-    endYear?: number;
-    team1Wins: number;
-    team2Wins: number;
-    ties: number;
-    games: Array<MatchupGame>;
-};
-
-export type RosterPlayer = {
-    id: string;
-    firstName: string;
-    lastName: string;
     team: string;
-    height: (number) | null;
-    weight: (number) | null;
-    jersey: (number) | null;
-    year: number;
-    position: (string) | null;
-    homeCity: (string) | null;
-    homeState: (string) | null;
-    homeCountry: (string) | null;
-    homeLatitude: (number) | null;
-    homeLongitude: (number) | null;
-    homeCountyFIPS: (string) | null;
-    recruitIds: Array<(string)> | null;
-};
-
-export type DivisionClassification = 'fbs' | 'fcs' | 'ii' | 'iii';
-
-export type Conference = {
-    id: number;
-    name: string;
-    shortName: (string) | null;
-    abbreviation: (string) | null;
-    classification: ((DivisionClassification) | null);
-};
-
-export type TeamTalent = {
-    year: number;
-    team: string;
-    talent: number;
-};
-
-export type PlayerStat = {
-    season: number;
-    playerId: string;
-    player: string;
-    team: string;
-    conference: string;
-    category: string;
-    statType: string;
-    stat: number;
-};
-
-export type SeasonType = 'regular' | 'postseason' | 'both' | 'allstar' | 'spring_regular' | 'spring_postseason';
-
-export type TeamStat = {
-    season: number;
-    team: string;
-    conference: string;
-    statName: string;
-    statValue: (string | number);
+    opponent: string;
+    offense: {
+        passingPlays: {
+            explosiveness: number;
+            successRate: number;
+            totalPPA: number;
+            ppa: number;
+        };
+        rushingPlays: {
+            explosiveness: number;
+            successRate: number;
+            totalPPA: number;
+            ppa: number;
+        };
+        passingDowns: {
+            explosiveness: number;
+            successRate: number;
+            ppa: number;
+        };
+        standardDowns: {
+            explosiveness: number;
+            successRate: number;
+            ppa: number;
+        };
+        openFieldYardsTotal: number;
+        openFieldYards: number;
+        secondLevelYardsTotal: number;
+        secondLevelYards: number;
+        lineYardsTotal: number;
+        lineYards: number;
+        stuffRate: number;
+        powerSuccess: number;
+        explosiveness: number;
+        successRate: number;
+        totalPPA: number;
+        ppa: number;
+        drives: number;
+        plays: number;
+    };
+    defense: {
+        passingPlays: {
+            explosiveness: number;
+            successRate: number;
+            totalPPA: number;
+            ppa: number;
+        };
+        rushingPlays: {
+            explosiveness: number;
+            successRate: number;
+            totalPPA: number;
+            ppa: number;
+        };
+        passingDowns: {
+            explosiveness: number;
+            successRate: number;
+            ppa: number;
+        };
+        standardDowns: {
+            explosiveness: number;
+            successRate: number;
+            ppa: number;
+        };
+        openFieldYardsTotal: number;
+        openFieldYards: number;
+        secondLevelYardsTotal: number;
+        secondLevelYards: number;
+        lineYardsTotal: number;
+        lineYards: number;
+        stuffRate: number;
+        powerSuccess: number;
+        explosiveness: number;
+        successRate: number;
+        totalPPA: number;
+        ppa: number;
+        drives: number;
+        plays: number;
+    };
 };
 
 export type AdvancedSeasonStat = {
@@ -289,123 +265,6 @@ export type AdvancedSeasonStat = {
     };
 };
 
-export type AdvancedGameStat = {
-    gameId: number;
-    season: number;
-    week: number;
-    team: string;
-    opponent: string;
-    offense: {
-        passingPlays: {
-            explosiveness: number;
-            successRate: number;
-            totalPPA: number;
-            ppa: number;
-        };
-        rushingPlays: {
-            explosiveness: number;
-            successRate: number;
-            totalPPA: number;
-            ppa: number;
-        };
-        passingDowns: {
-            explosiveness: number;
-            successRate: number;
-            ppa: number;
-        };
-        standardDowns: {
-            explosiveness: number;
-            successRate: number;
-            ppa: number;
-        };
-        openFieldYardsTotal: number;
-        openFieldYards: number;
-        secondLevelYardsTotal: number;
-        secondLevelYards: number;
-        lineYardsTotal: number;
-        lineYards: number;
-        stuffRate: number;
-        powerSuccess: number;
-        explosiveness: number;
-        successRate: number;
-        totalPPA: number;
-        ppa: number;
-        drives: number;
-        plays: number;
-    };
-    defense: {
-        passingPlays: {
-            explosiveness: number;
-            successRate: number;
-            totalPPA: number;
-            ppa: number;
-        };
-        rushingPlays: {
-            explosiveness: number;
-            successRate: number;
-            totalPPA: number;
-            ppa: number;
-        };
-        passingDowns: {
-            explosiveness: number;
-            successRate: number;
-            ppa: number;
-        };
-        standardDowns: {
-            explosiveness: number;
-            successRate: number;
-            ppa: number;
-        };
-        openFieldYardsTotal: number;
-        openFieldYards: number;
-        secondLevelYardsTotal: number;
-        secondLevelYards: number;
-        lineYardsTotal: number;
-        lineYards: number;
-        stuffRate: number;
-        powerSuccess: number;
-        explosiveness: number;
-        successRate: number;
-        totalPPA: number;
-        ppa: number;
-        drives: number;
-        plays: number;
-    };
-};
-
-export type RecruitClassification = 'JUCO' | 'PrepSchool' | 'HighSchool';
-
-export type Recruit = {
-    id: string;
-    athleteId: (string) | null;
-    recruitType: RecruitClassification;
-    year: number;
-    ranking: (number) | null;
-    name: string;
-    school: (string) | null;
-    committedTo: (string) | null;
-    position: (string) | null;
-    height: (number) | null;
-    weight: (number) | null;
-    stars: number;
-    rating: number;
-    city: (string) | null;
-    stateProvince: (string) | null;
-    country: (string) | null;
-    hometownInfo: {
-        fipsCode: (string) | null;
-        longitude: (number) | null;
-        latitude: (number) | null;
-    };
-};
-
-export type TeamRecruitingRanking = {
-    year: number;
-    rank: number;
-    team: string;
-    points: number;
-};
-
 export type AggregatedTeamRecruiting = {
     team: string;
     conference: string;
@@ -416,44 +275,67 @@ export type AggregatedTeamRecruiting = {
     averageStars: number;
 };
 
-export type TeamSP = {
+export type BettingGame = {
+    id: number;
+    season: number;
+    seasonType: SeasonType;
+    week: number;
+    startDate: string;
+    homeTeam: string;
+    homeConference: (string) | null;
+    homeClassification: ((DivisionClassification) | null);
+    homeScore: (number) | null;
+    awayTeam: string;
+    awayConference: (string) | null;
+    awayClassification: ((DivisionClassification) | null);
+    awayScore: (number) | null;
+    lines: Array<GameLine>;
+};
+
+export type CalendarWeek = {
+    season: number;
+    week: number;
+    seasonType: SeasonType;
+    startDate: string;
+    endDate: string;
+    /**
+     * @deprecated
+     */
+    firstGameStart: string;
+    /**
+     * @deprecated
+     */
+    lastGameStart: string;
+};
+
+export type Coach = {
+    firstName: string;
+    lastName: string;
+    hireDate: (string) | null;
+    seasons: Array<CoachSeason>;
+};
+
+export type CoachSeason = {
+    school: string;
     year: number;
-    team: string;
-    conference: string;
-    rating: number;
-    ranking: number;
-    secondOrderWins: (number) | null;
-    sos: (number) | null;
-    offense: {
-        pace: (number) | null;
-        runRate: (number) | null;
-        passingDowns: (number) | null;
-        standardDowns: (number) | null;
-        passing: (number) | null;
-        rushing: (number) | null;
-        explosiveness: (number) | null;
-        success: (number) | null;
-        rating: number;
-        ranking: number;
-    };
-    defense: {
-        havoc: {
-            db: (number) | null;
-            frontSeven: (number) | null;
-            total: (number) | null;
-        };
-        passingDowns: (number) | null;
-        standardDowns: (number) | null;
-        passing: (number) | null;
-        rushing: (number) | null;
-        explosiveness: (number) | null;
-        success: (number) | null;
-        rating: number;
-        ranking: number;
-    };
-    specialTeams: {
-        rating: (number) | null;
-    };
+    games: number;
+    wins: number;
+    losses: number;
+    ties: number;
+    preseasonRank: (number) | null;
+    postseasonRank: (number) | null;
+    srs: (number) | null;
+    spOverall: (number) | null;
+    spOffense: (number) | null;
+    spDefense: (number) | null;
+};
+
+export type Conference = {
+    id: number;
+    name: string;
+    shortName: (string) | null;
+    abbreviation: (string) | null;
+    classification: ((DivisionClassification) | null);
 };
 
 export type ConferenceSP = {
@@ -492,465 +374,86 @@ export type ConferenceSP = {
     };
 };
 
-export type TeamSRS = {
-    year: number;
-    team: string;
-    conference: (string) | null;
-    division: (string) | null;
-    rating: number;
-    ranking: number;
-};
+export type DivisionClassification = 'fbs' | 'fcs' | 'ii' | 'iii';
 
-export type TeamElo = {
+export type DraftPick = {
+    collegeAthleteId: (number) | null;
+    nflAthleteId: number;
+    collegeId: number;
+    collegeTeam: string;
+    collegeConference: (string) | null;
+    nflTeamId: number;
+    nflTeam: string;
     year: number;
-    team: string;
-    conference: string;
-    elo: (number) | null;
-};
-
-export type TeamFPI = {
-    year: number;
-    team: string;
-    conference: (string) | null;
-    fpi: (number) | null;
-    resumeRanks: {
-        gameControl: (number) | null;
-        remainingStrengthOfSchedule: (number) | null;
-        strengthOfSchedule: (number) | null;
-        averageWinProbability: (number) | null;
-        fpi: (number) | null;
-        strengthOfRecord: (number) | null;
-    };
-    efficiencies: {
-        specialTeams: (number) | null;
-        defense: (number) | null;
-        offense: (number) | null;
-        overall: (number) | null;
+    overall: number;
+    round: number;
+    pick: number;
+    name: string;
+    position: string;
+    height: (number) | null;
+    weight: (number) | null;
+    preDraftRanking: (number) | null;
+    preDraftPositionRanking: (number) | null;
+    preDraftGrade: (number) | null;
+    hometownInfo: {
+        countyFips: (string) | null;
+        longitude: (string) | null;
+        latitude: (string) | null;
+        country: (string) | null;
+        state: (string) | null;
+        city: (string) | null;
     };
 };
 
-export type PollRank = {
-    rank: (number) | null;
-    school: string;
-    conference: (string) | null;
-    firstPlaceVotes: (number) | null;
-    points: (number) | null;
+export type DraftPosition = {
+    name: string;
+    abbreviation: string;
 };
 
-export type Poll = {
-    poll: string;
-    ranks: Array<PollRank>;
+export type DraftTeam = {
+    location: string;
+    nickname: (string) | null;
+    displayName: (string) | null;
+    logo: (string) | null;
 };
 
-export type PollWeek = {
-    season: number;
-    seasonType: SeasonType;
-    week: number;
-    polls: Array<Poll>;
-};
-
-export type Play = {
-    id: string;
-    driveId: string;
-    gameId: number;
-    driveNumber: (number) | null;
-    playNumber: (number) | null;
+export type Drive = {
     offense: string;
     offenseConference: (string) | null;
-    offenseScore: number;
     defense: string;
-    home: string;
-    away: string;
     defenseConference: (string) | null;
-    defenseScore: number;
-    period: number;
-    clock: {
-        seconds: (number) | null;
-        minutes: (number) | null;
-    };
-    offenseTimeouts: (number) | null;
-    defenseTimeouts: (number) | null;
-    yardline: number;
-    yardsToGoal: number;
-    down: number;
-    distance: number;
-    yardsGained: number;
+    gameId: number;
+    id: string;
+    driveNumber: (number) | null;
     scoring: boolean;
-    playType: string;
-    playText: (string) | null;
-    ppa: (number) | null;
-    wallclock: (string) | null;
-};
-
-export type PlayType = {
-    id: number;
-    text: string;
-    abbreviation: (string) | null;
-};
-
-export type PlayStat = {
-    gameId: number;
-    season: number;
-    week: number;
-    team: string;
-    conference: string;
-    opponent: string;
-    teamScore: number;
-    opponentScore: number;
-    driveId: string;
-    playId: string;
-    period: number;
-    clock: {
+    startPeriod: number;
+    startYardline: number;
+    startYardsToGoal: number;
+    startTime: {
         seconds: (number) | null;
         minutes: (number) | null;
     };
-    yardsToGoal: number;
-    down: number;
-    distance: number;
-    athleteId: string;
-    athleteName: string;
-    statType: string;
-    stat: number;
-};
-
-export type PlayStatType = {
-    id: number;
-    name: string;
-};
-
-export type PlayerSearchResult = {
-    id: string;
-    team: string;
-    name: string;
-    firstName: (string) | null;
-    lastName: (string) | null;
-    weight: (number) | null;
-    height: (number) | null;
-    jersey: (number) | null;
-    position: string;
-    hometown: string;
-    teamColor: string;
-    teamColorSecondary: string;
-};
-
-export type PlayerPPAChartItem = {
-    playNumber: number;
-    avgPPA: number;
-};
-
-export type PlayerUsage = {
-    season: number;
-    id: string;
-    name: string;
-    position: string;
-    team: string;
-    conference: string;
-    usage: {
-        passingDowns: number;
-        standardDowns: number;
-        thirdDown: number;
-        secondDown: number;
-        firstDown: number;
-        rush: number;
-        pass: number;
-        overall: number;
+    endPeriod: number;
+    endYardline: number;
+    endYardsToGoal: number;
+    endTime: {
+        seconds: (number) | null;
+        minutes: (number) | null;
     };
-};
-
-export type ReturningProduction = {
-    season: number;
-    team: string;
-    conference: string;
-    totalPPA: number;
-    totalPassingPPA: number;
-    totalReceivingPPA: number;
-    totalRushingPPA: number;
-    percentPPA: number;
-    percentPassingPPA: number;
-    percentReceivingPPA: number;
-    percentRushingPPA: number;
-    usage: number;
-    passingUsage: number;
-    receivingUsage: number;
-    rushingUsage: number;
-};
-
-export type TransferEligibility = 'Withdrawn' | 'TBD' | 'PendingAppeal' | 'SittingOne' | 'Immediate';
-
-export type PlayerTransfer = {
-    season: number;
-    firstName: string;
-    lastName: string;
-    position: string;
-    origin: string;
-    destination: (string) | null;
-    transferDate: (string) | null;
-    rating: (number) | null;
-    stars: (number) | null;
-    eligibility: ((TransferEligibility) | null);
-};
-
-export type PredictedPointsValue = {
-    yardLine: number;
-    predictedPoints: number;
-};
-
-export type TeamSeasonPredictedPointsAdded = {
-    season: number;
-    conference: string;
-    team: string;
-    offense: {
-        cumulative: {
-            rushing: number;
-            passing: number;
-            total: number;
-        };
-        thirdDown: number;
-        secondDown: number;
-        firstDown: number;
-        rushing: number;
-        passing: number;
-        overall: number;
-    };
-    defense: {
-        cumulative: {
-            rushing: number;
-            passing: number;
-            total: number;
-        };
-        thirdDown: number;
-        secondDown: number;
-        firstDown: number;
-        rushing: number;
-        passing: number;
-        overall: number;
-    };
-};
-
-export type TeamGamePredictedPointsAdded = {
-    gameId: number;
-    season: number;
-    week: number;
-    seasonType: SeasonType;
-    team: string;
-    conference: string;
-    opponent: string;
-    offense: {
-        thirdDown: number;
-        secondDown: number;
-        firstDown: number;
-        rushing: number;
-        passing: number;
-        overall: number;
-    };
-    defense: {
-        thirdDown: number;
-        secondDown: number;
-        firstDown: number;
-        rushing: number;
-        passing: number;
-        overall: number;
-    };
-};
-
-export type PlayerGamePredictedPointsAdded = {
-    season: number;
-    week: number;
-    seasonType: SeasonType;
-    id: string;
-    name: string;
-    position: string;
-    team: string;
-    opponent: string;
-    averagePPA: {
-        rush?: number;
-        pass?: number;
-        all: number;
-    };
-};
-
-export type PlayerSeasonPredictedPointsAdded = {
-    season: number;
-    id: string;
-    name: string;
-    position: string;
-    team: string;
-    conference: string;
-    averagePPA: {
-        passingDowns?: number;
-        standardDowns?: number;
-        thirdDown?: number;
-        secondDown?: number;
-        firstDown?: number;
-        rush?: number;
-        pass?: number;
-        all: number;
-    };
-    totalPPA: {
-        passingDowns?: number;
-        standardDowns?: number;
-        thirdDown?: number;
-        secondDown?: number;
-        firstDown?: number;
-        rush?: number;
-        pass?: number;
-        all: number;
-    };
-};
-
-export type PlayWinProbability = {
-    gameId: number;
-    playId: string;
-    playText: string;
-    homeId: number;
-    home: string;
-    awayId: number;
-    away: string;
-    spread: number;
-    homeBall: boolean;
-    homeScore: number;
-    awayScore: number;
-    yardLine: number;
-    down: number;
-    distance: number;
-    homeWinProbability: number;
-    playNumber: number;
-};
-
-export type PregameWinProbability = {
-    season: number;
-    seasonType: SeasonType;
-    week: number;
-    gameId: number;
-    homeTeam: string;
-    awayTeam: string;
-    spread: number;
-    homeWinProbability: number;
+    plays: number;
+    yards: number;
+    driveResult: string;
+    isHomeOffense: boolean;
+    startOffenseScore: number;
+    startDefenseScore: number;
+    endOffenseScore: number;
+    endDefenseScore: number;
 };
 
 export type FieldGoalEP = {
     yardsToGoal: number;
     distance: number;
     expectedPoints: number;
-};
-
-export type LiveGameTeam = {
-    teamId: number;
-    team: string;
-    homeAway: 'home' | 'away';
-    lineScores: Array<(number)>;
-    points: number;
-    drives: number;
-    scoringOpportunities: number;
-    pointsPerOpportunity: number;
-    plays: number;
-    lineYards: number;
-    lineYardsPerRush: number;
-    secondLevelYards: number;
-    secondLevelYardsPerRush: number;
-    openFieldYards: number;
-    openFieldYardsPerRush: number;
-    epaPerPlay: number;
-    totalEpa: number;
-    passingEpa: number;
-    epaPerPass: number;
-    rushingEpa: number;
-    epaPerRush: number;
-    successRate: number;
-    standardDownSuccessRate: number;
-    passingDownSuccessRate: number;
-    explosiveness: number;
-};
-
-export type homeAway = 'home' | 'away';
-
-export type LiveGamePlay = {
-    id: string;
-    homeScore: number;
-    awayScore: number;
-    period: number;
-    clock: string;
-    wallClock: string;
-    teamId: number;
-    team: string;
-    down: number;
-    distance: number;
-    yardsToGoal: number;
-    yardsGained: number;
-    playTypeId: number;
-    playType: string;
-    epa: (number) | null;
-    garbageTime: boolean;
-    success: boolean;
-    rushPash: 'rush' | 'pass' | 'other';
-    downType: 'passing' | 'standard';
-    playText: string;
-};
-
-export type rushPash = 'rush' | 'pass' | 'other';
-
-export type downType = 'passing' | 'standard';
-
-export type LiveGameDrive = {
-    id: string;
-    offenseId: number;
-    offense: string;
-    defenseId: number;
-    defense: string;
-    playCount: number;
-    yards: number;
-    startPeriod: number;
-    startClock: (string) | null;
-    startYardsToGoal: number;
-    endPeriod: (number) | null;
-    endClock: (string) | null;
-    endYardsToGoal: (number) | null;
-    duration: (string) | null;
-    scoringOpportunity: boolean;
-    result: string;
-    pointsGained: number;
-    plays: Array<LiveGamePlay>;
-};
-
-export type LiveGame = {
-    id: number;
-    status: string;
-    period: (number) | null;
-    clock: string;
-    possession: string;
-    down: (number) | null;
-    distance: (number) | null;
-    yardsToGoal: (number) | null;
-    teams: Array<LiveGameTeam>;
-    drives: Array<LiveGameDrive>;
-};
-
-export type GameLine = {
-    provider: string;
-    spread: (number) | null;
-    formattedSpread: string;
-    spreadOpen: (number) | null;
-    overUnder: (number) | null;
-    overUnderOpen: (number) | null;
-    homeMoneyline: (number) | null;
-    awayMoneyline: (number) | null;
-};
-
-export type BettingGame = {
-    id: number;
-    season: number;
-    seasonType: SeasonType;
-    week: number;
-    startDate: string;
-    homeTeam: string;
-    homeConference: (string) | null;
-    homeClassification: ((DivisionClassification) | null);
-    homeScore: (number) | null;
-    awayTeam: string;
-    awayConference: (string) | null;
-    awayClassification: ((DivisionClassification) | null);
-    awayScore: (number) | null;
-    lines: Array<GameLine>;
 };
 
 export type Game = {
@@ -989,55 +492,16 @@ export type Game = {
     notes: (string) | null;
 };
 
-export type GameTeamStatsTeamStat = {
-    category: string;
-    stat: string;
+export type GameLine = {
+    provider: string;
+    spread: (number) | null;
+    formattedSpread: string;
+    spreadOpen: (number) | null;
+    overUnder: (number) | null;
+    overUnderOpen: (number) | null;
+    homeMoneyline: (number) | null;
+    awayMoneyline: (number) | null;
 };
-
-export type GameTeamStatsTeam = {
-    teamId: number;
-    team: string;
-    conference: (string) | null;
-    homeAway: 'home' | 'away';
-    points: (number) | null;
-    stats: Array<GameTeamStatsTeamStat>;
-};
-
-export type GameTeamStats = {
-    id: number;
-    teams: Array<GameTeamStatsTeam>;
-};
-
-export type GamePlayerStatPlayer = {
-    id: string;
-    name: string;
-    stat: string;
-};
-
-export type GamePlayerStatTypes = {
-    name: string;
-    athletes: Array<GamePlayerStatPlayer>;
-};
-
-export type GamePlayerStatCategories = {
-    name: string;
-    types: Array<GamePlayerStatTypes>;
-};
-
-export type GamePlayerStatsTeam = {
-    team: string;
-    conference: (string) | null;
-    homeAway: 'home' | 'away';
-    points: (number) | null;
-    categories: Array<GamePlayerStatCategories>;
-};
-
-export type GamePlayerStats = {
-    id: number;
-    teams: Array<GamePlayerStatsTeam>;
-};
-
-export type MediaType = 'tv' | 'radio' | 'web' | 'ppv' | 'mobile';
 
 export type GameMedia = {
     id: number;
@@ -1052,6 +516,58 @@ export type GameMedia = {
     awayConference: (string) | null;
     mediaType: MediaType;
     outlet: string;
+};
+
+export type GamePlayerStatCategories = {
+    name: string;
+    types: Array<GamePlayerStatTypes>;
+};
+
+export type GamePlayerStatPlayer = {
+    id: string;
+    name: string;
+    stat: string;
+};
+
+export type GamePlayerStats = {
+    id: number;
+    teams: Array<GamePlayerStatsTeam>;
+};
+
+export type GamePlayerStatsTeam = {
+    team: string;
+    conference: (string) | null;
+    homeAway: 'home' | 'away';
+    points: (number) | null;
+    categories: Array<GamePlayerStatCategories>;
+};
+
+export type homeAway = 'home' | 'away';
+
+export type GamePlayerStatTypes = {
+    name: string;
+    athletes: Array<GamePlayerStatPlayer>;
+};
+
+export type GameStatus = 'scheduled' | 'in_progress' | 'completed';
+
+export type GameTeamStats = {
+    id: number;
+    teams: Array<GameTeamStatsTeam>;
+};
+
+export type GameTeamStatsTeam = {
+    teamId: number;
+    team: string;
+    conference: (string) | null;
+    homeAway: 'home' | 'away';
+    points: (number) | null;
+    stats: Array<GameTeamStatsTeamStat>;
+};
+
+export type GameTeamStatsTeamStat = {
+    category: string;
+    stat: string;
 };
 
 export type GameWeather = {
@@ -1079,45 +595,468 @@ export type GameWeather = {
     weatherCondition: (string) | null;
 };
 
-export type TeamRecord = {
-    games: number;
-    wins: number;
-    losses: number;
-    ties: number;
+export type KickerPAAR = {
+    year: number;
+    athleteId: string;
+    athleteName: string;
+    team: string;
+    conference: string;
+    paar: number;
+    attempts: number;
 };
 
-export type TeamRecords = {
-    year: number;
+export type LiveGame = {
+    id: number;
+    status: string;
+    period: (number) | null;
+    clock: string;
+    possession: string;
+    down: (number) | null;
+    distance: (number) | null;
+    yardsToGoal: (number) | null;
+    teams: Array<LiveGameTeam>;
+    drives: Array<LiveGameDrive>;
+};
+
+export type LiveGameDrive = {
+    id: string;
+    offenseId: number;
+    offense: string;
+    defenseId: number;
+    defense: string;
+    playCount: number;
+    yards: number;
+    startPeriod: number;
+    startClock: (string) | null;
+    startYardsToGoal: number;
+    endPeriod: (number) | null;
+    endClock: (string) | null;
+    endYardsToGoal: (number) | null;
+    duration: (string) | null;
+    scoringOpportunity: boolean;
+    result: string;
+    pointsGained: number;
+    plays: Array<LiveGamePlay>;
+};
+
+export type LiveGamePlay = {
+    id: string;
+    homeScore: number;
+    awayScore: number;
+    period: number;
+    clock: string;
+    wallClock: string;
     teamId: number;
     team: string;
-    classification: ((DivisionClassification) | null);
-    conference: string;
-    division: string;
-    expectedWins: (number) | null;
-    total: TeamRecord;
-    conferenceGames: TeamRecord;
-    homeGames: TeamRecord;
-    awayGames: TeamRecord;
-    neutralSiteGames: TeamRecord;
+    down: number;
+    distance: number;
+    yardsToGoal: number;
+    yardsGained: number;
+    playTypeId: number;
+    playType: string;
+    epa: (number) | null;
+    garbageTime: boolean;
+    success: boolean;
+    rushPash: 'rush' | 'pass' | 'other';
+    downType: 'passing' | 'standard';
+    playText: string;
 };
 
-export type CalendarWeek = {
+export type rushPash = 'rush' | 'pass' | 'other';
+
+export type downType = 'passing' | 'standard';
+
+export type LiveGameTeam = {
+    teamId: number;
+    team: string;
+    homeAway: 'home' | 'away';
+    lineScores: Array<(number)>;
+    points: number;
+    drives: number;
+    scoringOpportunities: number;
+    pointsPerOpportunity: number;
+    plays: number;
+    lineYards: number;
+    lineYardsPerRush: number;
+    secondLevelYards: number;
+    secondLevelYardsPerRush: number;
+    openFieldYards: number;
+    openFieldYardsPerRush: number;
+    epaPerPlay: number;
+    totalEpa: number;
+    passingEpa: number;
+    epaPerPass: number;
+    rushingEpa: number;
+    epaPerRush: number;
+    successRate: number;
+    standardDownSuccessRate: number;
+    passingDownSuccessRate: number;
+    explosiveness: number;
+};
+
+export type Matchup = {
+    team1: string;
+    team2: string;
+    startYear?: number;
+    endYear?: number;
+    team1Wins: number;
+    team2Wins: number;
+    ties: number;
+    games: Array<MatchupGame>;
+};
+
+export type MatchupGame = {
+    season: number;
+    week: number;
+    seasonType: string;
+    date: string;
+    neutralSite: boolean;
+    venue: string;
+    homeTeam: string;
+    homeScore: number;
+    awayTeam: string;
+    awayScore: number;
+    winner: (string) | null;
+};
+
+export type MediaType = 'tv' | 'radio' | 'web' | 'ppv' | 'mobile';
+
+export type Play = {
+    id: string;
+    driveId: string;
+    gameId: number;
+    driveNumber: (number) | null;
+    playNumber: (number) | null;
+    offense: string;
+    offenseConference: (string) | null;
+    offenseScore: number;
+    defense: string;
+    home: string;
+    away: string;
+    defenseConference: (string) | null;
+    defenseScore: number;
+    period: number;
+    clock: {
+        seconds: (number) | null;
+        minutes: (number) | null;
+    };
+    offenseTimeouts: (number) | null;
+    defenseTimeouts: (number) | null;
+    yardline: number;
+    yardsToGoal: number;
+    down: number;
+    distance: number;
+    yardsGained: number;
+    scoring: boolean;
+    playType: string;
+    playText: (string) | null;
+    ppa: (number) | null;
+    wallclock: (string) | null;
+};
+
+export type PlayerGamePredictedPointsAdded = {
     season: number;
     week: number;
     seasonType: SeasonType;
-    startDate: string;
-    endDate: string;
-    /**
-     * @deprecated
-     */
-    firstGameStart: string;
-    /**
-     * @deprecated
-     */
-    lastGameStart: string;
+    id: string;
+    name: string;
+    position: string;
+    team: string;
+    opponent: string;
+    averagePPA: {
+        rush?: number;
+        pass?: number;
+        all: number;
+    };
 };
 
-export type GameStatus = 'scheduled' | 'in_progress' | 'completed';
+export type PlayerGameUsage = {
+    total: number;
+    quarter1: number;
+    quarter2: number;
+    quarter3: number;
+    quarter4: number;
+    rushing: number;
+    passing: number;
+    player: string;
+    team: string;
+    position: string;
+};
+
+export type PlayerPPA = {
+    player: string;
+    team: string;
+    position: string;
+    average: PlayerStatsByQuarter;
+    cumulative: PlayerStatsByQuarter;
+};
+
+export type PlayerPPAChartItem = {
+    playNumber: number;
+    avgPPA: number;
+};
+
+export type PlayerSearchResult = {
+    id: string;
+    team: string;
+    name: string;
+    firstName: (string) | null;
+    lastName: (string) | null;
+    weight: (number) | null;
+    height: (number) | null;
+    jersey: (number) | null;
+    position: string;
+    hometown: string;
+    teamColor: string;
+    teamColorSecondary: string;
+};
+
+export type PlayerSeasonPredictedPointsAdded = {
+    season: number;
+    id: string;
+    name: string;
+    position: string;
+    team: string;
+    conference: string;
+    averagePPA: {
+        passingDowns?: number;
+        standardDowns?: number;
+        thirdDown?: number;
+        secondDown?: number;
+        firstDown?: number;
+        rush?: number;
+        pass?: number;
+        all: number;
+    };
+    totalPPA: {
+        passingDowns?: number;
+        standardDowns?: number;
+        thirdDown?: number;
+        secondDown?: number;
+        firstDown?: number;
+        rush?: number;
+        pass?: number;
+        all: number;
+    };
+};
+
+export type PlayerStat = {
+    season: number;
+    playerId: string;
+    player: string;
+    team: string;
+    conference: string;
+    category: string;
+    statType: string;
+    stat: number;
+};
+
+export type PlayerStatsByQuarter = {
+    total: number;
+    quarter1: number;
+    quarter2: number;
+    quarter3: number;
+    quarter4: number;
+    rushing: number;
+    passing: number;
+};
+
+export type PlayerTransfer = {
+    season: number;
+    firstName: string;
+    lastName: string;
+    position: string;
+    origin: string;
+    destination: (string) | null;
+    transferDate: (string) | null;
+    rating: (number) | null;
+    stars: (number) | null;
+    eligibility: ((TransferEligibility) | null);
+};
+
+export type PlayerUsage = {
+    season: number;
+    id: string;
+    name: string;
+    position: string;
+    team: string;
+    conference: string;
+    usage: {
+        passingDowns: number;
+        standardDowns: number;
+        thirdDown: number;
+        secondDown: number;
+        firstDown: number;
+        rush: number;
+        pass: number;
+        overall: number;
+    };
+};
+
+export type PlayerWeightedEPA = {
+    year: number;
+    athleteId: string;
+    athleteName: string;
+    position: string;
+    team: string;
+    conference: string;
+    wepa: number;
+    plays: number;
+};
+
+export type PlayStat = {
+    gameId: number;
+    season: number;
+    week: number;
+    team: string;
+    conference: string;
+    opponent: string;
+    teamScore: number;
+    opponentScore: number;
+    driveId: string;
+    playId: string;
+    period: number;
+    clock: {
+        seconds: (number) | null;
+        minutes: (number) | null;
+    };
+    yardsToGoal: number;
+    down: number;
+    distance: number;
+    athleteId: string;
+    athleteName: string;
+    statType: string;
+    stat: number;
+};
+
+export type PlayStatType = {
+    id: number;
+    name: string;
+};
+
+export type PlayType = {
+    id: number;
+    text: string;
+    abbreviation: (string) | null;
+};
+
+export type PlayWinProbability = {
+    gameId: number;
+    playId: string;
+    playText: string;
+    homeId: number;
+    home: string;
+    awayId: number;
+    away: string;
+    spread: number;
+    homeBall: boolean;
+    homeScore: number;
+    awayScore: number;
+    yardLine: number;
+    down: number;
+    distance: number;
+    homeWinProbability: number;
+    playNumber: number;
+};
+
+export type Poll = {
+    poll: string;
+    ranks: Array<PollRank>;
+};
+
+export type PollRank = {
+    rank: (number) | null;
+    school: string;
+    conference: (string) | null;
+    firstPlaceVotes: (number) | null;
+    points: (number) | null;
+};
+
+export type PollWeek = {
+    season: number;
+    seasonType: SeasonType;
+    week: number;
+    polls: Array<Poll>;
+};
+
+export type PredictedPointsValue = {
+    yardLine: number;
+    predictedPoints: number;
+};
+
+export type PregameWinProbability = {
+    season: number;
+    seasonType: SeasonType;
+    week: number;
+    gameId: number;
+    homeTeam: string;
+    awayTeam: string;
+    spread: number;
+    homeWinProbability: number;
+};
+
+export type Recruit = {
+    id: string;
+    athleteId: (string) | null;
+    recruitType: RecruitClassification;
+    year: number;
+    ranking: (number) | null;
+    name: string;
+    school: (string) | null;
+    committedTo: (string) | null;
+    position: (string) | null;
+    height: (number) | null;
+    weight: (number) | null;
+    stars: number;
+    rating: number;
+    city: (string) | null;
+    stateProvince: (string) | null;
+    country: (string) | null;
+    hometownInfo: {
+        fipsCode: (string) | null;
+        longitude: (number) | null;
+        latitude: (number) | null;
+    };
+};
+
+export type RecruitClassification = 'JUCO' | 'PrepSchool' | 'HighSchool';
+
+export type ReturningProduction = {
+    season: number;
+    team: string;
+    conference: string;
+    totalPPA: number;
+    totalPassingPPA: number;
+    totalReceivingPPA: number;
+    totalRushingPPA: number;
+    percentPPA: number;
+    percentPassingPPA: number;
+    percentReceivingPPA: number;
+    percentRushingPPA: number;
+    usage: number;
+    passingUsage: number;
+    receivingUsage: number;
+    rushingUsage: number;
+};
+
+export type RosterPlayer = {
+    id: string;
+    firstName: string;
+    lastName: string;
+    team: string;
+    height: (number) | null;
+    weight: (number) | null;
+    jersey: (number) | null;
+    year: number;
+    position: (string) | null;
+    homeCity: (string) | null;
+    homeState: (string) | null;
+    homeCountry: (string) | null;
+    homeLatitude: (number) | null;
+    homeLongitude: (number) | null;
+    homeCountyFIPS: (string) | null;
+    recruitIds: Array<(string)> | null;
+};
 
 export type ScoreboardGame = {
     id: number;
@@ -1167,101 +1106,7 @@ export type ScoreboardGame = {
     };
 };
 
-export type Drive = {
-    offense: string;
-    offenseConference: (string) | null;
-    defense: string;
-    defenseConference: (string) | null;
-    gameId: number;
-    id: string;
-    driveNumber: (number) | null;
-    scoring: boolean;
-    startPeriod: number;
-    startYardline: number;
-    startYardsToGoal: number;
-    startTime: {
-        seconds: (number) | null;
-        minutes: (number) | null;
-    };
-    endPeriod: number;
-    endYardline: number;
-    endYardsToGoal: number;
-    endTime: {
-        seconds: (number) | null;
-        minutes: (number) | null;
-    };
-    plays: number;
-    yards: number;
-    driveResult: string;
-    isHomeOffense: boolean;
-    startOffenseScore: number;
-    startDefenseScore: number;
-    endOffenseScore: number;
-    endDefenseScore: number;
-};
-
-export type DraftTeam = {
-    location: string;
-    nickname: (string) | null;
-    displayName: (string) | null;
-    logo: (string) | null;
-};
-
-export type DraftPosition = {
-    name: string;
-    abbreviation: string;
-};
-
-export type DraftPick = {
-    collegeAthleteId: (number) | null;
-    nflAthleteId: number;
-    collegeId: number;
-    collegeTeam: string;
-    collegeConference: (string) | null;
-    nflTeamId: number;
-    nflTeam: string;
-    year: number;
-    overall: number;
-    round: number;
-    pick: number;
-    name: string;
-    position: string;
-    height: (number) | null;
-    weight: (number) | null;
-    preDraftRanking: (number) | null;
-    preDraftPositionRanking: (number) | null;
-    preDraftGrade: (number) | null;
-    hometownInfo: {
-        countyFips: (string) | null;
-        longitude: (string) | null;
-        latitude: (string) | null;
-        country: (string) | null;
-        state: (string) | null;
-        city: (string) | null;
-    };
-};
-
-export type CoachSeason = {
-    school: string;
-    year: number;
-    games: number;
-    wins: number;
-    losses: number;
-    ties: number;
-    preseasonRank: (number) | null;
-    postseasonRank: (number) | null;
-    srs: (number) | null;
-    spOverall: (number) | null;
-    spOffense: (number) | null;
-    spDefense: (number) | null;
-};
-
-export type Coach = {
-    firstName: string;
-    lastName: string;
-    hireDate: (string) | null;
-    seasons: Array<CoachSeason>;
-};
+export type SeasonType = 'regular' | 'postseason' | 'both' | 'allstar' | 'spring_regular' | 'spring_postseason';
 
 export type StatsByQuarter = {
     total: number;
@@ -1269,6 +1114,94 @@ export type StatsByQuarter = {
     quarter2: number;
     quarter3: number;
     quarter4: number;
+};
+
+export type Team = {
+    id: number;
+    school: string;
+    mascot: (string) | null;
+    abbreviation: (string) | null;
+    alternateNames: Array<(string)> | null;
+    conference: (string) | null;
+    division: (string) | null;
+    classification: (string) | null;
+    color: (string) | null;
+    alternateColor: (string) | null;
+    logos: Array<(string)> | null;
+    twitter: (string) | null;
+    location: ((Venue) | null);
+};
+
+export type TeamElo = {
+    year: number;
+    team: string;
+    conference: string;
+    elo: (number) | null;
+};
+
+export type TeamExplosiveness = {
+    team: string;
+    overall: StatsByQuarter;
+};
+
+export type TeamFieldPosition = {
+    team: string;
+    averageStart: number;
+    averageStartingPredictedPoints: number;
+};
+
+export type TeamFPI = {
+    year: number;
+    team: string;
+    conference: (string) | null;
+    fpi: (number) | null;
+    resumeRanks: {
+        gameControl: (number) | null;
+        remainingStrengthOfSchedule: (number) | null;
+        strengthOfSchedule: (number) | null;
+        averageWinProbability: (number) | null;
+        fpi: (number) | null;
+        strengthOfRecord: (number) | null;
+    };
+    efficiencies: {
+        specialTeams: (number) | null;
+        defense: (number) | null;
+        offense: (number) | null;
+        overall: (number) | null;
+    };
+};
+
+export type TeamGamePredictedPointsAdded = {
+    gameId: number;
+    season: number;
+    week: number;
+    seasonType: SeasonType;
+    team: string;
+    conference: string;
+    opponent: string;
+    offense: {
+        thirdDown: number;
+        secondDown: number;
+        firstDown: number;
+        rushing: number;
+        passing: number;
+        overall: number;
+    };
+    defense: {
+        thirdDown: number;
+        secondDown: number;
+        firstDown: number;
+        rushing: number;
+        passing: number;
+        overall: number;
+    };
+};
+
+export type TeamHavoc = {
+    team: string;
+    total: number;
+    frontSeven: number;
+    db: number;
 };
 
 export type TeamPPA = {
@@ -1279,16 +1212,35 @@ export type TeamPPA = {
     rushing: StatsByQuarter;
 };
 
-export type TeamSuccessRates = {
-    team: string;
-    overall: StatsByQuarter;
-    standardDowns: StatsByQuarter;
-    passingDowns: StatsByQuarter;
+export type TeamRecord = {
+    games: number;
+    wins: number;
+    losses: number;
+    ties: number;
 };
 
-export type TeamExplosiveness = {
+export type TeamRecords = {
+    year: number;
+    teamId: number;
     team: string;
-    overall: StatsByQuarter;
+    classification: ((DivisionClassification) | null);
+    conference: string;
+    division: string;
+    expectedWins: (number) | null;
+    total: TeamRecord;
+    conferenceGames: TeamRecord;
+    homeGames: TeamRecord;
+    awayGames: TeamRecord;
+    neutralSiteGames: TeamRecord;
+    regularSeason: TeamRecord;
+    postseason: TeamRecord;
+};
+
+export type TeamRecruitingRanking = {
+    year: number;
+    rank: number;
+    team: string;
+    points: number;
 };
 
 export type TeamRushingStats = {
@@ -1303,13 +1255,6 @@ export type TeamRushingStats = {
     openFieldYardsAverage: number;
 };
 
-export type TeamHavoc = {
-    team: string;
-    total: number;
-    frontSeven: number;
-    db: number;
-};
-
 export type TeamScoringOpportunities = {
     team: string;
     opportunities: number;
@@ -1317,68 +1262,125 @@ export type TeamScoringOpportunities = {
     pointsPerOpportunity: number;
 };
 
-export type TeamFieldPosition = {
+export type TeamSeasonPredictedPointsAdded = {
+    season: number;
+    conference: string;
     team: string;
-    averageStart: number;
-    averageStartingPredictedPoints: number;
+    offense: {
+        cumulative: {
+            rushing: number;
+            passing: number;
+            total: number;
+        };
+        thirdDown: number;
+        secondDown: number;
+        firstDown: number;
+        rushing: number;
+        passing: number;
+        overall: number;
+    };
+    defense: {
+        cumulative: {
+            rushing: number;
+            passing: number;
+            total: number;
+        };
+        thirdDown: number;
+        secondDown: number;
+        firstDown: number;
+        rushing: number;
+        passing: number;
+        overall: number;
+    };
 };
 
-export type PlayerGameUsage = {
-    total: number;
-    quarter1: number;
-    quarter2: number;
-    quarter3: number;
-    quarter4: number;
-    rushing: number;
-    passing: number;
-    player: string;
+export type TeamSP = {
+    year: number;
     team: string;
-    position: string;
+    conference: string;
+    rating: number;
+    ranking: number;
+    secondOrderWins: (number) | null;
+    sos: (number) | null;
+    offense: {
+        pace: (number) | null;
+        runRate: (number) | null;
+        passingDowns: (number) | null;
+        standardDowns: (number) | null;
+        passing: (number) | null;
+        rushing: (number) | null;
+        explosiveness: (number) | null;
+        success: (number) | null;
+        rating: number;
+        ranking: number;
+    };
+    defense: {
+        havoc: {
+            db: (number) | null;
+            frontSeven: (number) | null;
+            total: (number) | null;
+        };
+        passingDowns: (number) | null;
+        standardDowns: (number) | null;
+        passing: (number) | null;
+        rushing: (number) | null;
+        explosiveness: (number) | null;
+        success: (number) | null;
+        rating: number;
+        ranking: number;
+    };
+    specialTeams: {
+        rating: (number) | null;
+    };
 };
 
-export type PlayerStatsByQuarter = {
-    total: number;
-    quarter1: number;
-    quarter2: number;
-    quarter3: number;
-    quarter4: number;
-    rushing: number;
-    passing: number;
-};
-
-export type PlayerPPA = {
-    player: string;
+export type TeamSRS = {
+    year: number;
     team: string;
-    position: string;
-    average: PlayerStatsByQuarter;
-    cumulative: PlayerStatsByQuarter;
+    conference: (string) | null;
+    division: (string) | null;
+    rating: number;
+    ranking: number;
 };
 
-export type AdvancedBoxScore = {
-    gameInfo: {
-        excitement: number;
-        homeWinner: boolean;
-        awayWinProb: number;
-        awayPoints: number;
-        awayTeam: string;
-        homeWinProb: number;
-        homePoints: number;
-        homeTeam: string;
-    };
-    teams: {
-        fieldPosition: Array<TeamFieldPosition>;
-        scoringOpportunities: Array<TeamScoringOpportunities>;
-        havoc: Array<TeamHavoc>;
-        rushing: Array<TeamRushingStats>;
-        explosiveness: Array<TeamExplosiveness>;
-        successRates: Array<TeamSuccessRates>;
-        cumulativePpa: Array<TeamPPA>;
-        ppa: Array<TeamPPA>;
-    };
-    players: {
-        ppa: Array<PlayerPPA>;
-        usage: Array<PlayerGameUsage>;
-    };
+export type TeamStat = {
+    season: number;
+    team: string;
+    conference: string;
+    statName: string;
+    statValue: (string | number);
+};
+
+export type TeamSuccessRates = {
+    team: string;
+    overall: StatsByQuarter;
+    standardDowns: StatsByQuarter;
+    passingDowns: StatsByQuarter;
+};
+
+export type TeamTalent = {
+    year: number;
+    team: string;
+    talent: number;
+};
+
+export type TransferEligibility = 'Withdrawn' | 'TBD' | 'PendingAppeal' | 'SittingOne' | 'Immediate';
+
+export type Venue = {
+    id: (number) | null;
+    name: (string) | null;
+    city: (string) | null;
+    state: (string) | null;
+    zip: (string) | null;
+    countryCode: (string) | null;
+    timezone: (string) | null;
+    latitude: (number) | null;
+    longitude: (number) | null;
+    elevation: (string) | null;
+    capacity: (number) | null;
+    constructionYear: (number) | null;
+    grass?: (boolean) | null;
+    dome?: (boolean) | null;
 };
 
 export type GetAdjustedTeamSeasonStatsData = {
