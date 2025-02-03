@@ -3209,3 +3209,7 @@ export type GetAdvancedBoxScoreResponses = {
 };
 
 export type GetAdvancedBoxScoreResponse = GetAdvancedBoxScoreResponses[keyof GetAdvancedBoxScoreResponses];
+
+export type ClientOptions = {
+    baseUrl: 'https://apinext.collegefootballdata.com/' | (string & {});
+};
