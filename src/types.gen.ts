@@ -101,11 +101,11 @@ export type MatchupGame = {
     seasonType: string;
     date: string;
     neutralSite: boolean;
-    venue: string;
+    venue: string | null;
     homeTeam: string;
-    homeScore: number;
+    homeScore: number | null;
     awayTeam: string;
-    awayScore: number;
+    awayScore: number | null;
     winner: string | null;
 };
 
