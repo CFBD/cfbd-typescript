@@ -1,6 +1,6 @@
 {
   "name": "cfbd",
-  "version": "5.6.1",
+  "version": "5.6.2",
   "description": "This API is in limited Beta for Patreon subscribers. It may have bugs and is subject to changes. API keys can be acquired from the CollegeFootballData.com website.",
   "repository": {
     "type": "git",
