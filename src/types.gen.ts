@@ -1261,10 +1261,10 @@ export type Coach = {
 
 export type StatsByQuarter = {
     total: number;
-    quarter1: number;
-    quarter2: number;
-    quarter3: number;
-    quarter4: number;
+    quarter1: number | null;
+    quarter2: number | null;
+    quarter3: number | null;
+    quarter4: number | null;
 };
 
 export type TeamPpa = {
@@ -1321,10 +1321,10 @@ export type TeamFieldPosition = {
 
 export type PlayerGameUsage = {
     total: number;
-    quarter1: number;
-    quarter2: number;
-    quarter3: number;
-    quarter4: number;
+    quarter1: number | null;
+    quarter2: number | null;
+    quarter3: number | null;
+    quarter4: number | null;
     rushing: number;
     passing: number;
     player: string;
@@ -1334,10 +1334,10 @@ export type PlayerGameUsage = {
 
 export type PlayerStatsByQuarter = {
     total: number;
-    quarter1: number;
-    quarter2: number;
-    quarter3: number;
-    quarter4: number;
+    quarter1: number | null;
+    quarter2: number | null;
+    quarter3: number | null;
+    quarter4: number | null;
     rushing: number;
     passing: number;
 };
