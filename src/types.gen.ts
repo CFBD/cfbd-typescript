@@ -419,7 +419,7 @@ export type AggregatedTeamRecruiting = {
 export type TeamSp = {
     year: number;
     team: string;
-    conference: string;
+    conference: string | null;
     rating: number;
     ranking: number | null;
     secondOrderWins: number | null;
