@@ -421,7 +421,7 @@ export type TeamSp = {
     team: string;
     conference: string;
     rating: number;
-    ranking: number;
+    ranking: number | null;
     secondOrderWins: number | null;
     sos: number | null;
     offense: {
@@ -434,7 +434,7 @@ export type TeamSp = {
         explosiveness: number | null;
         success: number | null;
         rating: number;
-        ranking: number;
+        ranking: number | null;
     };
     defense: {
         havoc: {
@@ -449,7 +449,7 @@ export type TeamSp = {
         explosiveness: number | null;
         success: number | null;
         rating: number;
-        ranking: number;
+        ranking: number | null;
     };
     specialTeams: {
         rating: number | null;
@@ -498,7 +498,7 @@ export type TeamSrs = {
     conference: string | null;
     division: string | null;
     rating: number;
-    ranking: number;
+    ranking: number | null;
 };
 
 export type TeamElo = {
