@@ -182,27 +182,27 @@ export type AdvancedSeasonStat = {
     conference: string;
     offense: {
         passingPlays: {
-            explosiveness: number;
+            explosiveness: number | null;
             successRate: number;
             totalPPA: number;
             ppa: number;
             rate: number;
         };
         rushingPlays: {
-            explosiveness: number;
+            explosiveness: number | null;
             successRate: number;
             totalPPA: number;
             ppa: number;
             rate: number;
         };
         passingDowns: {
-            explosiveness: number;
+            explosiveness: number | null;
             successRate: number;
             ppa: number;
             rate: number;
         };
         standardDowns: {
-            explosiveness: number;
+            explosiveness: number | null;
             successRate: number;
             ppa: number;
             rate: number;
@@ -235,28 +235,28 @@ export type AdvancedSeasonStat = {
     };
     defense: {
         passingPlays: {
-            explosiveness: number;
+            explosiveness: number | null;
             successRate: number;
             totalPPA: number;
             ppa: number;
             rate: number;
         };
         rushingPlays: {
-            explosiveness: number;
+            explosiveness: number | null;
             successRate: number;
             totalPPA: number;
             ppa: number;
             rate: number;
         };
         passingDowns: {
-            explosiveness: number;
+            explosiveness: number | null;
             successRate: number;
             totalPPA: number;
             ppa: number;
             rate: number;
         };
         standardDowns: {
-            explosiveness: number;
+            explosiveness: number | null;
             successRate: number;
             ppa: number;
             rate: number;
@@ -297,24 +297,24 @@ export type AdvancedGameStat = {
     opponent: string;
     offense: {
         passingPlays: {
-            explosiveness: number;
+            explosiveness: number | null;
             successRate: number;
             totalPPA: number;
             ppa: number;
         };
         rushingPlays: {
-            explosiveness: number;
+            explosiveness: number | null;
             successRate: number;
             totalPPA: number;
             ppa: number;
         };
         passingDowns: {
-            explosiveness: number;
+            explosiveness: number | null;
             successRate: number;
             ppa: number;
         };
         standardDowns: {
-            explosiveness: number;
+            explosiveness: number | null;
             successRate: number;
             ppa: number;
         };
@@ -326,7 +326,7 @@ export type AdvancedGameStat = {
         lineYards: number;
         stuffRate: number;
         powerSuccess: number | null;
-        explosiveness: number;
+        explosiveness: number | null;
         successRate: number;
         totalPPA: number;
         ppa: number;
@@ -335,24 +335,24 @@ export type AdvancedGameStat = {
     };
     defense: {
         passingPlays: {
-            explosiveness: number;
+            explosiveness: number | null;
             successRate: number;
             totalPPA: number;
             ppa: number;
         };
         rushingPlays: {
-            explosiveness: number;
+            explosiveness: number | null;
             successRate: number;
             totalPPA: number;
             ppa: number;
         };
         passingDowns: {
-            explosiveness: number;
+            explosiveness: number | null;
             successRate: number;
             ppa: number;
         };
         standardDowns: {
-            explosiveness: number;
+            explosiveness: number | null;
             successRate: number;
             ppa: number;
         };
