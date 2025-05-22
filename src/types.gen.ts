@@ -646,14 +646,14 @@ export type PlayerUsage = {
     team: string;
     conference: string;
     usage: {
-        passingDowns: number;
-        standardDowns: number;
-        thirdDown: number;
-        secondDown: number;
-        firstDown: number;
-        rush: number;
-        pass: number;
-        overall: number;
+        passingDowns: number | null;
+        standardDowns: number | null;
+        thirdDown: number | null;
+        secondDown: number | null;
+        firstDown: number | null;
+        rush: number | null;
+        pass: number | null;
+        overall: number | null;
     };
 };
 
