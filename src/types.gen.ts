@@ -128,6 +128,9 @@ export type RosterPlayer = {
     height: number | null;
     weight: number | null;
     jersey: number | null;
+    /**
+     * @deprecated
+     */
     year: number;
     position: string | null;
     homeCity: string | null;
