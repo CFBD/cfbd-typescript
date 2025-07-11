@@ -162,6 +162,7 @@ export type PlayerStat = {
     season: number;
     playerId: string;
     player: string;
+    position: string;
     team: string;
     conference: string;
     category: string;
