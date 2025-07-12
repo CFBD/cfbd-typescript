@@ -951,6 +951,11 @@ export type BettingGame = {
     lines: Array<GameLine>;
 };
 
+export type UserInfo = {
+    patronLevel: number;
+    remainingCalls: number;
+};
+
 export type Game = {
     id: number;
     season: number;
@@ -2713,6 +2718,22 @@ export type GetLinesResponses = {
 };
 
 export type GetLinesResponse = GetLinesResponses[keyof GetLinesResponses];
+
+export type GetUserInfoData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/info';
+};
+
+export type GetUserInfoResponses = {
+    /**
+     * UserInfo object containing patron level and remaining calls, or null if not authenticated.
+     */
+    200: UserInfo | null;
+};
+
+export type GetUserInfoResponse = GetUserInfoResponses[keyof GetUserInfoResponses];
 
 export type GetGamesData = {
     body?: never;
