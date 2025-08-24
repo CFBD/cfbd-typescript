@@ -657,12 +657,12 @@ export type LiveGamePlay = {
     epa: (number) | null;
     garbageTime: boolean;
     success: boolean;
-    rushPash: 'rush' | 'pass' | 'other';
+    rushPass: 'rush' | 'pass' | 'other';
     downType: 'passing' | 'standard';
     playText: string;
 };
 
-export type rushPash = 'rush' | 'pass' | 'other';
+export type rushPass = 'rush' | 'pass' | 'other';
 
 export type downType = 'passing' | 'standard';
 
