@@ -1546,7 +1546,7 @@ export type GetRosterData = {
          */
         team?: string;
         /**
-         * Optional year filter, defaults to 2023
+         * Optional year filter, defaults to 2025
          */
         year?: number;
     };
