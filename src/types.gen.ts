@@ -1081,6 +1081,7 @@ export type ScoreboardGame = {
         name: (string) | null;
     };
     homeTeam: {
+        winProbability: (number) | null;
         lineScores: Array<(number)> | null;
         points: (number) | null;
         classification: ((DivisionClassification) | null);
@@ -1089,6 +1090,7 @@ export type ScoreboardGame = {
         id: number;
     };
     awayTeam: {
+        winProbability: (number) | null;
         lineScores: Array<(number)> | null;
         points: (number) | null;
         classification: ((DivisionClassification) | null);
