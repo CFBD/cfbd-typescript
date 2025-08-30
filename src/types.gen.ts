@@ -675,6 +675,7 @@ export type LiveGameTeam = {
     drives: number;
     scoringOpportunities: number;
     pointsPerOpportunity: number;
+    averageStartYardLine: (number) | null;
     plays: number;
     lineYards: number;
     lineYardsPerRush: number;
@@ -692,6 +693,10 @@ export type LiveGameTeam = {
     standardDownSuccessRate: number;
     passingDownSuccessRate: number;
     explosiveness: number;
+    /**
+     * Deserve-to-win metric for this team
+     */
+    deserveToWin?: number;
 };
 
 export type Matchup = {
