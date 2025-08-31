@@ -440,6 +440,10 @@ export type Drive = {
         seconds: (number) | null;
         minutes: (number) | null;
     };
+    elapsed: {
+        seconds: (number) | null;
+        minutes: (number) | null;
+    };
     plays: number;
     yards: number;
     driveResult: string;
