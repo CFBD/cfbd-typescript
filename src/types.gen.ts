@@ -976,6 +976,7 @@ export type Poll = {
 
 export type PollRank = {
     rank: (number) | null;
+    teamId: number;
     school: string;
     conference: (string) | null;
     firstPlaceVotes: (number) | null;
