@@ -281,10 +281,12 @@ export type BettingGame = {
     seasonType: SeasonType;
     week: number;
     startDate: string;
+    homeTeamId: number;
     homeTeam: string;
     homeConference: (string) | null;
     homeClassification: ((DivisionClassification) | null);
     homeScore: (number) | null;
+    awayTeamId: number;
     awayTeam: string;
     awayConference: (string) | null;
     awayClassification: ((DivisionClassification) | null);
