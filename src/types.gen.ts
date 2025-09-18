@@ -1148,6 +1148,18 @@ export type Team = {
     location: ((Venue) | null);
 };
 
+export type TeamATS = {
+    year: number;
+    teamId: number;
+    team: string;
+    conference: (string) | null;
+    games: number;
+    atsWins: number;
+    atsLosses: number;
+    atsPushes: number;
+    avgCoverMargin: (number) | null;
+};
+
 export type TeamElo = {
     year: number;
     team: string;
@@ -1550,6 +1562,27 @@ export type GetMatchupData = {
 export type GetMatchupResponse = (Matchup);
 
 export type GetMatchupError = unknown;
+
+export type GetTeamsAtsData = {
+    query: {
+        /**
+         * Optional conference filter
+         */
+        conference?: string;
+        /**
+         * Optional team filter
+         */
+        team?: string;
+        /**
+         * Required year filter
+         */
+        year: number;
+    };
+};
+
+export type GetTeamsAtsResponse = (Array<TeamATS>);
+
+export type GetTeamsAtsError = unknown;
 
 export type GetRosterData = {
     query?: {
