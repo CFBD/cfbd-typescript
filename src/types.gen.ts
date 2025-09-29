@@ -71,6 +71,7 @@ export type AdvancedBoxScore = {
 export type AdvancedGameStat = {
     gameId: number;
     season: number;
+    seasonType: SeasonTypeDB;
     week: number;
     team: string;
     opponent: string;
@@ -496,6 +497,35 @@ export type Game = {
     excitementIndex: (number) | null;
     highlights: (string) | null;
     notes: (string) | null;
+};
+
+export type GameHavocStats = {
+    gameId: number;
+    season: number;
+    seasonType: SeasonTypeDB;
+    week: number;
+    team: string;
+    conference: (string) | null;
+    opponent: string;
+    opponentConference: (string) | null;
+    offense: {
+        dbHavocRate: number;
+        frontSevenHavocRate: number;
+        havocRate: number;
+        dbHavocEvents: number;
+        frontSevenHavocEvents: number;
+        totalHavocEvents: number;
+        totalPlays: number;
+    };
+    defense: {
+        dbHavocRate: number;
+        frontSevenHavocRate: number;
+        havocRate: number;
+        dbHavocEvents: number;
+        frontSevenHavocEvents: number;
+        totalHavocEvents: number;
+        totalPlays: number;
+    };
 };
 
 export type GameLine = {
@@ -1126,6 +1156,8 @@ export type ScoreboardGame = {
 
 export type SeasonType = 'regular' | 'postseason' | 'both' | 'allstar' | 'spring_regular' | 'spring_postseason';
 
+export type SeasonTypeDB = 'allstar' | 'postseason' | 'preseason' | 'regular' | 'spring_postseason' | 'spring_regular';
+
 export type StatsByQuarter = {
     total: number;
     quarter1: (number) | null;
@@ -1589,6 +1621,10 @@ export type GetTeamsAtsError = unknown;
 export type GetRosterData = {
     query?: {
         /**
+         * Optional filter to only include players from FBS or FCS teams
+         */
+        classification?: DivisionClassification;
+        /**
          * Optional team filter
          */
         team?: string;
@@ -1755,6 +1791,35 @@ export type GetAdvancedGameStatsData = {
 export type GetAdvancedGameStatsResponse = (Array<AdvancedGameStat>);
 
 export type GetAdvancedGameStatsError = unknown;
+
+export type GetGameHavocStatsData = {
+    query?: {
+        /**
+         * Optional opponent filter
+         */
+        opponent?: string;
+        /**
+         * Optional season type filter
+         */
+        seasonType?: SeasonType;
+        /**
+         * Team filter, required if year not specified
+         */
+        team?: string;
+        /**
+         * Optional week filter
+         */
+        week?: number;
+        /**
+         * Year filter, required if team not specified
+         */
+        year?: number;
+    };
+};
+
+export type GetGameHavocStatsResponse = (Array<GameHavocStats>);
+
+export type GetGameHavocStatsError = unknown;
 
 export type GetRecruitsData = {
     query?: {
