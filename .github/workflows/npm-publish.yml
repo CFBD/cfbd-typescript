@@ -4,11 +4,13 @@ on:
   push:
     branches: 
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       id-token: write
     steps:
       - name: Checkout repo
@@ -25,6 +27,4 @@ jobs:
           yarn build
           npm pack
       - name: Publish to npm
-        run: npm publish --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: npm publish --access public
