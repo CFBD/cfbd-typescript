@@ -852,6 +852,63 @@ export type PlayerSearchResult = {
     teamColorSecondary: string;
 };
 
+export type PlayerSeasonOverview = {
+    season: number;
+    id: string;
+    name: string;
+    position: string;
+    team: string;
+    conference: string;
+    games: number;
+    boxScoreStats: {
+        categories: Array<PlayerSeasonOverviewCategory>;
+    };
+    usage?: {
+        passingDowns: (number) | null;
+        standardDowns: (number) | null;
+        thirdDown: (number) | null;
+        secondDown: (number) | null;
+        firstDown: (number) | null;
+        rush: (number) | null;
+        pass: (number) | null;
+        overall: (number) | null;
+    };
+    ppa?: PlayerSeasonOverviewPPA;
+};
+
+export type PlayerSeasonOverviewCategory = {
+    name: string;
+    stats: Array<PlayerSeasonOverviewStat>;
+};
+
+export type PlayerSeasonOverviewPPA = {
+    average: {
+        passingDowns?: number;
+        standardDowns?: number;
+        thirdDown?: number;
+        secondDown?: number;
+        firstDown?: number;
+        rush?: number;
+        pass?: number;
+        all: number;
+    };
+    total: {
+        passingDowns?: number;
+        standardDowns?: number;
+        thirdDown?: number;
+        secondDown?: number;
+        firstDown?: number;
+        rush?: number;
+        pass?: number;
+        all: number;
+    };
+};
+
+export type PlayerSeasonOverviewStat = {
+    name: string;
+    value: string;
+};
+
 export type PlayerSeasonPredictedPointsAdded = {
     season: number;
     id: string;
@@ -2181,6 +2238,23 @@ export type GetPlayerUsageData = {
 export type GetPlayerUsageResponse = (Array<PlayerUsage>);
 
 export type GetPlayerUsageError = unknown;
+
+export type GetPlayerSeasonOverviewData = {
+    query: {
+        /**
+         * Required player id filter
+         */
+        playerId: number;
+        /**
+         * Required year filter
+         */
+        year: number;
+    };
+};
+
+export type GetPlayerSeasonOverviewResponse = (PlayerSeasonOverview);
+
+export type GetPlayerSeasonOverviewError = unknown;
 
 export type GetReturningProductionData = {
     query?: {
