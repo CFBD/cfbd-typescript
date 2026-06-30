@@ -1485,9 +1485,59 @@ export type TeamTalent = {
 
 export type TransferEligibility = 'Withdrawn' | 'TBD' | 'PendingAppeal' | 'SittingOne' | 'Immediate';
 
+export type UserFeatureAccess = {
+    adjustedMetrics: boolean;
+    weather: boolean;
+    scoreboard: boolean;
+    livePlayByPlay: boolean;
+    graphQl: boolean;
+};
+
 export type UserInfo = {
     patronLevel: number;
-    remainingCalls: number;
+    tierName: string;
+    monthlyLimit: (number) | null;
+    remainingCalls: (number) | null;
+    usedCalls: (number) | null;
+    resetAt: string;
+    sharedPool: boolean;
+    products: Array<(string)>;
+    features: UserFeatureAccess;
+};
+
+export type UserUsage = {
+    window: UserUsageWindow;
+    api: UserUsageApi;
+    totals: UserUsageTotals;
+    topEndpoints: Array<UserUsageEndpoint>;
+    recentRequests: Array<UserUsageRecentRequest>;
+};
+
+export type UserUsageApi = 'all' | 'cfb' | 'cbb';
+
+export type UserUsageEndpoint = {
+    api: UserUsageApi;
+    endpoint: string;
+    requests: number;
+    lastUsedAt: string;
+};
+
+export type UserUsageRecentRequest = {
+    api: UserUsageApi;
+    endpoint: string;
+    requestedAt: string;
+};
+
+export type UserUsageTotals = {
+    requests: number;
+    cfbRequests: number;
+    cbbRequests: number;
+    uniqueEndpoints: number;
+};
+
+export type UserUsageWindow = {
+    start: string;
+    end: string;
 };
 
 export type Venue = {
@@ -2546,6 +2596,27 @@ export type GetLinesError = unknown;
 export type GetUserInfoResponse = (((UserInfo) | null));
 
 export type GetUserInfoError = unknown;
+
+export type GetUsageData = {
+    query?: {
+        /**
+         * Optional API filter: all, cfb, or cbb
+         */
+        api?: UserUsageApi;
+        /**
+         * Number of trailing days to include, defaults to 7 and is capped at 31
+         */
+        days?: number;
+        /**
+         * Number of endpoint and recent request rows to return, defaults to 10 and is capped at 50
+         */
+        limit?: number;
+    };
+};
+
+export type GetUsageResponse = (((UserUsage) | null));
+
+export type GetUsageError = unknown;
 
 export type GetGamesData = {
     query?: {
