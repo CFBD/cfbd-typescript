@@ -865,6 +865,15 @@ export type PlayerSearchResult = {
     hometown: string;
     teamColor: string;
     teamColorSecondary: string;
+    activeStartYear: (number) | null;
+    activeEndYear: (number) | null;
+    teamStints: Array<PlayerSearchTeamStint>;
+};
+
+export type PlayerSearchTeamStint = {
+    team: string;
+    startYear: (number) | null;
+    endYear: (number) | null;
 };
 
 export type PlayerSeasonOverview = {
