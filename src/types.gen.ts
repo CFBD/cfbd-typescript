@@ -811,6 +811,21 @@ export type PlayerGamePredictedPointsAdded = {
     };
 };
 
+export type PlayerGameSuccessRate = {
+    season: number;
+    seasonType: SeasonTypeDB;
+    week: number;
+    gameId: number;
+    id: string;
+    name: string;
+    position: string;
+    team: string;
+    conference: string;
+    opponent: string;
+    passing: PlayerSuccessRateSplit;
+    rushing: PlayerSuccessRateSplit;
+};
+
 export type PlayerGameUsage = {
     total: number;
     quarter1: (number) | null;
@@ -938,6 +953,17 @@ export type PlayerSeasonPredictedPointsAdded = {
     };
 };
 
+export type PlayerSeasonSuccessRate = {
+    season: number;
+    id: string;
+    name: string;
+    position: string;
+    team: string;
+    conference: string;
+    passing: PlayerSuccessRateSplit;
+    rushing: PlayerSuccessRateSplit;
+};
+
 export type PlayerStat = {
     season: number;
     playerId: string;
@@ -958,6 +984,12 @@ export type PlayerStatsByQuarter = {
     quarter4: (number) | null;
     rushing: number;
     passing: number;
+};
+
+export type PlayerSuccessRateSplit = {
+    plays: number;
+    successes: number;
+    successRate: (number) | null;
 };
 
 export type PlayerTransfer = {
@@ -1803,6 +1835,92 @@ export type GetPlayerSeasonStatsData = {
 export type GetPlayerSeasonStatsResponse = (Array<PlayerStat>);
 
 export type GetPlayerSeasonStatsError = unknown;
+
+export type GetPlayerSeasonSuccessRatesData = {
+    query?: {
+        /**
+         * Optional conference abbreviation filter
+         */
+        conference?: string;
+        /**
+         * Optional ending week range
+         */
+        endWeek?: number;
+        /**
+         * Optional flag to exclude garbage time plays
+         */
+        excludeGarbageTime?: boolean;
+        /**
+         * Player ID filter, required if year not specified
+         */
+        playerId?: number;
+        /**
+         * Optional season type filter
+         */
+        seasonType?: SeasonType;
+        /**
+         * Optional starting week range
+         */
+        startWeek?: number;
+        /**
+         * Optional team filter
+         */
+        team?: string;
+        /**
+         * Optional minimum credited passing plus rushing plays
+         */
+        threshold?: number;
+        /**
+         * Year filter, required if playerId not specified
+         */
+        year?: number;
+    };
+};
+
+export type GetPlayerSeasonSuccessRatesResponse = (Array<PlayerSeasonSuccessRate>);
+
+export type GetPlayerSeasonSuccessRatesError = unknown;
+
+export type GetPlayerGameSuccessRatesData = {
+    query: {
+        /**
+         * Optional conference abbreviation filter
+         */
+        conference?: string;
+        /**
+         * Optional flag to exclude garbage time plays
+         */
+        excludeGarbageTime?: boolean;
+        /**
+         * Optional player ID filter
+         */
+        playerId?: number;
+        /**
+         * Optional season type filter
+         */
+        seasonType?: SeasonType;
+        /**
+         * Optional team filter
+         */
+        team?: string;
+        /**
+         * Optional minimum credited passing plus rushing plays
+         */
+        threshold?: number;
+        /**
+         * Week filter, required if team and playerId not specified
+         */
+        week?: number;
+        /**
+         * Required year filter
+         */
+        year: number;
+    };
+};
+
+export type GetPlayerGameSuccessRatesResponse = (Array<PlayerGameSuccessRate>);
+
+export type GetPlayerGameSuccessRatesError = unknown;
 
 export type GetTeamStatsData = {
     query?: {
