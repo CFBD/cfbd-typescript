@@ -311,6 +311,23 @@ export type CalendarWeek = {
     lastGameStart: string;
 };
 
+export type CfpPlayoff = {
+    season: number;
+    competition: PlayoffCompetition_Cfp;
+    format: string;
+    teamCount: number;
+    status: PlayoffStatus;
+    participants: Array<PlayoffParticipant>;
+    rounds: Array<PlayoffRoundRecord>;
+    champion: ((PlayoffTeam) | null);
+};
+
+export type CfpPlayoffNotFound = {
+    message: 'CFP playoff not found';
+};
+
+export type message = 'CFP playoff not found';
+
 export type Coach = {
     firstName: string;
     lastName: string;
@@ -497,6 +514,7 @@ export type Game = {
     excitementIndex: (number) | null;
     highlights: (string) | null;
     notes: (string) | null;
+    playoff: ((GamePlayoff) | null);
 };
 
 export type GameHavocStats = {
@@ -583,6 +601,17 @@ export type homeAway = 'home' | 'away';
 export type GamePlayerStatTypes = {
     name: string;
     athletes: Array<GamePlayerStatPlayer>;
+};
+
+export type GamePlayoff = {
+    competition: PlayoffCompetition;
+    format: string;
+    round: PlayoffRound;
+    roundName: string;
+    bracketSlot: string;
+    homeSeed: (number) | null;
+    awaySeed: (number) | null;
+    bowlName: (string) | null;
 };
 
 export type GameStatus = 'scheduled' | 'in_progress' | 'completed';
@@ -1044,6 +1073,91 @@ export type PlayerWeightedEPA = {
     plays: number;
 };
 
+export type PlayoffAdvancement = {
+    matchupId: number;
+    bracketSlot: string;
+    position: number;
+};
+
+export type PlayoffBidType = 'automatic' | 'at_large';
+
+export type PlayoffCompetition = 'cfp';
+
+export type PlayoffCompetition_Cfp = 'cfp';
+
+export type PlayoffLinkedGame = {
+    id: number;
+    startDate: string;
+    completed: boolean;
+    homeTeam: PlayoffTeam;
+    homePoints: (number) | null;
+    awayTeam: PlayoffTeam;
+    awayPoints: (number) | null;
+    venueId: (number) | null;
+    venue: (string) | null;
+};
+
+export type PlayoffMatchup = {
+    id: number;
+    bracketSlot: string;
+    round: PlayoffRound;
+    roundName: string;
+    roundOrder: number;
+    matchupOrder: number;
+    startDate: (string) | null;
+    bowlName: (string) | null;
+    slots: Array<PlayoffMatchupSlot>;
+    game: ((PlayoffLinkedGame) | null);
+    advancesTo: ((PlayoffAdvancement) | null);
+};
+
+export type PlayoffMatchupSlot = {
+    position: number;
+    seed: (number) | null;
+    participant: ((PlayoffTeam) | null);
+    source: ((PlayoffMatchupSlotSource) | null);
+};
+
+export type PlayoffMatchupSlotSource = {
+    matchupId: number;
+    bracketSlot: string;
+    outcome: 'winner';
+};
+
+export type outcome = 'winner';
+
+export type PlayoffOutcome = 'active' | 'eliminated' | 'champion';
+
+export type PlayoffParticipant = {
+    team: PlayoffTeam;
+    committeeRank: (number) | null;
+    seed: number;
+    bidType: PlayoffBidType;
+    qualificationReason: (string) | null;
+    conferenceChampion: boolean;
+    qualifyingConference: (string) | null;
+    firstRoundBye: boolean;
+    outcome: PlayoffOutcome;
+    eliminatedRound: ((PlayoffRound) | null);
+};
+
+export type PlayoffRound = 'first_round' | 'quarterfinal' | 'semifinal' | 'championship';
+
+export type PlayoffRoundRecord = {
+    code: PlayoffRound;
+    name: string;
+    order: number;
+    matchups: Array<PlayoffMatchup>;
+};
+
+export type PlayoffStatus = 'scheduled' | 'selected' | 'in_progress' | 'completed';
+
+export type PlayoffTeam = {
+    id: number;
+    school: string;
+    conference: (string) | null;
+};
+
 export type PlayStat = {
     gameId: number;
     season: number;
@@ -1101,6 +1215,7 @@ export type PlayWinProbability = {
 
 export type Poll = {
     poll: string;
+    isFinal: (boolean) | null;
     ranks: Array<PollRank>;
 };
 
@@ -1135,6 +1250,8 @@ export type PregameWinProbability = {
     spread: number;
     homeWinProbability: number;
 };
+
+export type RankingPoll = 'cfp';
 
 export type Recruit = {
     id: string;
@@ -2238,6 +2355,18 @@ export type GetFpiError = unknown;
 export type GetRankingsData = {
     query: {
         /**
+         * Return the marked final CFP snapshot
+         */
+        final?: boolean;
+        /**
+         * Return the latest CFP snapshot, preferring the marked final
+         */
+        latest?: boolean;
+        /**
+         * Optional poll filter
+         */
+        poll?: RankingPoll;
+        /**
          * Optional season type filter
          */
         seasonType?: SeasonType;
@@ -2254,7 +2383,9 @@ export type GetRankingsData = {
 
 export type GetRankingsResponse = (Array<PollWeek>);
 
-export type GetRankingsError = unknown;
+export type GetRankingsError = ({
+    message: string;
+});
 
 export type GetPlaysData = {
     query: {
@@ -2357,6 +2488,55 @@ export type GetPlayStatsError = unknown;
 export type GetPlayStatTypesResponse = (Array<PlayStatType>);
 
 export type GetPlayStatTypesError = unknown;
+
+export type GetCfpPlayoffData = {
+    query: {
+        /**
+         * Required year filter
+         */
+        year: number;
+    };
+};
+
+export type GetCfpPlayoffResponse = (CfpPlayoff);
+
+export type GetCfpPlayoffError = ({
+    message: string;
+} | CfpPlayoffNotFound);
+
+export type GetCfpParticipantsData = {
+    query: {
+        /**
+         * Required year filter
+         */
+        year: number;
+    };
+};
+
+export type GetCfpParticipantsResponse = (Array<PlayoffParticipant>);
+
+export type GetCfpParticipantsError = ({
+    message: string;
+} | CfpPlayoffNotFound);
+
+export type GetCfpGamesData = {
+    query: {
+        /**
+         * Optional playoff round filter
+         */
+        round?: PlayoffRound;
+        /**
+         * Required year filter
+         */
+        year: number;
+    };
+};
+
+export type GetCfpGamesResponse = (Array<PlayoffMatchup>);
+
+export type GetCfpGamesError = ({
+    message: string;
+} | CfpPlayoffNotFound);
 
 export type SearchPlayersData = {
     query: {
@@ -2756,6 +2936,10 @@ export type GetGamesData = {
          */
         classification?: DivisionClassification;
         /**
+         * Optional playoff competition filter
+         */
+        competition?: PlayoffCompetition;
+        /**
          * Optional conference filter
          */
         conference?: string;
@@ -2767,6 +2951,10 @@ export type GetGamesData = {
          * Game id filter to retrieve a single game
          */
         id?: number;
+        /**
+         * Optional playoff round filter; requires competition
+         */
+        round?: PlayoffRound;
         /**
          * Optional season type filter
          */
@@ -2788,7 +2976,9 @@ export type GetGamesData = {
 
 export type GetGamesResponse = (Array<Game>);
 
-export type GetGamesError = unknown;
+export type GetGamesError = ({
+    message: string;
+});
 
 export type GetGameTeamStatsData = {
     query?: {
