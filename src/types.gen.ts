@@ -2051,6 +2051,10 @@ export type GetPlayerGameSuccessRatesError = unknown;
 export type GetTeamStatsData = {
     query?: {
         /**
+         * Optional division classification filter, defaults to fbs
+         */
+        classification?: DivisionClassification;
+        /**
          * Optional conference filter
          */
         conference?: string;
@@ -2083,6 +2087,10 @@ export type GetCategoriesError = unknown;
 
 export type GetAdvancedSeasonStatsData = {
     query?: {
+        /**
+         * Optional division classification filter, defaults to fbs
+         */
+        classification?: DivisionClassification;
         /**
          * Optional end week range filter
          */
@@ -2266,6 +2274,10 @@ export type GetSpError = unknown;
 
 export type GetConferenceSpData = {
     query?: {
+        /**
+         * Optional division classification filter, defaults to fbs
+         */
+        classification?: DivisionClassification;
         /**
          * Optional conference filter
          */
@@ -2667,6 +2679,10 @@ export type GetPredictedPointsError = unknown;
 export type GetPredictedPointsAddedByTeamData = {
     query?: {
         /**
+         * Optional division classification filter, defaults to fbs
+         */
+        classification?: DivisionClassification;
+        /**
          * Conference abbreviation filter
          */
         conference?: string;
@@ -2691,6 +2707,10 @@ export type GetPredictedPointsAddedByTeamError = unknown;
 
 export type GetPredictedPointsAddedByGameData = {
     query: {
+        /**
+         * Optional division classification filter, defaults to fbs
+         */
+        classification?: DivisionClassification;
         /**
          * Optional conference abbreviation filter
          */
