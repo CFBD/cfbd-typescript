@@ -474,6 +474,16 @@ export type Drive = {
     endDefenseScore: number;
 };
 
+export type ExpandedTeamSRS = {
+    year: number;
+    team: string;
+    conference: (string) | null;
+    division: (string) | null;
+    rating: number;
+    ranking: (number) | null;
+    classification: DivisionClassification;
+};
+
 export type FieldGoalEP = {
     yardsToGoal: number;
     distance: number;
@@ -2313,6 +2323,31 @@ export type GetSrsData = {
 export type GetSrsResponse = (Array<TeamSRS>);
 
 export type GetSrsError = unknown;
+
+export type GetExpandedSrsData = {
+    query?: {
+        /**
+         * Optional division classification filter (fbs or fcs)
+         */
+        classification?: DivisionClassification;
+        /**
+         * Optional conference filter
+         */
+        conference?: string;
+        /**
+         * Team filter, required if year not specified
+         */
+        team?: string;
+        /**
+         * Year filter, required if team not specified
+         */
+        year?: number;
+    };
+};
+
+export type GetExpandedSrsResponse = (Array<ExpandedTeamSRS>);
+
+export type GetExpandedSrsError = unknown;
 
 export type GetEloData = {
     query?: {
