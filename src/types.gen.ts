@@ -311,6 +311,8 @@ export type CalendarWeek = {
     lastGameStart: string;
 };
 
+export type CfpCoachSeasonOutcome = 'active' | 'eliminated' | 'champion';
+
 export type CfpPlayoff = {
     season: number;
     competition: PlayoffCompetition_Cfp;
@@ -329,25 +331,162 @@ export type CfpPlayoffNotFound = {
 export type message = 'CFP playoff not found';
 
 export type Coach = {
+    id: number;
     firstName: string;
     lastName: string;
+    /**
+     * @deprecated
+     */
     hireDate: (string) | null;
     seasons: Array<CoachSeason>;
 };
 
-export type CoachSeason = {
+export type CoachAlmaMater = {
+    id: number;
     school: string;
+};
+
+export type CoachCareer = {
+    games: number;
+    wins: number;
+    losses: number;
+    ties: number;
+    winPercentage: (number) | null;
+    seasons: number;
+    teams: number;
+    firstYear: number;
+    lastYear: number;
+};
+
+export type CoachCfpContext = {
+    appeared: boolean;
+    seed: (number) | null;
+    outcome: ((CfpCoachSeasonOutcome) | null);
+};
+
+export type CoachDraftContext = {
+    year: number;
+    totalPicks: number;
+    firstRoundPicks: number;
+};
+
+export type CoachNotFound = {
+    message: 'Coach not found';
+};
+
+export type message2 = 'Coach not found';
+
+export type CoachPollResume = {
+    preseasonRank: (number) | null;
+    postseasonRank: (number) | null;
+    bestRank: (number) | null;
+    weeksRanked: number;
+    weeksTopTen: number;
+};
+
+export type CoachProfile = {
+    id: number;
+    firstName: string;
+    lastName: string;
+    displayName: (string) | null;
+    currentTeam: ((CoachSeasonTeamReference) | null);
+    career: CoachCareer;
+    birthDate: (string) | null;
+    almaMater: ((CoachAlmaMater) | null);
+    graduationYear: (number) | null;
+    wikidataId: (string) | null;
+    hallOfFameYear: (number) | null;
+};
+
+export type CoachRatingContext = {
+    spSpecialTeams: (number) | null;
+    strengthOfSchedule: (number) | null;
+    secondOrderWins: (number) | null;
+    fpi: (number) | null;
+    yearOverYear: {
+        spOverall: (number) | null;
+        srs: (number) | null;
+        wins: (number) | null;
+    };
+};
+
+export type CoachRecord = {
+    games: number;
+    wins: number;
+    losses: number;
+    ties: number;
+    winPercentage: (number) | null;
+};
+
+export type CoachRecordSplits = {
+    conference: CoachRecord;
+    postseason: CoachRecord;
+    home: CoachRecord;
+    away: CoachRecord;
+    neutral: CoachRecord;
+};
+
+export type CoachRecruitingContext = {
+    rank: (number) | null;
+    points: (number) | null;
+    talent: (number) | null;
+};
+
+export type CoachReference = {
+    id: number;
+    firstName: string;
+    lastName: string;
+};
+
+export type CoachScoring = {
+    pointsFor: number;
+    pointsAgainst: number;
+    averagePointDifferential: (number) | null;
+};
+
+export type CoachSeason = {
+    teamId: number;
+    school: string;
+    conference: (string) | null;
     year: number;
     games: number;
     wins: number;
     losses: number;
     ties: number;
+    winPercentage: (number) | null;
     preseasonRank: (number) | null;
     postseasonRank: (number) | null;
     srs: (number) | null;
     spOverall: (number) | null;
     spOffense: (number) | null;
     spDefense: (number) | null;
+};
+
+export type CoachSeasonTeamReference = {
+    id: number;
+    school: string;
+    conference: (string) | null;
+};
+
+export type CoachTeamReference = {
+    id: number;
+    school: string;
+};
+
+export type CoachTenure = {
+    id: number;
+    coach: CoachReference;
+    team: CoachTeamReference;
+    hireDate: (string) | null;
+    startYear: number;
+    endYear: (number) | null;
+    effectiveStart: (string) | null;
+    effectiveEnd: (string) | null;
+    isInterim: boolean;
+    active: boolean;
+    seasons: number;
+    record: CoachRecord;
+    attributionComplete: boolean;
 };
 
 export type Conference = {
@@ -392,6 +531,31 @@ export type ConferenceSP = {
     specialTeams: {
         rating: (number) | null;
     };
+};
+
+export type DetailedCoachSeason = {
+    games: number;
+    wins: number;
+    losses: number;
+    ties: number;
+    winPercentage: (number) | null;
+    coach: CoachReference;
+    team: CoachSeasonTeamReference;
+    year: number;
+    preseasonRank: (number) | null;
+    postseasonRank: (number) | null;
+    srs: (number) | null;
+    spOverall: (number) | null;
+    spOffense: (number) | null;
+    spDefense: (number) | null;
+    teamMetrics: CoachRatingContext;
+    recruiting: CoachRecruitingContext;
+    pollResume: ((CoachPollResume) | null);
+    attributionComplete: boolean;
+    recordSplits: ((CoachRecordSplits) | null);
+    scoring: ((CoachScoring) | null);
+    cfp: CoachCfpContext;
+    draftFollowingSeason: ((CoachDraftContext) | null);
 };
 
 export type DivisionClassification = 'fbs' | 'fcs' | 'ii' | 'iii';
@@ -3356,6 +3520,79 @@ export type GetCoachesData = {
 export type GetCoachesResponse = (Array<Coach>);
 
 export type GetCoachesError = unknown;
+
+export type GetCoachProfileData = {
+    query: {
+        /**
+         * Required coach ID
+         */
+        coachId: number;
+    };
+};
+
+export type GetCoachProfileResponse = (CoachProfile);
+
+export type GetCoachProfileError = ({
+    message: string;
+} | CoachNotFound);
+
+export type GetCoachSeasonsData = {
+    query?: {
+        /**
+         * Optional coach ID
+         */
+        coachId?: number;
+        /**
+         * Optional end year range filter
+         */
+        maxYear?: number;
+        /**
+         * Optional start year range filter
+         */
+        minYear?: number;
+        /**
+         * Optional team filter
+         */
+        team?: string;
+        /**
+         * Optional exact season year
+         */
+        year?: number;
+    };
+};
+
+export type GetCoachSeasonsResponse = (Array<DetailedCoachSeason>);
+
+export type GetCoachSeasonsError = ({
+    message: string;
+});
+
+export type GetCoachTenuresData = {
+    query?: {
+        /**
+         * Optional active-tenure filter
+         */
+        active?: boolean;
+        /**
+         * Optional coach ID
+         */
+        coachId?: number;
+        /**
+         * Optional team filter
+         */
+        team?: string;
+        /**
+         * Optional season year contained by the tenure
+         */
+        year?: number;
+    };
+};
+
+export type GetCoachTenuresResponse = (Array<CoachTenure>);
+
+export type GetCoachTenuresError = ({
+    message: string;
+});
 
 export type GetAdvancedBoxScoreData = {
     query: {
