@@ -1892,15 +1892,15 @@ export type Venue = {
 export type GetAdjustedTeamSeasonStatsData = {
     query?: {
         /**
-         * Optional conference filter
+         * Conference name or abbreviation.
          */
         conference?: string;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional year filter
+         * Season year.
          */
         year?: number;
     };
@@ -1913,19 +1913,19 @@ export type GetAdjustedTeamSeasonStatsError = unknown;
 export type GetAdjustedPlayerPassingStatsData = {
     query?: {
         /**
-         * Optional conference abbreviation filter
+         * Conference abbreviation.
          */
         conference?: string;
         /**
-         * Optional position abbreviation filter
+         * Player position abbreviation.
          */
         position?: string;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional year filter
+         * Season year.
          */
         year?: number;
     };
@@ -1938,19 +1938,19 @@ export type GetAdjustedPlayerPassingStatsError = unknown;
 export type GetAdjustedPlayerRushingStatsData = {
     query?: {
         /**
-         * Optional conference abbreviation filter
+         * Conference abbreviation.
          */
         conference?: string;
         /**
-         * Optional position abbreviation filter
+         * Player position abbreviation.
          */
         position?: string;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional year filter
+         * Season year.
          */
         year?: number;
     };
@@ -1963,15 +1963,15 @@ export type GetAdjustedPlayerRushingStatsError = unknown;
 export type GetKickerPaarData = {
     query?: {
         /**
-         * Optional conference abbreviation filter
+         * Conference abbreviation.
          */
         conference?: string;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional year filter
+         * Season year.
          */
         year?: number;
     };
@@ -1984,11 +1984,11 @@ export type GetKickerPaarError = unknown;
 export type GetTeamsData = {
     query?: {
         /**
-         * Optional conference abbreviation filter
+         * Conference abbreviation.
          */
         conference?: string;
         /**
-         * Optional year filter to get historical conference affiliations
+         * Season year for historical conference affiliations.
          */
         year?: number;
     };
@@ -2001,7 +2001,7 @@ export type GetTeamsError = unknown;
 export type GetFbsTeamsData = {
     query?: {
         /**
-         * Year or season
+         * Season year.
          */
         year?: number;
     };
@@ -2014,19 +2014,19 @@ export type GetFbsTeamsError = unknown;
 export type GetMatchupData = {
     query: {
         /**
-         * Optional ending year
+         * Latest season year to include.
          */
         maxYear?: number;
         /**
-         * Optional starting year
+         * Earliest season year to include.
          */
         minYear?: number;
         /**
-         * First team to compare
+         * First team name.
          */
         team1: string;
         /**
-         * Second team to compare
+         * Second team name.
          */
         team2: string;
     };
@@ -2039,15 +2039,15 @@ export type GetMatchupError = unknown;
 export type GetTeamsAtsData = {
     query: {
         /**
-         * Optional conference filter
+         * Conference name or abbreviation.
          */
         conference?: string;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Required year filter
+         * Season year.
          */
         year: number;
     };
@@ -2060,15 +2060,15 @@ export type GetTeamsAtsError = unknown;
 export type GetRosterData = {
     query?: {
         /**
-         * Optional filter to only include players from FBS or FCS teams
+         * Division classification: `fbs` or `fcs`.
          */
         classification?: DivisionClassification;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional year filter, defaults to 2025
+         * Season year. Defaults to 2025.
          */
         year?: number;
     };
@@ -2085,7 +2085,7 @@ export type GetConferencesError = unknown;
 export type GetTalentData = {
     query: {
         /**
-         * Year filter
+         * Season year.
          */
         year: number;
     };
@@ -2102,31 +2102,31 @@ export type GetVenuesError = unknown;
 export type GetPlayerSeasonStatsData = {
     query: {
         /**
-         * Optional category filter
+         * Statistical category.
          */
         category?: string;
         /**
-         * Optional conference filter
+         * Conference name or abbreviation.
          */
         conference?: string;
         /**
-         * Optional ending week range
+         * Latest week to include.
          */
         endWeek?: number;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Optional starting week range
+         * Earliest week to include.
          */
         startWeek?: number;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Required year filter
+         * Season year.
          */
         year: number;
     };
@@ -2139,39 +2139,39 @@ export type GetPlayerSeasonStatsError = unknown;
 export type GetPlayerSeasonSuccessRatesData = {
     query?: {
         /**
-         * Optional conference abbreviation filter
+         * Conference abbreviation.
          */
         conference?: string;
         /**
-         * Optional ending week range
+         * Latest week to include.
          */
         endWeek?: number;
         /**
-         * Optional flag to exclude garbage time plays
+         * Excludes garbage-time plays when `true`.
          */
         excludeGarbageTime?: boolean;
         /**
-         * Player ID filter, required if year not specified
+         * Player ID. Required unless `year` is specified.
          */
         playerId?: number;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Optional starting week range
+         * Earliest week to include.
          */
         startWeek?: number;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional minimum credited passing plus rushing plays
+         * Minimum credited passing and rushing plays.
          */
         threshold?: number;
         /**
-         * Year filter, required if playerId not specified
+         * Season year. Required unless `playerId` is specified.
          */
         year?: number;
     };
@@ -2184,35 +2184,35 @@ export type GetPlayerSeasonSuccessRatesError = unknown;
 export type GetPlayerGameSuccessRatesData = {
     query: {
         /**
-         * Optional conference abbreviation filter
+         * Conference abbreviation.
          */
         conference?: string;
         /**
-         * Optional flag to exclude garbage time plays
+         * Excludes garbage-time plays when `true`.
          */
         excludeGarbageTime?: boolean;
         /**
-         * Optional player ID filter
+         * Player ID.
          */
         playerId?: number;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional minimum credited passing plus rushing plays
+         * Minimum credited passing and rushing plays.
          */
         threshold?: number;
         /**
-         * Week filter, required if team and playerId not specified
+         * Week number. Required unless `team` or `playerId` is specified.
          */
         week?: number;
         /**
-         * Required year filter
+         * Season year.
          */
         year: number;
     };
@@ -2225,27 +2225,27 @@ export type GetPlayerGameSuccessRatesError = unknown;
 export type GetTeamStatsData = {
     query?: {
         /**
-         * Optional division classification filter, defaults to fbs
+         * Division classification. Defaults to `fbs`.
          */
         classification?: DivisionClassification;
         /**
-         * Optional conference filter
+         * Conference name or abbreviation.
          */
         conference?: string;
         /**
-         * Optional week end range filter
+         * Latest week to include.
          */
         endWeek?: number;
         /**
-         * Optional week start range filter
+         * Earliest week to include.
          */
         startWeek?: number;
         /**
-         * Team filter, required if year not specified
+         * Team name. Required unless `year` is specified.
          */
         team?: string;
         /**
-         * Year filter, required if team not specified
+         * Season year. Required unless `team` is specified.
          */
         year?: number;
     };
@@ -2262,27 +2262,28 @@ export type GetCategoriesError = unknown;
 export type GetAdvancedSeasonStatsData = {
     query?: {
         /**
-         * Optional division classification filter, defaults to fbs
+         * Division classification. Defaults to `fbs`.
          */
         classification?: DivisionClassification;
         /**
-         * Optional end week range filter
+         * Latest week to include.
          */
         endWeek?: number;
         /**
-         * Garbage time exclusion filter, defaults to false
+         * Excludes garbage-time plays when `true`. Defaults
+         * to `false`.
          */
         excludeGarbageTime?: boolean;
         /**
-         * Optional start week range filter
+         * Earliest week to include.
          */
         startWeek?: number;
         /**
-         * Team filter, required if year not specified
+         * Team name. Required unless `year` is specified.
          */
         team?: string;
         /**
-         * Year filter, required if team not specified
+         * Season year. Required unless `team` is specified.
          */
         year?: number;
     };
@@ -2295,27 +2296,28 @@ export type GetAdvancedSeasonStatsError = unknown;
 export type GetAdvancedGameStatsData = {
     query?: {
         /**
-         * Garbage time exclusion filter, defaults to false
+         * Excludes garbage-time plays when `true`. Defaults
+         * to `false`.
          */
         excludeGarbageTime?: boolean;
         /**
-         * Optional opponent filter
+         * Opponent team name.
          */
         opponent?: string;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Team filter, required if year not specified
+         * Team name. Required unless `year` is specified.
          */
         team?: string;
         /**
-         * Optional week filter
+         * Week number.
          */
         week?: number;
         /**
-         * Year filter, required if team not specified
+         * Season year. Required unless `team` is specified.
          */
         year?: number;
     };
@@ -2328,23 +2330,23 @@ export type GetAdvancedGameStatsError = unknown;
 export type GetGameHavocStatsData = {
     query?: {
         /**
-         * Optional opponent filter
+         * Opponent team name.
          */
         opponent?: string;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Team filter, required if year not specified
+         * Team name. Required unless `year` is specified.
          */
         team?: string;
         /**
-         * Optional week filter
+         * Week number.
          */
         week?: number;
         /**
-         * Year filter, required if team not specified
+         * Season year. Required unless `team` is specified.
          */
         year?: number;
     };
@@ -2357,23 +2359,23 @@ export type GetGameHavocStatsError = unknown;
 export type GetRecruitsData = {
     query?: {
         /**
-         * Optional recruit type classification filter, defaults to HighSchool
+         * Recruit classification. Defaults to `HighSchool`.
          */
         classification?: RecruitClassification;
         /**
-         * Optional position categorization filter
+         * Position category.
          */
         position?: string;
         /**
-         * Optional state/province filter
+         * State or province abbreviation.
          */
         state?: string;
         /**
-         * Team filter, required when no team specified
+         * Team name. Required unless `year` is specified.
          */
         team?: string;
         /**
-         * Year filter, required when no team specified
+         * Recruiting class year. Required unless `team` is specified.
          */
         year?: number;
     };
@@ -2386,11 +2388,11 @@ export type GetRecruitsError = unknown;
 export type GetTeamRecruitingRankingsData = {
     query?: {
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional year filter
+         * Recruiting class year.
          */
         year?: number;
     };
@@ -2403,23 +2405,23 @@ export type GetTeamRecruitingRankingsError = unknown;
 export type GetAggregatedTeamRecruitingRatingsData = {
     query?: {
         /**
-         * Optional conference filter
+         * Conference name or abbreviation.
          */
         conference?: string;
         /**
-         * Optional end year range, defaults to current year
+         * Latest recruiting class year. Defaults to the current year.
          */
         endYear?: number;
         /**
-         * Optional recruit type filter, defaults to HighSchool
+         * Recruit classification. Defaults to `HighSchool`.
          */
         recruitType?: RecruitClassification;
         /**
-         * Optional start year range, defaults to 2000
+         * Earliest recruiting class year. Defaults to 2000.
          */
         startYear?: number;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
     };
@@ -2432,11 +2434,11 @@ export type GetAggregatedTeamRecruitingRatingsError = unknown;
 export type GetSpData = {
     query?: {
         /**
-         * Team filter, required if year not specified
+         * Team name. Required unless `year` is specified.
          */
         team?: string;
         /**
-         * Year filter, required if team not specified
+         * Season year. Required unless `team` is specified.
          */
         year?: number;
     };
@@ -2449,15 +2451,15 @@ export type GetSpError = unknown;
 export type GetConferenceSpData = {
     query?: {
         /**
-         * Optional division classification filter, defaults to fbs
+         * Division classification. Defaults to `fbs`.
          */
         classification?: DivisionClassification;
         /**
-         * Optional conference filter
+         * Conference name or abbreviation.
          */
         conference?: string;
         /**
-         * Optional year filter
+         * Season year.
          */
         year?: number;
     };
@@ -2470,15 +2472,15 @@ export type GetConferenceSpError = unknown;
 export type GetSrsData = {
     query?: {
         /**
-         * Optional conference filter
+         * Conference name or abbreviation.
          */
         conference?: string;
         /**
-         * Team filter, required if year not specified
+         * Team name. Required unless `year` is specified.
          */
         team?: string;
         /**
-         * Year filter, required if team not specified
+         * Season year. Required unless `team` is specified.
          */
         year?: number;
     };
@@ -2491,19 +2493,19 @@ export type GetSrsError = unknown;
 export type GetExpandedSrsData = {
     query?: {
         /**
-         * Optional division classification filter (fbs or fcs)
+         * Division classification: `fbs` or `fcs`.
          */
         classification?: DivisionClassification;
         /**
-         * Optional conference filter
+         * Conference name or abbreviation.
          */
         conference?: string;
         /**
-         * Team filter, required if year not specified
+         * Team name. Required unless `year` is specified.
          */
         team?: string;
         /**
-         * Year filter, required if team not specified
+         * Season year. Required unless `team` is specified.
          */
         year?: number;
     };
@@ -2516,23 +2518,24 @@ export type GetExpandedSrsError = unknown;
 export type GetEloData = {
     query?: {
         /**
-         * Optional conference filter
+         * Conference name or abbreviation.
          */
         conference?: string;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional week filter, defaults to last available week in the season
+         * Week number. Defaults to the latest available week in the
+         * season.
          */
         week?: number;
         /**
-         * Optional year filter
+         * Season year.
          */
         year?: number;
     };
@@ -2545,15 +2548,15 @@ export type GetEloError = unknown;
 export type GetFpiData = {
     query?: {
         /**
-         * Optional conference filter
+         * Conference name or abbreviation.
          */
         conference?: string;
         /**
-         * team filter, required if year not specified
+         * Team name. Required unless `year` is specified.
          */
         team?: string;
         /**
-         * year filter, required if team not specified
+         * Season year. Required unless `team` is specified.
          */
         year?: number;
     };
@@ -2566,27 +2569,30 @@ export type GetFpiError = unknown;
 export type GetRankingsData = {
     query: {
         /**
-         * Return the marked final CFP snapshot
+         * Returns the CFP snapshot marked as final when `true`. Requires
+         * `poll=cfp` and cannot be combined with `latest`.
          */
         final?: boolean;
         /**
-         * Return the latest CFP snapshot, preferring the marked final
+         * Returns the latest CFP snapshot when `true`, preferring the
+         * snapshot marked as final. Requires `poll=cfp` and cannot be combined with
+         * `final`.
          */
         latest?: boolean;
         /**
-         * Optional poll filter
+         * Poll name.
          */
         poll?: RankingPoll;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Optional week filter
+         * Poll week.
          */
         week?: number;
         /**
-         * Required year filter
+         * Season year.
          */
         year: number;
     };
@@ -2601,47 +2607,47 @@ export type GetRankingsError = ({
 export type GetPlaysData = {
     query: {
         /**
-         * Optional division classification filter
+         * Division classification of either team.
          */
         classification?: DivisionClassification;
         /**
-         * Optional conference filter
+         * Conference of either team.
          */
         conference?: string;
         /**
-         * Optional defensive team filter
+         * Defensive team name.
          */
         defense?: string;
         /**
-         * Optional defensive conference filter
+         * Defensive team conference.
          */
         defenseConference?: string;
         /**
-         * Optional offensive team filter
+         * Offensive team name.
          */
         offense?: string;
         /**
-         * Optional offensive conference filter
+         * Offensive team conference.
          */
         offenseConference?: string;
         /**
-         * Optoinal play type abbreviation filter
+         * Play type abbreviation.
          */
         playType?: string;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Optional team filter
+         * Team name on either side of the play.
          */
         team?: string;
         /**
-         * Required week filter
+         * Week number.
          */
         week: number;
         /**
-         * Required year filter
+         * Season year.
          */
         year: number;
     };
@@ -2658,35 +2664,35 @@ export type GetPlayTypesError = unknown;
 export type GetPlayStatsData = {
     query?: {
         /**
-         * Optional athleteId filter
+         * Athlete ID.
          */
         athleteId?: number;
         /**
-         * Optional conference filter
+         * Conference name or abbreviation.
          */
         conference?: string;
         /**
-         * Optional gameId filter
+         * Game ID.
          */
         gameId?: number;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Optional statTypeId filter
+         * Play stat type ID.
          */
         statTypeId?: number;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional week filter
+         * Week number.
          */
         week?: number;
         /**
-         * Optional year filter
+         * Season year.
          */
         year?: number;
     };
@@ -2703,7 +2709,7 @@ export type GetPlayStatTypesError = unknown;
 export type GetCfpPlayoffData = {
     query: {
         /**
-         * Required year filter
+         * Season year.
          */
         year: number;
     };
@@ -2718,7 +2724,7 @@ export type GetCfpPlayoffError = ({
 export type GetCfpParticipantsData = {
     query: {
         /**
-         * Required year filter
+         * Season year.
          */
         year: number;
     };
@@ -2733,11 +2739,11 @@ export type GetCfpParticipantsError = ({
 export type GetCfpGamesData = {
     query: {
         /**
-         * Optional playoff round filter
+         * Playoff round.
          */
         round?: PlayoffRound;
         /**
-         * Required year filter
+         * Season year.
          */
         year: number;
     };
@@ -2752,19 +2758,19 @@ export type GetCfpGamesError = ({
 export type SearchPlayersData = {
     query: {
         /**
-         * Optional position abbreviation filter
+         * Player position abbreviation.
          */
         position?: string;
         /**
-         * Search term for matching player name
+         * Full or partial player name.
          */
         searchTerm: string;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional year filter
+         * Season year.
          */
         year?: number;
     };
@@ -2777,27 +2783,28 @@ export type SearchPlayersError = unknown;
 export type GetPlayerUsageData = {
     query: {
         /**
-         * Optional conference abbreviation filter
+         * Conference abbreviation.
          */
         conference?: string;
         /**
-         * Optional exclude garbage time flag, defaults to false
+         * Excludes garbage-time plays when `true`. Defaults
+         * to `false`.
          */
         excludeGarbageTime?: boolean;
         /**
-         * Optional player id filter
+         * Player ID.
          */
         playerId?: number;
         /**
-         * Optional position abbreivation filter
+         * Player position abbreviation.
          */
         position?: string;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Required year filter
+         * Season year.
          */
         year: number;
     };
@@ -2810,11 +2817,11 @@ export type GetPlayerUsageError = unknown;
 export type GetPlayerSeasonOverviewData = {
     query: {
         /**
-         * Required player id filter
+         * Player ID.
          */
         playerId: number;
         /**
-         * Required year filter
+         * Season year.
          */
         year: number;
     };
@@ -2827,15 +2834,15 @@ export type GetPlayerSeasonOverviewError = unknown;
 export type GetReturningProductionData = {
     query?: {
         /**
-         * Optional conference filter
+         * Conference name or abbreviation.
          */
         conference?: string;
         /**
-         * Team filter, required if year not specified
+         * Team name. Required unless `year` is specified.
          */
         team?: string;
         /**
-         * Year filter, required if team not specified
+         * Season year. Required unless `team` is specified.
          */
         year?: number;
     };
@@ -2848,7 +2855,7 @@ export type GetReturningProductionError = unknown;
 export type GetTransferPortalData = {
     query: {
         /**
-         * Required year filter
+         * Season year.
          */
         year: number;
     };
@@ -2861,11 +2868,11 @@ export type GetTransferPortalError = unknown;
 export type GetPredictedPointsData = {
     query: {
         /**
-         * Distance value
+         * Distance to gain, in yards.
          */
         distance: number;
         /**
-         * Down value
+         * Down number.
          */
         down: number;
     };
@@ -2878,23 +2885,23 @@ export type GetPredictedPointsError = unknown;
 export type GetPredictedPointsAddedByTeamData = {
     query?: {
         /**
-         * Optional division classification filter, defaults to fbs
+         * Division classification. Defaults to `fbs`.
          */
         classification?: DivisionClassification;
         /**
-         * Conference abbreviation filter
+         * Conference abbreviation.
          */
         conference?: string;
         /**
-         * Exclude garbage time plays
+         * Excludes garbage-time plays when `true`.
          */
         excludeGarbageTime?: boolean;
         /**
-         * Team filter, required if year not specified
+         * Team name. Required unless `year` is specified.
          */
         team?: string;
         /**
-         * Year filter, required if team not specified
+         * Season year. Required unless `team` is specified.
          */
         year?: number;
     };
@@ -2907,31 +2914,31 @@ export type GetPredictedPointsAddedByTeamError = unknown;
 export type GetPredictedPointsAddedByGameData = {
     query: {
         /**
-         * Optional division classification filter, defaults to fbs
+         * Division classification. Defaults to `fbs`.
          */
         classification?: DivisionClassification;
         /**
-         * Optional conference abbreviation filter
+         * Conference abbreviation.
          */
         conference?: string;
         /**
-         * Optional flag to exclude garbage time plays
+         * Excludes garbage-time plays when `true`.
          */
         excludeGarbageTime?: boolean;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional week filter
+         * Week number.
          */
         week?: number;
         /**
-         * Required year filter
+         * Season year.
          */
         year: number;
     };
@@ -2944,35 +2951,35 @@ export type GetPredictedPointsAddedByGameError = unknown;
 export type GetPredictedPointsAddedByPlayerGameData = {
     query: {
         /**
-         * Optional flag to exclude garbage time plays
+         * Excludes garbage-time plays when `true`.
          */
         excludeGarbageTime?: boolean;
         /**
-         * Optional player ID filter
+         * Player ID.
          */
         playerId?: string;
         /**
-         * Optional player position abbreviation filter
+         * Player position abbreviation.
          */
         position?: string;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Team filter, required if week not specified
+         * Team name. Required unless `week` is specified.
          */
         team?: string;
         /**
-         * Threshold value for minimum number of plays
+         * Minimum number of plays.
          */
         threshold?: number;
         /**
-         * Week filter, required if team not specified
+         * Week number. Required unless `team` is specified.
          */
         week?: number;
         /**
-         * Required year filter
+         * Season year.
          */
         year: number;
     };
@@ -2985,31 +2992,31 @@ export type GetPredictedPointsAddedByPlayerGameError = unknown;
 export type GetPredictedPointsAddedByPlayerSeasonData = {
     query?: {
         /**
-         * Optional conference abbreviation filter
+         * Conference abbreviation.
          */
         conference?: string;
         /**
-         * Optional flag to exclude garbage time plays
+         * Excludes garbage-time plays when `true`.
          */
         excludeGarbageTime?: boolean;
         /**
-         * Player ID filter, required if year not specified
+         * Player ID. Required unless `year` is specified.
          */
         playerId?: string;
         /**
-         * Optional position abbreviation filter
+         * Player position abbreviation.
          */
         position?: string;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Threshold value for minimum number of plays
+         * Minimum number of plays.
          */
         threshold?: number;
         /**
-         * Year filter, required if playerId not specified
+         * Season year. Required unless `playerId` is specified.
          */
         year?: number;
     };
@@ -3022,7 +3029,7 @@ export type GetPredictedPointsAddedByPlayerSeasonError = unknown;
 export type GetWinProbabilityData = {
     query: {
         /**
-         * Required game ID filter
+         * Game ID.
          */
         gameId: number;
     };
@@ -3035,19 +3042,19 @@ export type GetWinProbabilityError = unknown;
 export type GetPregameWinProbabilitiesData = {
     query?: {
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional week filter
+         * Week number.
          */
         week?: number;
         /**
-         * Optional year filter
+         * Season year.
          */
         year?: number;
     };
@@ -3064,7 +3071,7 @@ export type GetFieldGoalExpectedPointsError = unknown;
 export type GetLivePlaysData = {
     query: {
         /**
-         * Game Id filter
+         * Game ID.
          */
         gameId: number;
     };
@@ -3077,39 +3084,39 @@ export type GetLivePlaysError = unknown;
 export type GetLinesData = {
     query?: {
         /**
-         * Optional away team filter
+         * Away team name.
          */
         away?: string;
         /**
-         * Optional conference filter
+         * Conference of either team.
          */
         conference?: string;
         /**
-         * Optional gameId filter
+         * Game ID.
          */
         gameId?: number;
         /**
-         * Optional home team filter
+         * Home team name.
          */
         home?: string;
         /**
-         * Optional provider name filter
+         * Betting line provider.
          */
         provider?: string;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Optional team filter
+         * Team name on either side of the game.
          */
         team?: string;
         /**
-         * Optional week filter
+         * Week number.
          */
         week?: number;
         /**
-         * Year filter, required if game id not specified
+         * Season year. Required unless `gameId` is specified.
          */
         year?: number;
     };
@@ -3126,15 +3133,16 @@ export type GetUserInfoError = unknown;
 export type GetUsageData = {
     query?: {
         /**
-         * Optional API filter: all, cfb, or cbb
+         * API to include: `all`, `cfb`, or `cbb`.
          */
         api?: UserUsageApi;
         /**
-         * Number of trailing days to include, defaults to 7 and is capped at 31
+         * Trailing days to include. Defaults to 7; maximum 31.
          */
         days?: number;
         /**
-         * Number of endpoint and recent request rows to return, defaults to 10 and is capped at 50
+         * Maximum endpoint and request rows to return. Defaults to 10;
+         * maximum 50.
          */
         limit?: number;
     };
@@ -3147,47 +3155,47 @@ export type GetUsageError = unknown;
 export type GetGamesData = {
     query?: {
         /**
-         * Optional away team filter
+         * Away team name.
          */
         away?: string;
         /**
-         * Optional division classification filter
+         * Division classification.
          */
         classification?: DivisionClassification;
         /**
-         * Optional playoff competition filter
+         * Playoff competition.
          */
         competition?: PlayoffCompetition;
         /**
-         * Optional conference filter
+         * Conference of either team.
          */
         conference?: string;
         /**
-         * Optional home team filter
+         * Home team name.
          */
         home?: string;
         /**
-         * Game id filter to retrieve a single game
+         * Game ID. When specified, returns data for that game.
          */
         id?: number;
         /**
-         * Optional playoff round filter; requires competition
+         * Playoff round. Requires `competition`.
          */
         round?: PlayoffRound;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Optional team filter
+         * Team name on either side of the game.
          */
         team?: string;
         /**
-         * Optional week filter
+         * Week number.
          */
         week?: number;
         /**
-         * Required year filter (except when id is specified)
+         * Season year. Required unless `id` is specified.
          */
         year?: number;
     };
@@ -3202,31 +3210,34 @@ export type GetGamesError = ({
 export type GetGameTeamStatsData = {
     query?: {
         /**
-         * Optional division classification filter
+         * Division classification.
          */
         classification?: DivisionClassification;
         /**
-         * Optional conference filter, required if week and team not specified
+         * Conference name or abbreviation. One of `week`, `team`,
+         * or `conference` is required when filtering by year.
          */
         conference?: string;
         /**
-         * Optional id filter to retrieve a single game
+         * Game ID. When specified, returns statistics for that game.
          */
         id?: number;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Optional team filter, required if week and conference not specified
+         * Team name. One of `week`, `team`, or `conference` is required
+         * when filtering by year.
          */
         team?: string;
         /**
-         * Optional week filter, required if team and conference not specified
+         * Week number. One of `week`, `team`, or `conference` is required
+         * when filtering by year.
          */
         week?: number;
         /**
-         * Required year filter (along with one of week, team, or conference), unless id is specified
+         * Season year. Required unless `id` is specified.
          */
         year?: number;
     };
@@ -3239,35 +3250,38 @@ export type GetGameTeamStatsError = unknown;
 export type GetGamePlayerStatsData = {
     query?: {
         /**
-         * Optional player statistical category filter
+         * Player statistical category.
          */
         category?: string;
         /**
-         * Optional division classification filter
+         * Division classification.
          */
         classification?: DivisionClassification;
         /**
-         * Optional conference filter, required if week and team not specified
+         * Conference name or abbreviation. One of `week`, `team`,
+         * or `conference` is required when filtering by year.
          */
         conference?: string;
         /**
-         * Optional id filter to retrieve a single game
+         * Game ID. When specified, returns statistics for that game.
          */
         id?: number;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Optional team filter, required if week and conference not specified
+         * Team name. One of `week`, `team`, or `conference` is required
+         * when filtering by year.
          */
         team?: string;
         /**
-         * Optional week filter, required if team and conference not specified
+         * Week number. One of `week`, `team`, or `conference` is required
+         * when filtering by year.
          */
         week?: number;
         /**
-         * Required year filter (along with one of week, team, or conference), unless id is specified
+         * Season year. Required unless `id` is specified.
          */
         year?: number;
     };
@@ -3280,31 +3294,31 @@ export type GetGamePlayerStatsError = unknown;
 export type GetMediaData = {
     query: {
         /**
-         * Optional division classification filter
+         * Division classification.
          */
         classification?: DivisionClassification;
         /**
-         * Optional conference filter
+         * Conference name or abbreviation.
          */
         conference?: string;
         /**
-         * Optional media type filter
+         * Media type.
          */
         mediaType?: MediaType;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional week filter
+         * Week number.
          */
         week?: number;
         /**
-         * Required year filter
+         * Season year.
          */
         year: number;
     };
@@ -3317,31 +3331,31 @@ export type GetMediaError = unknown;
 export type GetWeatherData = {
     query?: {
         /**
-         * Optional division classification filter
+         * Division classification.
          */
         classification?: DivisionClassification;
         /**
-         * Optional conference filter
+         * Conference name or abbreviation.
          */
         conference?: string;
         /**
-         * Filter for retrieving a single game
+         * Game ID. When specified, returns weather for that game.
          */
         gameId?: number;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional week filter
+         * Week number.
          */
         week?: number;
         /**
-         * Year filter, required if game id not specified
+         * Season year. Required unless `gameId` is specified.
          */
         year?: number;
     };
@@ -3354,15 +3368,15 @@ export type GetWeatherError = unknown;
 export type GetRecordsData = {
     query?: {
         /**
-         * Optional conference filter
+         * Conference name or abbreviation.
          */
         conference?: string;
         /**
-         * Team filter, required if year not specified
+         * Team name. Required unless `year` is specified.
          */
         team?: string;
         /**
-         * Year filter, required if team not specified
+         * Season year. Required unless `team` is specified.
          */
         year?: number;
     };
@@ -3375,7 +3389,7 @@ export type GetRecordsError = unknown;
 export type GetCalendarData = {
     query: {
         /**
-         * Required year filter
+         * Season year.
          */
         year: number;
     };
@@ -3388,11 +3402,11 @@ export type GetCalendarError = unknown;
 export type GetScoreboardData = {
     query?: {
         /**
-         * Optional division classification filter, defaults to fbs
+         * Division classification. Defaults to `fbs`.
          */
         classification?: DivisionClassification;
         /**
-         * Optional conference filter
+         * Conference name or abbreviation.
          */
         conference?: string;
     };
@@ -3405,43 +3419,43 @@ export type GetScoreboardError = unknown;
 export type GetDrivesData = {
     query: {
         /**
-         * Optional division classification filter
+         * Division classification of either team.
          */
         classification?: DivisionClassification;
         /**
-         * Optional conference filter
+         * Conference of either team.
          */
         conference?: string;
         /**
-         * Optional defensive team filter
+         * Defensive team name.
          */
         defense?: string;
         /**
-         * Optional defensive team conference filter
+         * Defensive team conference.
          */
         defenseConference?: string;
         /**
-         * Optional offensive team filter
+         * Offensive team name.
          */
         offense?: string;
         /**
-         * Optional offensive team conference filter
+         * Offensive team conference.
          */
         offenseConference?: string;
         /**
-         * Optional season type filter
+         * Season type.
          */
         seasonType?: SeasonType;
         /**
-         * Optional team filter
+         * Team name on either side of the drive.
          */
         team?: string;
         /**
-         * Optional week filter
+         * Week number.
          */
         week?: number;
         /**
-         * Required year filter
+         * Season year.
          */
         year: number;
     };
@@ -3462,23 +3476,23 @@ export type GetDraftPositionsError = unknown;
 export type GetDraftPicksData = {
     query?: {
         /**
-         * Optional college conference filter
+         * College conference name or abbreviation.
          */
         conference?: string;
         /**
-         * Optional position classification filter
+         * Position category.
          */
         position?: string;
         /**
-         * Optional college team filter
+         * College team name.
          */
         school?: string;
         /**
-         * Optional NFL team filter
+         * NFL team name.
          */
         team?: string;
         /**
-         * Optional year filter
+         * Draft year.
          */
         year?: number;
     };
@@ -3491,27 +3505,27 @@ export type GetDraftPicksError = unknown;
 export type GetCoachesData = {
     query?: {
         /**
-         * Optional first name filter
+         * Coach first name.
          */
         firstName?: string;
         /**
-         * Optional last name filter
+         * Coach last name.
          */
         lastName?: string;
         /**
-         * Optional end year range filter
+         * Latest season year to include.
          */
         maxYear?: number;
         /**
-         * Optional start year range filter
+         * Earliest season year to include.
          */
         minYear?: number;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional year filter
+         * Season year.
          */
         year?: number;
     };
@@ -3524,7 +3538,7 @@ export type GetCoachesError = unknown;
 export type GetCoachProfileData = {
     query: {
         /**
-         * Required coach ID
+         * Coach ID.
          */
         coachId: number;
     };
@@ -3539,23 +3553,23 @@ export type GetCoachProfileError = ({
 export type GetCoachSeasonsData = {
     query?: {
         /**
-         * Optional coach ID
+         * Coach ID.
          */
         coachId?: number;
         /**
-         * Optional end year range filter
+         * Latest season year to include.
          */
         maxYear?: number;
         /**
-         * Optional start year range filter
+         * Earliest season year to include.
          */
         minYear?: number;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional exact season year
+         * Exact season year.
          */
         year?: number;
     };
@@ -3570,19 +3584,19 @@ export type GetCoachSeasonsError = ({
 export type GetCoachTenuresData = {
     query?: {
         /**
-         * Optional active-tenure filter
+         * Filters by active status when specified.
          */
         active?: boolean;
         /**
-         * Optional coach ID
+         * Coach ID.
          */
         coachId?: number;
         /**
-         * Optional team filter
+         * Team name.
          */
         team?: string;
         /**
-         * Optional season year contained by the tenure
+         * Season year contained within the tenure.
          */
         year?: number;
     };
@@ -3597,7 +3611,7 @@ export type GetCoachTenuresError = ({
 export type GetAdvancedBoxScoreData = {
     query: {
         /**
-         * Required game id filter
+         * Game ID.
          */
         id: number;
     };

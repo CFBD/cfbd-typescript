@@ -6,7 +6,7 @@ import type { GetAdjustedTeamSeasonStatsData, GetAdjustedTeamSeasonStatsError, G
 export const client = createClient(createConfig({ baseUrl: 'https://api.collegefootballdata.com' }));
 
 /**
- * Retrieve opponent-adjusted team season statistics
+ * Returns opponent-adjusted team statistics by season.
  */
 export const getAdjustedTeamSeasonStats = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetAdjustedTeamSeasonStatsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetAdjustedTeamSeasonStatsResponse, GetAdjustedTeamSeasonStatsError, ThrowOnError>({
@@ -16,7 +16,7 @@ export const getAdjustedTeamSeasonStats = <ThrowOnError extends boolean = false>
 };
 
 /**
- * Retrieve opponent-adjusted player passing statistics
+ * Returns opponent-adjusted player passing metrics.
  */
 export const getAdjustedPlayerPassingStats = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetAdjustedPlayerPassingStatsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetAdjustedPlayerPassingStatsResponse, GetAdjustedPlayerPassingStatsError, ThrowOnError>({
@@ -26,7 +26,7 @@ export const getAdjustedPlayerPassingStats = <ThrowOnError extends boolean = fal
 };
 
 /**
- * Retrieve opponent-adjusted player rushing statistics
+ * Returns opponent-adjusted player rushing metrics.
  */
 export const getAdjustedPlayerRushingStats = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetAdjustedPlayerRushingStatsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetAdjustedPlayerRushingStatsResponse, GetAdjustedPlayerRushingStatsError, ThrowOnError>({
@@ -36,7 +36,7 @@ export const getAdjustedPlayerRushingStats = <ThrowOnError extends boolean = fal
 };
 
 /**
- * Retrieve Points Added Above Replacement (PAAR) ratings for kickers
+ * Returns Points Added Above Replacement (PAAR) ratings for kickers.
  */
 export const getKickerPaar = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetKickerPaarData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetKickerPaarResponse, GetKickerPaarError, ThrowOnError>({
@@ -46,7 +46,7 @@ export const getKickerPaar = <ThrowOnError extends boolean = false>(options?: Op
 };
 
 /**
- * Retrieves team information
+ * Returns team information and conference affiliations.
  */
 export const getTeams = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetTeamsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetTeamsResponse, GetTeamsError, ThrowOnError>({
@@ -56,7 +56,7 @@ export const getTeams = <ThrowOnError extends boolean = false>(options?: Options
 };
 
 /**
- * Retrieves information on teams playing in the highest division of CFB
+ * Returns Football Bowl Subdivision (FBS) teams for a season.
  */
 export const getFbsTeams = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetFbsTeamsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetFbsTeamsResponse, GetFbsTeamsError, ThrowOnError>({
@@ -66,7 +66,7 @@ export const getFbsTeams = <ThrowOnError extends boolean = false>(options?: Opti
 };
 
 /**
- * Retrieves historical matchup details for two given teams
+ * Returns historical matchup results between two teams.
  */
 export const getMatchup = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetMatchupData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetMatchupResponse, GetMatchupError, ThrowOnError>({
@@ -76,7 +76,7 @@ export const getMatchup = <ThrowOnError extends boolean = false>(options: Option
 };
 
 /**
- * Retrieves against-the-spread (ATS) summary by team
+ * Returns against-the-spread (ATS) records by team.
  */
 export const getTeamsAts = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetTeamsAtsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetTeamsAtsResponse, GetTeamsAtsError, ThrowOnError>({
@@ -86,7 +86,7 @@ export const getTeamsAts = <ThrowOnError extends boolean = false>(options: Optio
 };
 
 /**
- * Retrieves historical roster data
+ * Returns historical roster data.
  */
 export const getRoster = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetRosterData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetRosterResponse, GetRosterError, ThrowOnError>({
@@ -96,7 +96,7 @@ export const getRoster = <ThrowOnError extends boolean = false>(options?: Option
 };
 
 /**
- * Retrieves list of conferences
+ * Returns the available conferences.
  */
 export const getConferences = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<unknown, ThrowOnError>) => {
     return (options?.client ?? client).get<GetConferencesResponse, GetConferencesError, ThrowOnError>({
@@ -106,7 +106,7 @@ export const getConferences = <ThrowOnError extends boolean = false>(options?: O
 };
 
 /**
- * Retrieve 247 Team Talent Composite for a given year
+ * Returns 247Sports Team Talent Composite ratings for a season.
  */
 export const getTalent = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetTalentData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetTalentResponse, GetTalentError, ThrowOnError>({
@@ -116,7 +116,7 @@ export const getTalent = <ThrowOnError extends boolean = false>(options: Options
 };
 
 /**
- * Retrieve list of venues
+ * Returns college football venues.
  */
 export const getVenues = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<unknown, ThrowOnError>) => {
     return (options?.client ?? client).get<GetVenuesResponse, GetVenuesError, ThrowOnError>({
@@ -126,7 +126,7 @@ export const getVenues = <ThrowOnError extends boolean = false>(options?: Option
 };
 
 /**
- * Retrieves aggregated player statistics for a given season
+ * Returns player statistics aggregated by season.
  */
 export const getPlayerSeasonStats = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetPlayerSeasonStatsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlayerSeasonStatsResponse, GetPlayerSeasonStatsError, ThrowOnError>({
@@ -136,7 +136,7 @@ export const getPlayerSeasonStats = <ThrowOnError extends boolean = false>(optio
 };
 
 /**
- * Retrieves player passing and rushing success rates by season
+ * Returns player passing and rushing success rates by season.
  */
 export const getPlayerSeasonSuccessRates = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetPlayerSeasonSuccessRatesData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlayerSeasonSuccessRatesResponse, GetPlayerSeasonSuccessRatesError, ThrowOnError>({
@@ -146,7 +146,7 @@ export const getPlayerSeasonSuccessRates = <ThrowOnError extends boolean = false
 };
 
 /**
- * Retrieves player passing and rushing success rates by game
+ * Returns player passing and rushing success rates by game.
  */
 export const getPlayerGameSuccessRates = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetPlayerGameSuccessRatesData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlayerGameSuccessRatesResponse, GetPlayerGameSuccessRatesError, ThrowOnError>({
@@ -156,7 +156,7 @@ export const getPlayerGameSuccessRates = <ThrowOnError extends boolean = false>(
 };
 
 /**
- * Retrieves aggregated team season statistics
+ * Returns team statistics aggregated by season.
  */
 export const getTeamStats = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetTeamStatsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetTeamStatsResponse, GetTeamStatsError, ThrowOnError>({
@@ -166,7 +166,7 @@ export const getTeamStats = <ThrowOnError extends boolean = false>(options?: Opt
 };
 
 /**
- * Gets team statistical categories
+ * Returns the available team statistical categories.
  */
 export const getCategories = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<unknown, ThrowOnError>) => {
     return (options?.client ?? client).get<GetCategoriesResponse, GetCategoriesError, ThrowOnError>({
@@ -176,7 +176,7 @@ export const getCategories = <ThrowOnError extends boolean = false>(options?: Op
 };
 
 /**
- * Retrieves advanced season statistics for teams
+ * Returns advanced team statistics aggregated by season.
  */
 export const getAdvancedSeasonStats = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetAdvancedSeasonStatsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetAdvancedSeasonStatsResponse, GetAdvancedSeasonStatsError, ThrowOnError>({
@@ -186,7 +186,7 @@ export const getAdvancedSeasonStats = <ThrowOnError extends boolean = false>(opt
 };
 
 /**
- * Retrieves advanced statistics aggregated by game
+ * Returns advanced team statistics aggregated by game.
  */
 export const getAdvancedGameStats = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetAdvancedGameStatsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetAdvancedGameStatsResponse, GetAdvancedGameStatsError, ThrowOnError>({
@@ -196,7 +196,7 @@ export const getAdvancedGameStats = <ThrowOnError extends boolean = false>(optio
 };
 
 /**
- * Retrieves havoc statistics aggregated by game
+ * Returns team havoc statistics aggregated by game.
  */
 export const getGameHavocStats = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetGameHavocStatsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetGameHavocStatsResponse, GetGameHavocStatsError, ThrowOnError>({
@@ -206,7 +206,7 @@ export const getGameHavocStats = <ThrowOnError extends boolean = false>(options?
 };
 
 /**
- * Retrieves player recruiting rankings
+ * Returns player recruiting rankings.
  */
 export const getRecruits = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetRecruitsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetRecruitsResponse, GetRecruitsError, ThrowOnError>({
@@ -216,7 +216,7 @@ export const getRecruits = <ThrowOnError extends boolean = false>(options?: Opti
 };
 
 /**
- * Retrieves team recruiting rankings
+ * Returns team recruiting rankings.
  */
 export const getTeamRecruitingRankings = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetTeamRecruitingRankingsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetTeamRecruitingRankingsResponse, GetTeamRecruitingRankingsError, ThrowOnError>({
@@ -226,7 +226,7 @@ export const getTeamRecruitingRankings = <ThrowOnError extends boolean = false>(
 };
 
 /**
- * Retrieves aggregated recruiting statistics by team and position grouping
+ * Returns recruiting ratings aggregated by team and position group.
  */
 export const getAggregatedTeamRecruitingRatings = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetAggregatedTeamRecruitingRatingsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetAggregatedTeamRecruitingRatingsResponse, GetAggregatedTeamRecruitingRatingsError, ThrowOnError>({
@@ -236,7 +236,7 @@ export const getAggregatedTeamRecruitingRatings = <ThrowOnError extends boolean 
 };
 
 /**
- * Retrieves SP+ ratings for a given year or school
+ * Returns SP+ ratings by team and season.
  */
 export const getSp = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetSpData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetSpResponse, GetSpError, ThrowOnError>({
@@ -246,7 +246,7 @@ export const getSp = <ThrowOnError extends boolean = false>(options?: OptionsLeg
 };
 
 /**
- * Retrieves aggregated historical conference SP+ data
+ * Returns conference-level SP+ ratings by season.
  */
 export const getConferenceSp = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetConferenceSpData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetConferenceSpResponse, GetConferenceSpError, ThrowOnError>({
@@ -256,7 +256,7 @@ export const getConferenceSp = <ThrowOnError extends boolean = false>(options?: 
 };
 
 /**
- * Retrieves historical SRS for a year or team
+ * Returns Simple Rating System (SRS) ratings by team and season.
  */
 export const getSrs = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetSrsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetSrsResponse, GetSrsError, ThrowOnError>({
@@ -266,7 +266,7 @@ export const getSrs = <ThrowOnError extends boolean = false>(options?: OptionsLe
 };
 
 /**
- * Retrieves expanded historical SRS (including FCS) for a year or team
+ * Returns expanded Simple Rating System (SRS) ratings, including FCS teams.
  */
 export const getExpandedSrs = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetExpandedSrsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetExpandedSrsResponse, GetExpandedSrsError, ThrowOnError>({
@@ -276,7 +276,7 @@ export const getExpandedSrs = <ThrowOnError extends boolean = false>(options?: O
 };
 
 /**
- * Retrieves historical Elo ratings
+ * Returns historical Elo ratings.
  */
 export const getElo = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetEloData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetEloResponse, GetEloError, ThrowOnError>({
@@ -286,7 +286,7 @@ export const getElo = <ThrowOnError extends boolean = false>(options?: OptionsLe
 };
 
 /**
- * Retrieves historical Football Power Index (FPI) ratings
+ * Returns historical Football Power Index (FPI) ratings.
  */
 export const getFpi = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetFpiData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetFpiResponse, GetFpiError, ThrowOnError>({
@@ -296,7 +296,7 @@ export const getFpi = <ThrowOnError extends boolean = false>(options?: OptionsLe
 };
 
 /**
- * Retrieves historical poll data
+ * Returns historical poll rankings.
  */
 export const getRankings = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetRankingsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetRankingsResponse, GetRankingsError, ThrowOnError>({
@@ -306,7 +306,7 @@ export const getRankings = <ThrowOnError extends boolean = false>(options: Optio
 };
 
 /**
- * Retrieves historical play data
+ * Returns historical play-by-play data.
  */
 export const getPlays = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetPlaysData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlaysResponse, GetPlaysError, ThrowOnError>({
@@ -316,7 +316,7 @@ export const getPlays = <ThrowOnError extends boolean = false>(options: OptionsL
 };
 
 /**
- * Retrieves available play types
+ * Returns the available play types.
  */
 export const getPlayTypes = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<unknown, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlayTypesResponse, GetPlayTypesError, ThrowOnError>({
@@ -326,7 +326,7 @@ export const getPlayTypes = <ThrowOnError extends boolean = false>(options?: Opt
 };
 
 /**
- * Retrieve player-play associations (limit 2000)
+ * Returns player and play-stat associations, limited to 2,000 records.
  */
 export const getPlayStats = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetPlayStatsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlayStatsResponse, GetPlayStatsError, ThrowOnError>({
@@ -336,7 +336,7 @@ export const getPlayStats = <ThrowOnError extends boolean = false>(options?: Opt
 };
 
 /**
- * Retrieves available play stat types
+ * Returns the available play stat types.
  */
 export const getPlayStatTypes = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<unknown, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlayStatTypesResponse, GetPlayStatTypesError, ThrowOnError>({
@@ -346,7 +346,7 @@ export const getPlayStatTypes = <ThrowOnError extends boolean = false>(options?:
 };
 
 /**
- * Retrieves the complete College Football Playoff bracket for a season
+ * Returns the complete College Football Playoff bracket for a season.
  */
 export const getCfpPlayoff = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetCfpPlayoffData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetCfpPlayoffResponse, GetCfpPlayoffError, ThrowOnError>({
@@ -356,7 +356,7 @@ export const getCfpPlayoff = <ThrowOnError extends boolean = false>(options: Opt
 };
 
 /**
- * Retrieves College Football Playoff participants for a season
+ * Returns College Football Playoff participants for a season.
  */
 export const getCfpParticipants = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetCfpParticipantsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetCfpParticipantsResponse, GetCfpParticipantsError, ThrowOnError>({
@@ -366,7 +366,7 @@ export const getCfpParticipants = <ThrowOnError extends boolean = false>(options
 };
 
 /**
- * Retrieves College Football Playoff matchups for a season
+ * Returns College Football Playoff matchups for a season.
  */
 export const getCfpGames = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetCfpGamesData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetCfpGamesResponse, GetCfpGamesError, ThrowOnError>({
@@ -376,7 +376,7 @@ export const getCfpGames = <ThrowOnError extends boolean = false>(options: Optio
 };
 
 /**
- * Search for players (lists top 100 results)
+ * Returns up to 100 players whose names match the search term.
  */
 export const searchPlayers = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<SearchPlayersData, ThrowOnError>) => {
     return (options?.client ?? client).get<SearchPlayersResponse, SearchPlayersError, ThrowOnError>({
@@ -386,7 +386,7 @@ export const searchPlayers = <ThrowOnError extends boolean = false>(options: Opt
 };
 
 /**
- * Retrieves player usage data for a given season
+ * Returns player usage metrics for a season.
  */
 export const getPlayerUsage = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetPlayerUsageData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlayerUsageResponse, GetPlayerUsageError, ThrowOnError>({
@@ -396,7 +396,8 @@ export const getPlayerUsage = <ThrowOnError extends boolean = false>(options: Op
 };
 
 /**
- * Retrieves a player season overview with box score, usage, and PPA data
+ * Returns a player season overview with box score, usage, and Predicted
+ * Points Added (PPA) data.
  */
 export const getPlayerSeasonOverview = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetPlayerSeasonOverviewData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlayerSeasonOverviewResponse, GetPlayerSeasonOverviewError, ThrowOnError>({
@@ -406,7 +407,7 @@ export const getPlayerSeasonOverview = <ThrowOnError extends boolean = false>(op
 };
 
 /**
- * Retrieves returning production data. Either a year or team filter must be specified.
+ * Returns returning production metrics by team and season.
  */
 export const getReturningProduction = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetReturningProductionData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetReturningProductionResponse, GetReturningProductionError, ThrowOnError>({
@@ -416,7 +417,7 @@ export const getReturningProduction = <ThrowOnError extends boolean = false>(opt
 };
 
 /**
- * Retrieves transfer portal data for a given year
+ * Returns transfer portal entries for a season.
  */
 export const getTransferPortal = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetTransferPortalData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetTransferPortalResponse, GetTransferPortalError, ThrowOnError>({
@@ -426,7 +427,7 @@ export const getTransferPortal = <ThrowOnError extends boolean = false>(options:
 };
 
 /**
- * Query Predicted Points values by down and distance
+ * Returns predicted points values by down and distance.
  */
 export const getPredictedPoints = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetPredictedPointsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPredictedPointsResponse, GetPredictedPointsError, ThrowOnError>({
@@ -436,7 +437,7 @@ export const getPredictedPoints = <ThrowOnError extends boolean = false>(options
 };
 
 /**
- * Retrieves historical team PPA metrics by season
+ * Returns team Predicted Points Added (PPA) metrics by season.
  */
 export const getPredictedPointsAddedByTeam = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetPredictedPointsAddedByTeamData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPredictedPointsAddedByTeamResponse, GetPredictedPointsAddedByTeamError, ThrowOnError>({
@@ -446,7 +447,7 @@ export const getPredictedPointsAddedByTeam = <ThrowOnError extends boolean = fal
 };
 
 /**
- * Retrieves historical team PPA metrics by game
+ * Returns team Predicted Points Added (PPA) metrics by game.
  */
 export const getPredictedPointsAddedByGame = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetPredictedPointsAddedByGameData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPredictedPointsAddedByGameResponse, GetPredictedPointsAddedByGameError, ThrowOnError>({
@@ -456,7 +457,7 @@ export const getPredictedPointsAddedByGame = <ThrowOnError extends boolean = fal
 };
 
 /**
- * Queries player PPA statistics by game
+ * Returns player Predicted Points Added (PPA) metrics by game.
  */
 export const getPredictedPointsAddedByPlayerGame = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetPredictedPointsAddedByPlayerGameData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPredictedPointsAddedByPlayerGameResponse, GetPredictedPointsAddedByPlayerGameError, ThrowOnError>({
@@ -466,7 +467,7 @@ export const getPredictedPointsAddedByPlayerGame = <ThrowOnError extends boolean
 };
 
 /**
- * Queries player PPA statistics by season
+ * Returns player Predicted Points Added (PPA) metrics by season.
  */
 export const getPredictedPointsAddedByPlayerSeason = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetPredictedPointsAddedByPlayerSeasonData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPredictedPointsAddedByPlayerSeasonResponse, GetPredictedPointsAddedByPlayerSeasonError, ThrowOnError>({
@@ -476,7 +477,7 @@ export const getPredictedPointsAddedByPlayerSeason = <ThrowOnError extends boole
 };
 
 /**
- * Query play win probabilities by game
+ * Returns play-by-play win probabilities for a game.
  */
 export const getWinProbability = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetWinProbabilityData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetWinProbabilityResponse, GetWinProbabilityError, ThrowOnError>({
@@ -486,7 +487,7 @@ export const getWinProbability = <ThrowOnError extends boolean = false>(options:
 };
 
 /**
- * Queries pregame win probabilities
+ * Returns pregame win probabilities.
  */
 export const getPregameWinProbabilities = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetPregameWinProbabilitiesData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPregameWinProbabilitiesResponse, GetPregameWinProbabilitiesError, ThrowOnError>({
@@ -496,7 +497,7 @@ export const getPregameWinProbabilities = <ThrowOnError extends boolean = false>
 };
 
 /**
- * Queries field goal expected points values
+ * Returns expected points values for field goal attempts.
  */
 export const getFieldGoalExpectedPoints = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<unknown, ThrowOnError>) => {
     return (options?.client ?? client).get<GetFieldGoalExpectedPointsResponse, GetFieldGoalExpectedPointsError, ThrowOnError>({
@@ -506,7 +507,7 @@ export const getFieldGoalExpectedPoints = <ThrowOnError extends boolean = false>
 };
 
 /**
- * Queries live play-by-play data and advanced stats
+ * Returns live play-by-play data and advanced metrics for a game.
  */
 export const getLivePlays = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetLivePlaysData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetLivePlaysResponse, GetLivePlaysError, ThrowOnError>({
@@ -516,7 +517,7 @@ export const getLivePlays = <ThrowOnError extends boolean = false>(options: Opti
 };
 
 /**
- * Retrieves historical betting data
+ * Returns historical betting lines and results.
  */
 export const getLines = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetLinesData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetLinesResponse, GetLinesError, ThrowOnError>({
@@ -526,7 +527,8 @@ export const getLines = <ThrowOnError extends boolean = false>(options?: Options
 };
 
 /**
- * Retrieves information about the user, including their Patreon level and remaining API calls.
+ * Returns the authenticated user's Patreon level and remaining API calls.
+ * Returns `null` when the request is not authenticated.
  */
 export const getUserInfo = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<unknown, ThrowOnError>) => {
     return (options?.client ?? client).get<GetUserInfoResponse, GetUserInfoError, ThrowOnError>({
@@ -536,7 +538,8 @@ export const getUserInfo = <ThrowOnError extends boolean = false>(options?: Opti
 };
 
 /**
- * Retrieves bounded API usage for the authenticated user's shared CFB/CBB call pool.
+ * Returns recent usage for the authenticated user's shared CFB and CBB call
+ * pool. Returns `null` when the request is not authenticated.
  */
 export const getUsage = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetUsageData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetUsageResponse, GetUsageError, ThrowOnError>({
@@ -546,7 +549,7 @@ export const getUsage = <ThrowOnError extends boolean = false>(options?: Options
 };
 
 /**
- * Retrieves historical game data
+ * Returns historical game data.
  */
 export const getGames = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetGamesData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetGamesResponse, GetGamesError, ThrowOnError>({
@@ -556,7 +559,7 @@ export const getGames = <ThrowOnError extends boolean = false>(options?: Options
 };
 
 /**
- * Retrieves team box score statistics
+ * Returns team box score statistics by game.
  */
 export const getGameTeamStats = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetGameTeamStatsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetGameTeamStatsResponse, GetGameTeamStatsError, ThrowOnError>({
@@ -566,7 +569,7 @@ export const getGameTeamStats = <ThrowOnError extends boolean = false>(options?:
 };
 
 /**
- * Retrieves player box score statistics
+ * Returns player box score statistics by game.
  */
 export const getGamePlayerStats = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetGamePlayerStatsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetGamePlayerStatsResponse, GetGamePlayerStatsError, ThrowOnError>({
@@ -576,7 +579,7 @@ export const getGamePlayerStats = <ThrowOnError extends boolean = false>(options
 };
 
 /**
- * Retrieves media information for games
+ * Returns broadcast and media information for games.
  */
 export const getMedia = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetMediaData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetMediaResponse, GetMediaError, ThrowOnError>({
@@ -586,7 +589,7 @@ export const getMedia = <ThrowOnError extends boolean = false>(options: OptionsL
 };
 
 /**
- * Retrieve historical and future weather data (Patreon only)
+ * Returns historical and forecast weather data for games. Requires Patreon.
  */
 export const getWeather = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetWeatherData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetWeatherResponse, GetWeatherError, ThrowOnError>({
@@ -596,7 +599,7 @@ export const getWeather = <ThrowOnError extends boolean = false>(options?: Optio
 };
 
 /**
- * Retrieves historical team records
+ * Returns historical team records by season.
  */
 export const getRecords = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetRecordsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetRecordsResponse, GetRecordsError, ThrowOnError>({
@@ -606,7 +609,7 @@ export const getRecords = <ThrowOnError extends boolean = false>(options?: Optio
 };
 
 /**
- * Retrieves calendar information
+ * Returns the week-by-week season calendar.
  */
 export const getCalendar = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetCalendarData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetCalendarResponse, GetCalendarError, ThrowOnError>({
@@ -616,7 +619,7 @@ export const getCalendar = <ThrowOnError extends boolean = false>(options: Optio
 };
 
 /**
- * Retrieves live scoreboard data
+ * Returns current scoreboard data.
  */
 export const getScoreboard = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetScoreboardData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetScoreboardResponse, GetScoreboardError, ThrowOnError>({
@@ -626,7 +629,7 @@ export const getScoreboard = <ThrowOnError extends boolean = false>(options?: Op
 };
 
 /**
- * Retrieves historical drive data
+ * Returns historical drive data.
  */
 export const getDrives = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetDrivesData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetDrivesResponse, GetDrivesError, ThrowOnError>({
@@ -636,7 +639,7 @@ export const getDrives = <ThrowOnError extends boolean = false>(options: Options
 };
 
 /**
- * Retrieves list of NFL teams
+ * Returns the NFL teams represented in draft data.
  */
 export const getDraftTeams = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<unknown, ThrowOnError>) => {
     return (options?.client ?? client).get<GetDraftTeamsResponse, GetDraftTeamsError, ThrowOnError>({
@@ -646,7 +649,7 @@ export const getDraftTeams = <ThrowOnError extends boolean = false>(options?: Op
 };
 
 /**
- * Retrieves list of player position categories for the NFL Draft
+ * Returns the player position categories used in NFL Draft data.
  */
 export const getDraftPositions = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<unknown, ThrowOnError>) => {
     return (options?.client ?? client).get<GetDraftPositionsResponse, GetDraftPositionsError, ThrowOnError>({
@@ -656,7 +659,7 @@ export const getDraftPositions = <ThrowOnError extends boolean = false>(options?
 };
 
 /**
- * Retrieve historical NFL draft data
+ * Returns historical NFL Draft picks.
  */
 export const getDraftPicks = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetDraftPicksData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetDraftPicksResponse, GetDraftPicksError, ThrowOnError>({
@@ -666,7 +669,7 @@ export const getDraftPicks = <ThrowOnError extends boolean = false>(options?: Op
 };
 
 /**
- * Retrieves historical head coach information and records
+ * Returns historical head coach records.
  */
 export const getCoaches = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetCoachesData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetCoachesResponse, GetCoachesError, ThrowOnError>({
@@ -676,7 +679,7 @@ export const getCoaches = <ThrowOnError extends boolean = false>(options?: Optio
 };
 
 /**
- * Retrieves canonical coach identity and complete career totals
+ * Returns a coach profile with canonical identity and career totals.
  */
 export const getCoachProfile = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetCoachProfileData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetCoachProfileResponse, GetCoachProfileError, ThrowOnError>({
@@ -686,8 +689,7 @@ export const getCoachProfile = <ThrowOnError extends boolean = false>(options: O
 };
 
 /**
- * Retrieves detailed coach-season records with attributed results and
- * whole-team season context
+ * Returns coach-season records with attributed results and team context.
  */
 export const getCoachSeasons = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetCoachSeasonsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetCoachSeasonsResponse, GetCoachSeasonsError, ThrowOnError>({
@@ -697,7 +699,7 @@ export const getCoachSeasons = <ThrowOnError extends boolean = false>(options?: 
 };
 
 /**
- * Retrieves continuous head-coaching stints and attributed records
+ * Returns continuous head-coaching tenures and their attributed records.
  */
 export const getCoachTenures = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetCoachTenuresData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetCoachTenuresResponse, GetCoachTenuresError, ThrowOnError>({
@@ -707,7 +709,7 @@ export const getCoachTenures = <ThrowOnError extends boolean = false>(options?: 
 };
 
 /**
- * Retrieves an advanced box score for a game
+ * Returns an advanced box score for a game.
  */
 export const getAdvancedBoxScore = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetAdvancedBoxScoreData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetAdvancedBoxScoreResponse, GetAdvancedBoxScoreError, ThrowOnError>({
