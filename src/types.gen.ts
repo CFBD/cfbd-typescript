@@ -533,6 +533,8 @@ export type ConferenceSP = {
     };
 };
 
+export type CoreRatingSeasonType = 'regular' | 'postseason';
+
 export type DetailedCoachSeason = {
     games: number;
     wins: number;
@@ -1583,6 +1585,29 @@ export type TeamATS = {
     avgCoverMargin: (number) | null;
 };
 
+export type TeamCoreRating = {
+    year: number;
+    throughSeasonType: CoreRatingSeasonType;
+    throughWeek: number;
+    team: string;
+    conference: (string) | null;
+    /**
+     * Offense-minus-defense composite; higher is better.
+     */
+    overall: number;
+    /**
+     * Points created above average per 100 qualifying plays; higher is better.
+     */
+    offense: number;
+    /**
+     * Points allowed above average per 100 qualifying plays; lower is better.
+     */
+    defense: number;
+    offensePlays: number;
+    defensePlays: number;
+    modelVersion: string;
+};
+
 export type TeamElo = {
     year: number;
     team: string;
@@ -2430,6 +2455,27 @@ export type GetAggregatedTeamRecruitingRatingsData = {
 export type GetAggregatedTeamRecruitingRatingsResponse = (Array<AggregatedTeamRecruiting>);
 
 export type GetAggregatedTeamRecruitingRatingsError = unknown;
+
+export type GetCoreData = {
+    query?: {
+        /**
+         * Conference name or abbreviation.
+         */
+        conference?: string;
+        /**
+         * Exact team name. Required unless `year` is specified.
+         */
+        team?: string;
+        /**
+         * Season year. Required unless `team` is specified.
+         */
+        year?: number;
+    };
+};
+
+export type GetCoreResponse = (Array<TeamCoreRating>);
+
+export type GetCoreError = unknown;
 
 export type GetSpData = {
     query?: {
