@@ -494,8 +494,11 @@ export type Conference = {
     name: string;
     shortName: (string) | null;
     abbreviation: (string) | null;
-    classification: ((DivisionClassification) | null);
+    classification: ((ConferenceClassification) | null);
+    memberCount: number;
 };
+
+export type ConferenceClassification = 'fbs' | 'fcs' | 'ii' | 'ii/iii' | 'iii';
 
 export type ConferenceSP = {
     year: number;
@@ -1585,6 +1588,32 @@ export type TeamATS = {
     avgCoverMargin: (number) | null;
 };
 
+export type TeamConferenceAffiliation = {
+    teamId: number;
+    team: string;
+    conferenceId: number;
+    conference: string;
+    conferenceAbbreviation: (string) | null;
+    classification: ((ConferenceClassification) | null);
+    conferenceDivision: (string) | null;
+    startYear: number;
+    endYear: (number) | null;
+};
+
+export type TeamConferenceChange = {
+    teamId: number;
+    team: string;
+    fromConferenceId: number;
+    fromConference: string;
+    fromConferenceAbbreviation: (string) | null;
+    fromClassification: ((ConferenceClassification) | null);
+    toConferenceId: number;
+    toConference: string;
+    toConferenceAbbreviation: (string) | null;
+    toClassification: ((ConferenceClassification) | null);
+    effectiveYear: number;
+};
+
 export type TeamCoreRating = {
     year: number;
     throughSeasonType: CoreRatingSeasonType;
@@ -2103,9 +2132,68 @@ export type GetRosterResponse = (Array<RosterPlayer>);
 
 export type GetRosterError = unknown;
 
+export type GetConferencesData = {
+    query?: {
+        /**
+         * Conference classification.
+         */
+        classification?: ConferenceClassification;
+        /**
+         * Season year used to calculate membership.
+         */
+        year?: number;
+    };
+};
+
 export type GetConferencesResponse = (Array<Conference>);
 
 export type GetConferencesError = unknown;
+
+export type GetTeamConferenceChangesData = {
+    query: {
+        /**
+         * Season year.
+         */
+        year: number;
+    };
+};
+
+export type GetTeamConferenceChangesResponse = (Array<TeamConferenceChange>);
+
+export type GetTeamConferenceChangesError = unknown;
+
+export type GetTeamConferenceAffiliationsData = {
+    query?: {
+        /**
+         * Conference classification.
+         */
+        classification?: ConferenceClassification;
+        /**
+         * Conference name or abbreviation.
+         */
+        conference?: string;
+        /**
+         * Latest season year to include.
+         */
+        maxYear?: number;
+        /**
+         * Earliest season year to include.
+         */
+        minYear?: number;
+        /**
+         * Team school name or abbreviation.
+         */
+        team?: string;
+        /**
+         * Season year. Cannot be combined with `minYear` or `maxYear`.
+         */
+        year?: number;
+    };
+};
+
+export type GetTeamConferenceAffiliationsResponse = (Array<TeamConferenceAffiliation>);
+
+export type GetTeamConferenceAffiliationsError = unknown;
 
 export type GetTalentData = {
     query: {
