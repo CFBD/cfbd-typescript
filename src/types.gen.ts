@@ -563,7 +563,7 @@ export type DetailedCoachSeason = {
     draftFollowingSeason: ((CoachDraftContext) | null);
 };
 
-export type DivisionClassification = 'fbs' | 'fcs' | 'ii' | 'iii';
+export type DivisionClassification = 'fbs' | 'fcs' | 'ii' | 'ii/iii' | 'iii';
 
 export type DraftPick = {
     collegeAthleteId: (number) | null;
