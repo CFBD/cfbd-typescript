@@ -970,6 +970,86 @@ export type MatchupGame = {
 
 export type MediaType = 'tv' | 'radio' | 'web' | 'ppv' | 'mobile';
 
+export type PassDepth = 'short' | 'deep';
+
+export type PassDirection = 'left' | 'middle' | 'right';
+
+export type PassingPlay = {
+    gameId: number;
+    playId: string;
+    driveId: string;
+    season: number;
+    week: number;
+    seasonType: SeasonType;
+    offenseId: number;
+    offense: string;
+    offenseConference: (string) | null;
+    defenseId: number;
+    defense: string;
+    defenseConference: (string) | null;
+    period: number;
+    clock: PassingPlayClock;
+    down: number;
+    distance: number;
+    playText: (string) | null;
+    passerId: (string) | null;
+    passer: (string) | null;
+    targetId: (string) | null;
+    target: (string) | null;
+    outcome: PassOutcome;
+    airYards: (number) | null;
+    passDepth: ((PassDepth) | null);
+    passDirection: ((PassDirection) | null);
+    passLocation: ((PassLocation) | null);
+    totalYards: (number) | null;
+    yardsAfterCatch: (number) | null;
+    startYardline: number;
+    startYardsToGoal: number;
+    targetYardsToGoal: (number) | null;
+    isSpike: boolean;
+    isThrowaway: boolean;
+    isIntentionalGrounding: boolean;
+    parseStatus: PassParseStatus;
+};
+
+export type PassingPlayClock = {
+    minutes: number;
+    seconds: number;
+};
+
+export type PassingProduction = {
+    attempts: number;
+    completions: number;
+    incompletions: number;
+    interceptions: number;
+    completionRate: (number) | null;
+    /**
+     * Number of attempts with non-null air yards, including zero-yard values.
+     */
+    airYardsAttemptsAvailable: number;
+    totalAirYards: (number) | null;
+    averageDepthOfTarget: (number) | null;
+    /**
+     * Number of attempts with non-null total yards, including zero-yard
+     * incompletions and interceptions.
+     */
+    totalYardsAttemptsAvailable: number;
+    totalYards: (number) | null;
+    /**
+     * Number of completed attempts with valid total yards and air yards to
+     * calculate yards after catch, including zero-yard values.
+     */
+    yardsAfterCatchAttemptsAvailable: number;
+    totalYardsAfterCatch: (number) | null;
+    averageYardsAfterCatch: (number) | null;
+};
+
+export type PassLocation = 'short left' | 'short middle' | 'short right' | 'deep left' | 'deep middle' | 'deep right';
+
+export type PassOutcome = 'completion' | 'incompletion' | 'interception';
+
+export type PassParseStatus = 'complete' | 'partial' | 'invalid';
+
 export type Play = {
     id: string;
     driveId: string;
@@ -1045,6 +1125,74 @@ export type PlayerGameUsage = {
     player: string;
     team: string;
     position: string;
+};
+
+export type PlayerPassingGame = {
+    attempts: number;
+    completions: number;
+    incompletions: number;
+    interceptions: number;
+    completionRate: (number) | null;
+    /**
+     * Number of attempts with non-null air yards, including zero-yard values.
+     */
+    airYardsAttemptsAvailable: number;
+    totalAirYards: (number) | null;
+    averageDepthOfTarget: (number) | null;
+    /**
+     * Number of attempts with non-null total yards, including zero-yard
+     * incompletions and interceptions.
+     */
+    totalYardsAttemptsAvailable: number;
+    totalYards: (number) | null;
+    /**
+     * Number of completed attempts with valid total yards and air yards to
+     * calculate yards after catch, including zero-yard values.
+     */
+    yardsAfterCatchAttemptsAvailable: number;
+    totalYardsAfterCatch: (number) | null;
+    averageYardsAfterCatch: (number) | null;
+    gameId: number;
+    season: number;
+    week: number;
+    seasonType: SeasonType;
+    playerId: string;
+    player: string;
+    team: string;
+    conference: (string) | null;
+    opponent: string;
+};
+
+export type PlayerPassingSeason = {
+    attempts: number;
+    completions: number;
+    incompletions: number;
+    interceptions: number;
+    completionRate: (number) | null;
+    /**
+     * Number of attempts with non-null air yards, including zero-yard values.
+     */
+    airYardsAttemptsAvailable: number;
+    totalAirYards: (number) | null;
+    averageDepthOfTarget: (number) | null;
+    /**
+     * Number of attempts with non-null total yards, including zero-yard
+     * incompletions and interceptions.
+     */
+    totalYardsAttemptsAvailable: number;
+    totalYards: (number) | null;
+    /**
+     * Number of completed attempts with valid total yards and air yards to
+     * calculate yards after catch, including zero-yard values.
+     */
+    yardsAfterCatchAttemptsAvailable: number;
+    totalYardsAfterCatch: (number) | null;
+    averageYardsAfterCatch: (number) | null;
+    season: number;
+    playerId: string;
+    player: string;
+    team: string;
+    conference: (string) | null;
 };
 
 export type PlayerPPA = {
@@ -1707,6 +1855,26 @@ export type TeamHavoc = {
     total: number;
     frontSeven: number;
     db: number;
+};
+
+export type TeamPassingGame = {
+    gameId: number;
+    season: number;
+    week: number;
+    seasonType: SeasonType;
+    team: string;
+    conference: (string) | null;
+    opponent: string;
+    offense: PassingProduction;
+    defense: PassingProduction;
+};
+
+export type TeamPassingSeason = {
+    season: number;
+    team: string;
+    conference: (string) | null;
+    offense: PassingProduction;
+    defense: PassingProduction;
 };
 
 export type TeamPPA = {
@@ -2998,6 +3166,195 @@ export type GetTransferPortalData = {
 export type GetTransferPortalResponse = (Array<PlayerTransfer>);
 
 export type GetTransferPortalError = unknown;
+
+export type GetPassingPlaysData = {
+    query: {
+        /**
+         * Division classification. Defaults to `fbs`.
+         */
+        classification?: DivisionClassification;
+        /**
+         * Conference name or abbreviation on either side of the pass.
+         */
+        conference?: string;
+        /**
+         * Defensive team name.
+         */
+        defense?: string;
+        /**
+         * Game ID.
+         */
+        gameId?: number;
+        /**
+         * Offensive team name.
+         */
+        offense?: string;
+        /**
+         * Pass outcome.
+         */
+        outcome?: PassOutcome;
+        /**
+         * Passer athlete ID.
+         */
+        passerId?: string;
+        /**
+         * Season type.
+         */
+        seasonType?: SeasonType;
+        /**
+         * Intended target athlete ID.
+         */
+        targetId?: string;
+        /**
+         * Team name on either side of the pass. Either team or week is required.
+         */
+        team?: string;
+        /**
+         * Week number. Either team or week is required.
+         */
+        week?: number;
+        /**
+         * Season year.
+         */
+        year: number;
+    };
+};
+
+export type GetPassingPlaysResponse = (Array<PassingPlay>);
+
+export type GetPassingPlaysError = unknown;
+
+export type GetPlayerPassingBySeasonData = {
+    query?: {
+        /**
+         * Division classification. Defaults to `fbs`.
+         */
+        classification?: DivisionClassification;
+        /**
+         * Conference name or abbreviation.
+         */
+        conference?: string;
+        /**
+         * Passer athlete ID. Required unless year is specified.
+         */
+        passerId?: string;
+        /**
+         * Season type.
+         */
+        seasonType?: SeasonType;
+        /**
+         * Team name.
+         */
+        team?: string;
+        /**
+         * Season year. Required unless passerId is specified.
+         */
+        year?: number;
+    };
+};
+
+export type GetPlayerPassingBySeasonResponse = (Array<PlayerPassingSeason>);
+
+export type GetPlayerPassingBySeasonError = unknown;
+
+export type GetPlayerPassingByGameData = {
+    query: {
+        /**
+         * Division classification. Defaults to `fbs`.
+         */
+        classification?: DivisionClassification;
+        /**
+         * Conference name or abbreviation.
+         */
+        conference?: string;
+        /**
+         * Passer athlete ID. Either passerId, team, or week is required.
+         */
+        passerId?: string;
+        /**
+         * Season type.
+         */
+        seasonType?: SeasonType;
+        /**
+         * Team name. Either passerId, team, or week is required.
+         */
+        team?: string;
+        /**
+         * Week number. Either passerId, team, or week is required.
+         */
+        week?: number;
+        /**
+         * Season year. Required.
+         */
+        year: number;
+    };
+};
+
+export type GetPlayerPassingByGameResponse = (Array<PlayerPassingGame>);
+
+export type GetPlayerPassingByGameError = unknown;
+
+export type GetTeamPassingBySeasonData = {
+    query?: {
+        /**
+         * Division classification. Defaults to `fbs`.
+         */
+        classification?: DivisionClassification;
+        /**
+         * Conference name or abbreviation.
+         */
+        conference?: string;
+        /**
+         * Season type.
+         */
+        seasonType?: SeasonType;
+        /**
+         * Team name. Required unless year is specified.
+         */
+        team?: string;
+        /**
+         * Season year. Required unless team is specified.
+         */
+        year?: number;
+    };
+};
+
+export type GetTeamPassingBySeasonResponse = (Array<TeamPassingSeason>);
+
+export type GetTeamPassingBySeasonError = unknown;
+
+export type GetTeamPassingByGameData = {
+    query: {
+        /**
+         * Division classification. Defaults to `fbs`.
+         */
+        classification?: DivisionClassification;
+        /**
+         * Conference name or abbreviation.
+         */
+        conference?: string;
+        /**
+         * Season type.
+         */
+        seasonType?: SeasonType;
+        /**
+         * Team name. Either team or week is required.
+         */
+        team?: string;
+        /**
+         * Week number. Either team or week is required.
+         */
+        week?: number;
+        /**
+         * Season year. Required.
+         */
+        year: number;
+    };
+};
+
+export type GetTeamPassingByGameResponse = (Array<TeamPassingGame>);
+
+export type GetTeamPassingByGameError = unknown;
 
 export type GetPredictedPointsData = {
     query: {
