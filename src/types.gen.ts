@@ -1208,6 +1208,86 @@ export type PlayerPPAChartItem = {
     avgPPA: number;
 };
 
+export type PlayerRushingGame = {
+    attempts: number;
+    rushingYardsAvailable: number;
+    totalRushingYards: (number) | null;
+    yardsPerCarry: (number) | null;
+    individualAttempts: number;
+    unattributedAttempts: number;
+    sacks: number;
+    kneels: number;
+    teamRushes: number;
+    multiCarrierAttempts: number;
+    directionEligibleAttempts: number;
+    directionAvailableAttempts: number;
+    successRate: number;
+    ppa: number;
+    totalPpa: number;
+    lineYards: number;
+    lineYardsTotal: number;
+    secondLevelYards: number;
+    secondLevelYardsTotal: number;
+    openFieldYards: number;
+    openFieldYardsTotal: number;
+    stuffRate: number;
+    powerSuccess: number;
+    explosiveness: number;
+    directions: {
+        unknown: RushingDirectionProduction;
+        right: RushingDirectionProduction;
+        middle: RushingDirectionProduction;
+        left: RushingDirectionProduction;
+    };
+    gameId: number;
+    season: number;
+    week: number;
+    seasonType: SeasonType;
+    playerId: string;
+    player: string;
+    team: string;
+    conference: (string) | null;
+    opponent: string;
+};
+
+export type PlayerRushingSeason = {
+    attempts: number;
+    rushingYardsAvailable: number;
+    totalRushingYards: (number) | null;
+    yardsPerCarry: (number) | null;
+    individualAttempts: number;
+    unattributedAttempts: number;
+    sacks: number;
+    kneels: number;
+    teamRushes: number;
+    multiCarrierAttempts: number;
+    directionEligibleAttempts: number;
+    directionAvailableAttempts: number;
+    successRate: number;
+    ppa: number;
+    totalPpa: number;
+    lineYards: number;
+    lineYardsTotal: number;
+    secondLevelYards: number;
+    secondLevelYardsTotal: number;
+    openFieldYards: number;
+    openFieldYardsTotal: number;
+    stuffRate: number;
+    powerSuccess: number;
+    explosiveness: number;
+    directions: {
+        unknown: RushingDirectionProduction;
+        right: RushingDirectionProduction;
+        middle: RushingDirectionProduction;
+        left: RushingDirectionProduction;
+    };
+    season: number;
+    playerId: string;
+    player: string;
+    team: string;
+    conference: (string) | null;
+};
+
 export type PlayerSearchResult = {
     id: string;
     team: string;
@@ -1646,6 +1726,71 @@ export type RosterPlayer = {
     recruitIds: Array<(string)> | null;
 };
 
+export type RushAttributionStatus = 'individual' | 'team' | 'multi_carrier' | 'unmatched' | 'ambiguous' | 'conflict' | 'unlinked';
+
+export type RushDirection = 'left' | 'middle' | 'right';
+
+export type RushingDirectionProduction = {
+    carries: number;
+    yards: number;
+    yardsPerCarry: number;
+    successRate: number;
+    ppa: number;
+    totalPpa: number;
+    lineYards: number;
+    lineYardsTotal: number;
+    secondLevelYards: number;
+    secondLevelYardsTotal: number;
+    openFieldYards: number;
+    openFieldYardsTotal: number;
+    stuffRate: number;
+    powerSuccess: number;
+    explosiveness: number;
+};
+
+export type RushingPlay = {
+    gameId: number;
+    playId: string;
+    driveId: string;
+    season: number;
+    week: number;
+    seasonType: SeasonType;
+    offenseId: number;
+    offense: string;
+    offenseConference: (string) | null;
+    defenseId: number;
+    defense: string;
+    defenseConference: (string) | null;
+    period: number;
+    clock: RushingPlayClock;
+    down: number;
+    distance: number;
+    playText: (string) | null;
+    startYardline: number;
+    startYardsToGoal: (number) | null;
+    rusherId: (string) | null;
+    rusher: (string) | null;
+    rushDirection: ((RushDirection) | null);
+    rushingYards: (number) | null;
+    rusherYards: (number) | null;
+    isRushingTouchdown: (boolean) | null;
+    isSack: boolean;
+    isKneel: boolean;
+    isTeamRush: boolean;
+    attributionStatus: RushAttributionStatus;
+    directionAnalysisEligible: boolean;
+    parseStatus: RushParseStatus;
+    ppa: (number) | null;
+    success: (boolean) | null;
+};
+
+export type RushingPlayClock = {
+    minutes: number;
+    seconds: number;
+};
+
+export type RushParseStatus = 'complete' | 'partial' | 'invalid';
+
 export type ScoreboardGame = {
     id: number;
     startDate: string;
@@ -1914,6 +2059,61 @@ export type TeamRecruitingRanking = {
     rank: number;
     team: string;
     points: number;
+};
+
+export type TeamRushingGame = {
+    gameId: number;
+    season: number;
+    week: number;
+    seasonType: SeasonType;
+    team: string;
+    conference: (string) | null;
+    opponent: string;
+    offense: TeamRushingProduction;
+    defense: TeamRushingProduction;
+};
+
+export type TeamRushingProduction = {
+    attempts: number;
+    rushingYardsAvailable: number;
+    totalRushingYards: (number) | null;
+    yardsPerCarry: (number) | null;
+    individualAttempts: number;
+    unattributedAttempts: number;
+    sacks: number;
+    kneels: number;
+    teamRushes: number;
+    multiCarrierAttempts: number;
+    directionEligibleAttempts: number;
+    directionAvailableAttempts: number;
+    successRate: number;
+    ppa: number;
+    totalPpa: number;
+    lineYards: number;
+    lineYardsTotal: number;
+    secondLevelYards: number;
+    secondLevelYardsTotal: number;
+    openFieldYards: number;
+    openFieldYardsTotal: number;
+    stuffRate: number;
+    powerSuccess: number;
+    explosiveness: number;
+    directions: {
+        unknown: RushingDirectionProduction;
+        right: RushingDirectionProduction;
+        middle: RushingDirectionProduction;
+        left: RushingDirectionProduction;
+    };
+    touchdownStatusAvailable: number;
+    rushingTouchdowns: number;
+};
+
+export type TeamRushingSeason = {
+    season: number;
+    team: string;
+    conference: (string) | null;
+    offense: TeamRushingProduction;
+    defense: TeamRushingProduction;
 };
 
 export type TeamRushingStats = {
@@ -2636,6 +2836,215 @@ export type GetGameHavocStatsData = {
 export type GetGameHavocStatsResponse = (Array<GameHavocStats>);
 
 export type GetGameHavocStatsError = unknown;
+
+export type GetRushingPlaysData = {
+    query?: {
+        /**
+         * Rusher attribution status.
+         */
+        attributionStatus?: RushAttributionStatus;
+        /**
+         * Division classification. Defaults to `fbs`.
+         */
+        classification?: DivisionClassification;
+        /**
+         * Conference name or abbreviation on either side of the rush.
+         */
+        conference?: string;
+        /**
+         * Defending team name.
+         */
+        defense?: string;
+        /**
+         * Filters attempts by ordinary direction-analysis eligibility.
+         */
+        directionAnalysisEligible?: boolean;
+        /**
+         * Game ID.
+         */
+        gameId?: number;
+        /**
+         * Filters kneel attempts.
+         */
+        isKneel?: boolean;
+        /**
+         * Filters known rushing touchdown results.
+         */
+        isRushingTouchdown?: boolean;
+        /**
+         * Filters sack attempts.
+         */
+        isSack?: boolean;
+        /**
+         * Filters team-only rushing attempts.
+         */
+        isTeamRush?: boolean;
+        /**
+         * Rushing offense team name.
+         */
+        offense?: string;
+        /**
+         * Rushing direction.
+         */
+        rushDirection?: RushDirection;
+        /**
+         * Rusher athlete ID.
+         */
+        rusherId?: string;
+        /**
+         * Season type.
+         */
+        seasonType?: SeasonType;
+        /**
+         * Team name on either side of the rush; either team or week is required with year.
+         */
+        team?: string;
+        /**
+         * Week number. Requires year; either team or week is required with year.
+         */
+        week?: number;
+        /**
+         * Season year. Requires team or week.
+         */
+        year?: number;
+    };
+};
+
+export type GetRushingPlaysResponse = (Array<RushingPlay>);
+
+export type GetRushingPlaysError = unknown;
+
+export type GetPlayerRushingBySeasonData = {
+    query?: {
+        /**
+         * Division classification. Defaults to `fbs`.
+         */
+        classification?: DivisionClassification;
+        /**
+         * Conference name or abbreviation.
+         */
+        conference?: string;
+        /**
+         * Rusher athlete ID. Required unless year is specified.
+         */
+        rusherId?: string;
+        /**
+         * Season type.
+         */
+        seasonType?: SeasonType;
+        /**
+         * Team name.
+         */
+        team?: string;
+        /**
+         * Season year. Required unless rusherId is specified.
+         */
+        year?: number;
+    };
+};
+
+export type GetPlayerRushingBySeasonResponse = (Array<PlayerRushingSeason>);
+
+export type GetPlayerRushingBySeasonError = unknown;
+
+export type GetPlayerRushingByGameData = {
+    query?: {
+        /**
+         * Division classification. Defaults to `fbs`.
+         */
+        classification?: DivisionClassification;
+        /**
+         * Conference name or abbreviation.
+         */
+        conference?: string;
+        /**
+         * Rusher athlete ID. Required unless year is specified.
+         */
+        rusherId?: string;
+        /**
+         * Season type.
+         */
+        seasonType?: SeasonType;
+        /**
+         * Team name; either team or week is required with year.
+         */
+        team?: string;
+        /**
+         * Week number. Requires year; either team or week is required with year.
+         */
+        week?: number;
+        /**
+         * Season year. Requires team or week; optional when rusherId is specified alone.
+         */
+        year?: number;
+    };
+};
+
+export type GetPlayerRushingByGameResponse = (Array<PlayerRushingGame>);
+
+export type GetPlayerRushingByGameError = unknown;
+
+export type GetTeamRushingBySeasonData = {
+    query?: {
+        /**
+         * Division classification. Defaults to `fbs`.
+         */
+        classification?: DivisionClassification;
+        /**
+         * Conference name or abbreviation.
+         */
+        conference?: string;
+        /**
+         * Season type.
+         */
+        seasonType?: SeasonType;
+        /**
+         * Team name. Required unless year is specified.
+         */
+        team?: string;
+        /**
+         * Season year. Required unless team is specified.
+         */
+        year?: number;
+    };
+};
+
+export type GetTeamRushingBySeasonResponse = (Array<TeamRushingSeason>);
+
+export type GetTeamRushingBySeasonError = unknown;
+
+export type GetTeamRushingByGameData = {
+    query: {
+        /**
+         * Division classification. Defaults to `fbs`.
+         */
+        classification?: DivisionClassification;
+        /**
+         * Conference name or abbreviation.
+         */
+        conference?: string;
+        /**
+         * Season type.
+         */
+        seasonType?: SeasonType;
+        /**
+         * Team name. Either team or week is required.
+         */
+        team?: string;
+        /**
+         * Week number. Either team or week is required.
+         */
+        week?: number;
+        /**
+         * Season year. Required.
+         */
+        year: number;
+    };
+};
+
+export type GetTeamRushingByGameResponse = (Array<TeamRushingGame>);
+
+export type GetTeamRushingByGameError = unknown;
 
 export type GetRecruitsData = {
     query?: {
