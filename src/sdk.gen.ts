@@ -526,7 +526,7 @@ export const getTransferPortal = <ThrowOnError extends boolean = false>(options:
 };
 
 /**
- * Returns enriched pass attempts.
+ * Returns enriched pass attempts with stored PPA, success, and location-analysis eligibility.
  */
 export const getPassingPlays = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetPassingPlaysData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPassingPlaysResponse, GetPassingPlaysError, ThrowOnError>({
@@ -536,7 +536,7 @@ export const getPassingPlays = <ThrowOnError extends boolean = false>(options: O
 };
 
 /**
- * Returns passer production by season.
+ * Returns passer production, advanced metrics, and pass-location breakdowns by season.
  */
 export const getPlayerPassingBySeason = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetPlayerPassingBySeasonData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlayerPassingBySeasonResponse, GetPlayerPassingBySeasonError, ThrowOnError>({
@@ -546,7 +546,7 @@ export const getPlayerPassingBySeason = <ThrowOnError extends boolean = false>(o
 };
 
 /**
- * Returns passer production by game.
+ * Returns passer production, advanced metrics, and pass-location breakdowns by game.
  */
 export const getPlayerPassingByGame = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetPlayerPassingByGameData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlayerPassingByGameResponse, GetPlayerPassingByGameError, ThrowOnError>({
@@ -556,7 +556,8 @@ export const getPlayerPassingByGame = <ThrowOnError extends boolean = false>(opt
 };
 
 /**
- * Returns team passing production by season.
+ * Returns team passing production, advanced metrics, and pass-location
+ * breakdowns by season for offense and defense.
  */
 export const getTeamPassingBySeason = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetTeamPassingBySeasonData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetTeamPassingBySeasonResponse, GetTeamPassingBySeasonError, ThrowOnError>({
@@ -566,7 +567,8 @@ export const getTeamPassingBySeason = <ThrowOnError extends boolean = false>(opt
 };
 
 /**
- * Returns team passing production by game.
+ * Returns team passing production, advanced metrics, and pass-location
+ * breakdowns by game for offense and defense.
  */
 export const getTeamPassingByGame = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetTeamPassingByGameData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetTeamPassingByGameResponse, GetTeamPassingByGameError, ThrowOnError>({

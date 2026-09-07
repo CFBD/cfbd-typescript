@@ -974,6 +974,91 @@ export type PassDepth = 'short' | 'deep';
 
 export type PassDirection = 'left' | 'middle' | 'right';
 
+/**
+ * Production for analysis-eligible attempts in one location bucket.
+ */
+export type PassingLocationProduction = {
+    attempts: number;
+    completions: number;
+    incompletions: number;
+    interceptions: number;
+    completionRate: (number) | null;
+    /**
+     * Number of attempts with non-null air yards, including zero-yard values.
+     */
+    airYardsAttemptsAvailable: number;
+    totalAirYards: (number) | null;
+    averageDepthOfTarget: (number) | null;
+    /**
+     * Number of attempts with non-null total yards, including zero-yard
+     * incompletions and interceptions.
+     */
+    totalYardsAttemptsAvailable: number;
+    totalYards: (number) | null;
+    /**
+     * Number of completed attempts with valid total yards and air yards to
+     * calculate yards after catch, including zero-yard values.
+     */
+    yardsAfterCatchAttemptsAvailable: number;
+    totalYardsAfterCatch: (number) | null;
+    averageYardsAfterCatch: (number) | null;
+    /**
+     * Successful eligible attempts / all eligible attempts; zero if empty.
+     */
+    successRate: number;
+    /**
+     * Average available PPA on eligible attempts; zero if unavailable.
+     */
+    ppa: number;
+    /**
+     * Sum of available PPA on eligible attempts; zero if unavailable.
+     */
+    totalPpa: number;
+    /**
+     * Average available PPA on successful eligible attempts; zero if unavailable.
+     */
+    explosiveness: number;
+    /**
+     * Eligible attempts with non-null PPA, including zero and negative values.
+     */
+    ppaAttemptsAvailable: number;
+    /**
+     * Eligible attempts with non-null success. Missing success remains in the
+     * success-rate denominator but does not count as successful.
+     */
+    successAttemptsAvailable: number;
+    /**
+     * Eligible attempts with stored success equal to true.
+     */
+    successfulAttempts: number;
+    /**
+     * Successful eligible attempts with non-null PPA; explosiveness denominator.
+     */
+    successfulPpaAttemptsAvailable: number;
+    /**
+     * Total yards / attempts with total yards available; null if unavailable.
+     */
+    yardsPerAttempt: (number) | null;
+    /**
+     * Total air yards / attempts with air yards available; null if unavailable.
+     * Equivalent to averageDepthOfTarget. Yardage averages use one decimal.
+     */
+    airYardsPerAttempt: (number) | null;
+};
+
+export type PassingLocations = {
+    'short left': PassingLocationProduction;
+    'short middle': PassingLocationProduction;
+    'short right': PassingLocationProduction;
+    'deep left': PassingLocationProduction;
+    'deep middle': PassingLocationProduction;
+    'deep right': PassingLocationProduction;
+    /**
+     * Eligible attempts without both recognized depth and direction.
+     */
+    unknown: PassingLocationProduction;
+};
+
 export type PassingPlay = {
     gameId: number;
     playId: string;
@@ -1010,6 +1095,19 @@ export type PassingPlay = {
     isThrowaway: boolean;
     isIntentionalGrounding: boolean;
     parseStatus: PassParseStatus;
+    /**
+     * Stored offensive PPA, including zero and negative values.
+     */
+    ppa: (number) | null;
+    /**
+     * Stored success classification; null means unavailable.
+     */
+    success: (boolean) | null;
+    /**
+     * Excludes spikes, intentional grounding, and invalid parses. Throwaways,
+     * partial parses, and attempts with missing location or air yards qualify.
+     */
+    locationAnalysisEligible: boolean;
 };
 
 export type PassingPlayClock = {
@@ -1017,6 +1115,9 @@ export type PassingPlayClock = {
     seconds: number;
 };
 
+/**
+ * Defense reports opponent production allowed without inverting PPA signs.
+ */
 export type PassingProduction = {
     attempts: number;
     completions: number;
@@ -1042,6 +1143,52 @@ export type PassingProduction = {
     yardsAfterCatchAttemptsAvailable: number;
     totalYardsAfterCatch: (number) | null;
     averageYardsAfterCatch: (number) | null;
+    /**
+     * Successful eligible attempts / all eligible attempts; zero if empty.
+     */
+    successRate: number;
+    /**
+     * Average available PPA on eligible attempts; zero if unavailable.
+     */
+    ppa: number;
+    /**
+     * Sum of available PPA on eligible attempts; zero if unavailable.
+     */
+    totalPpa: number;
+    /**
+     * Average available PPA on successful eligible attempts; zero if unavailable.
+     */
+    explosiveness: number;
+    /**
+     * Eligible attempts with non-null PPA, including zero and negative values.
+     */
+    ppaAttemptsAvailable: number;
+    /**
+     * Eligible attempts with non-null success. Missing success remains in the
+     * success-rate denominator but does not count as successful.
+     */
+    successAttemptsAvailable: number;
+    /**
+     * Eligible attempts with stored success equal to true.
+     */
+    successfulAttempts: number;
+    /**
+     * Successful eligible attempts with non-null PPA; explosiveness denominator.
+     */
+    successfulPpaAttemptsAvailable: number;
+    /**
+     * Attempts eligible for advanced metrics and location analysis. Existing
+     * overall production includes ineligible attempts; location buckets do not.
+     */
+    locationEligibleAttempts: number;
+    /**
+     * Eligible attempts with both recognized source depth and direction.
+     */
+    locationAvailableAttempts: number;
+    /**
+     * All seven buckets are present, including empty buckets.
+     */
+    locations: PassingLocations;
 };
 
 export type PassLocation = 'short left' | 'short middle' | 'short right' | 'deep left' | 'deep middle' | 'deep right';
@@ -1152,6 +1299,52 @@ export type PlayerPassingGame = {
     yardsAfterCatchAttemptsAvailable: number;
     totalYardsAfterCatch: (number) | null;
     averageYardsAfterCatch: (number) | null;
+    /**
+     * Successful eligible attempts / all eligible attempts; zero if empty.
+     */
+    successRate: number;
+    /**
+     * Average available PPA on eligible attempts; zero if unavailable.
+     */
+    ppa: number;
+    /**
+     * Sum of available PPA on eligible attempts; zero if unavailable.
+     */
+    totalPpa: number;
+    /**
+     * Average available PPA on successful eligible attempts; zero if unavailable.
+     */
+    explosiveness: number;
+    /**
+     * Eligible attempts with non-null PPA, including zero and negative values.
+     */
+    ppaAttemptsAvailable: number;
+    /**
+     * Eligible attempts with non-null success. Missing success remains in the
+     * success-rate denominator but does not count as successful.
+     */
+    successAttemptsAvailable: number;
+    /**
+     * Eligible attempts with stored success equal to true.
+     */
+    successfulAttempts: number;
+    /**
+     * Successful eligible attempts with non-null PPA; explosiveness denominator.
+     */
+    successfulPpaAttemptsAvailable: number;
+    /**
+     * Attempts eligible for advanced metrics and location analysis. Existing
+     * overall production includes ineligible attempts; location buckets do not.
+     */
+    locationEligibleAttempts: number;
+    /**
+     * Eligible attempts with both recognized source depth and direction.
+     */
+    locationAvailableAttempts: number;
+    /**
+     * All seven buckets are present, including empty buckets.
+     */
+    locations: PassingLocations;
     gameId: number;
     season: number;
     week: number;
@@ -1188,6 +1381,52 @@ export type PlayerPassingSeason = {
     yardsAfterCatchAttemptsAvailable: number;
     totalYardsAfterCatch: (number) | null;
     averageYardsAfterCatch: (number) | null;
+    /**
+     * Successful eligible attempts / all eligible attempts; zero if empty.
+     */
+    successRate: number;
+    /**
+     * Average available PPA on eligible attempts; zero if unavailable.
+     */
+    ppa: number;
+    /**
+     * Sum of available PPA on eligible attempts; zero if unavailable.
+     */
+    totalPpa: number;
+    /**
+     * Average available PPA on successful eligible attempts; zero if unavailable.
+     */
+    explosiveness: number;
+    /**
+     * Eligible attempts with non-null PPA, including zero and negative values.
+     */
+    ppaAttemptsAvailable: number;
+    /**
+     * Eligible attempts with non-null success. Missing success remains in the
+     * success-rate denominator but does not count as successful.
+     */
+    successAttemptsAvailable: number;
+    /**
+     * Eligible attempts with stored success equal to true.
+     */
+    successfulAttempts: number;
+    /**
+     * Successful eligible attempts with non-null PPA; explosiveness denominator.
+     */
+    successfulPpaAttemptsAvailable: number;
+    /**
+     * Attempts eligible for advanced metrics and location analysis. Existing
+     * overall production includes ineligible attempts; location buckets do not.
+     */
+    locationEligibleAttempts: number;
+    /**
+     * Eligible attempts with both recognized source depth and direction.
+     */
+    locationAvailableAttempts: number;
+    /**
+     * All seven buckets are present, including empty buckets.
+     */
+    locations: PassingLocations;
     season: number;
     playerId: string;
     player: string;
