@@ -53,6 +53,14 @@ export type AdvancedBoxScore = {
         homeTeam: string;
     };
     teams: {
+        /**
+         * Enriched rushing, separate from the legacy rushing section.
+         */
+        rushingAdvanced: Array<TeamRushingGame>;
+        /**
+         * Enriched offense/defense passing; empty when no qualifying rows exist.
+         */
+        passing: Array<TeamPassingGame>;
         fieldPosition: Array<TeamFieldPosition>;
         scoringOpportunities: Array<TeamScoringOpportunities>;
         havoc: Array<TeamHavoc>;
@@ -65,6 +73,14 @@ export type AdvancedBoxScore = {
     players: {
         ppa: Array<PlayerPPA>;
         usage: Array<PlayerGameUsage>;
+        /**
+         * Enriched rushing by athlete ID, including direction coverage.
+         */
+        rushing: Array<PlayerRushingGame>;
+        /**
+         * Enriched passing by athlete ID, including location coverage.
+         */
+        passing: Array<PlayerPassingGame>;
     };
 };
 
@@ -3471,6 +3487,12 @@ export type GetEloData = {
          * Conference name or abbreviation.
          */
         conference?: string;
+        /**
+         * Return initial ratings from each team's opening regular-season
+         * game. Missing opening ratings are omitted. Cannot be combined with week;
+         * seasonType must be regular or both when specified. Defaults to false.
+         */
+        preseason?: boolean;
         /**
          * Season type.
          */
