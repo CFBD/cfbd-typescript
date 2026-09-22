@@ -2390,6 +2390,216 @@ export type TeamScoringOpportunities = {
     pointsPerOpportunity: number;
 };
 
+export type TeamSeasonAdvancedStats = {
+    season: number;
+    team: string;
+    conference: string;
+    offense: {
+        passingPlays: {
+            explosiveness: (number) | null;
+            successRate: number;
+            totalPPA: number;
+            ppa: number;
+            rate: number;
+        };
+        rushingPlays: {
+            explosiveness: (number) | null;
+            successRate: number;
+            totalPPA: number;
+            ppa: number;
+            rate: number;
+        };
+        passingDowns: {
+            explosiveness: (number) | null;
+            successRate: number;
+            ppa: number;
+            rate: number;
+        };
+        standardDowns: {
+            explosiveness: (number) | null;
+            successRate: number;
+            ppa: number;
+            rate: number;
+        };
+        havoc: {
+            db: (number) | null;
+            frontSeven: (number) | null;
+            total: (number) | null;
+        };
+        fieldPosition: {
+            averagePredictedPoints: (number) | null;
+            averageStart: (number) | null;
+        };
+        pointsPerOpportunity: number;
+        totalOpportunies: number;
+        openFieldYardsTotal: number;
+        openFieldYards: number;
+        secondLevelYardsTotal: number;
+        secondLevelYards: number;
+        lineYardsTotal: number;
+        lineYards: number;
+        stuffRate: number;
+        powerSuccess: (number) | null;
+        explosiveness: (number) | null;
+        successRate: number;
+        totalPPA: number;
+        ppa: number;
+        drives: number;
+        plays: number;
+    };
+    defense: {
+        passingPlays: {
+            explosiveness: (number) | null;
+            successRate: number;
+            totalPPA: number;
+            ppa: number;
+            rate: number;
+        };
+        rushingPlays: {
+            explosiveness: (number) | null;
+            successRate: number;
+            totalPPA: number;
+            ppa: number;
+            rate: number;
+        };
+        passingDowns: {
+            explosiveness: (number) | null;
+            successRate: number;
+            totalPPA: number;
+            ppa: number;
+            rate: number;
+        };
+        standardDowns: {
+            explosiveness: (number) | null;
+            successRate: number;
+            ppa: number;
+            rate: number;
+        };
+        havoc: {
+            db: (number) | null;
+            frontSeven: (number) | null;
+            total: (number) | null;
+        };
+        fieldPosition: {
+            averagePredictedPoints: (number) | null;
+            averageStart: (number) | null;
+        };
+        pointsPerOpportunity: number;
+        totalOpportunies: number;
+        openFieldYardsTotal: number;
+        openFieldYards: number;
+        secondLevelYardsTotal: number;
+        secondLevelYards: number;
+        lineYardsTotal: number;
+        lineYards: number;
+        stuffRate: number;
+        powerSuccess: (number) | null;
+        explosiveness: (number) | null;
+        successRate: number;
+        totalPPA: number;
+        ppa: number;
+        drives: number;
+        plays: number;
+    };
+};
+
+export type TeamSeasonOverview = {
+    advanced: TeamSeasonAdvancedStats;
+    players: {
+        usage: Array<TeamSeasonPlayerUsage>;
+        ppa: Array<TeamSeasonPlayerPpa>;
+    };
+    passing: ((TeamPassingSeason) | null);
+    rushing: ((TeamRushingSeason) | null);
+    /**
+     * Completed games for the requested season, including postseason.
+     */
+    record: {
+        ties: number;
+        losses: number;
+        wins: number;
+        games: number;
+    };
+    /**
+     * Current available ratings for the requested season; unavailable systems are null.
+     */
+    ratings: {
+        sp: {
+            specialTeams: TeamSeasonRankedRating;
+            defense: TeamSeasonRankedRating;
+            offense: TeamSeasonRankedRating;
+            overall: TeamSeasonRankedRating;
+        } | null;
+        srs: ((TeamSeasonRankedRating) | null);
+        /**
+         * Latest available postgame Elo from a completed game in this season.
+         */
+        elo: (number) | null;
+        core: {
+            defense: TeamSeasonRankedRating;
+            offense: TeamSeasonRankedRating;
+            overall: TeamSeasonRankedRating;
+        } | null;
+        /**
+         * FPI efficiencies (higher is better for all four), not the FPI points rating.
+         */
+        fpi: {
+            specialTeams: TeamSeasonRankedRating;
+            defense: TeamSeasonRankedRating;
+            offense: TeamSeasonRankedRating;
+            overall: TeamSeasonRankedRating;
+        } | null;
+    };
+    season: number;
+    teamId: number;
+    team: string;
+};
+
+export type TeamSeasonOverviewError = {
+    message: string;
+};
+
+export type TeamSeasonPlayerPpa = {
+    season: number;
+    id: string;
+    name: (string) | null;
+    position: (string) | null;
+    team: string;
+    conference: string;
+    averagePPA: TeamSeasonPlayerPpaValues;
+    totalPPA: TeamSeasonPlayerPpaValues;
+};
+
+export type TeamSeasonPlayerPpaValues = {
+    all: (number) | null;
+    pass: (number) | null;
+    rush: (number) | null;
+    firstDown: (number) | null;
+    secondDown: (number) | null;
+    thirdDown: (number) | null;
+    standardDowns: (number) | null;
+    passingDowns: (number) | null;
+};
+
+export type TeamSeasonPlayerUsage = {
+    season: number;
+    id: string;
+    name: (string) | null;
+    position: (string) | null;
+    team: string;
+    conference: string;
+    usage: {
+        passingDowns: (number) | null;
+        standardDowns: (number) | null;
+        thirdDown: (number) | null;
+        secondDown: (number) | null;
+        firstDown: (number) | null;
+        rush: (number) | null;
+        pass: (number) | null;
+        overall: (number) | null;
+    };
+};
+
 export type TeamSeasonPredictedPointsAdded = {
     season: number;
     conference: string;
@@ -2420,6 +2630,17 @@ export type TeamSeasonPredictedPointsAdded = {
         passing: number;
         overall: number;
     };
+};
+
+export type TeamSeasonRankedRating = {
+    /**
+     * Rating/efficiency rounded to two decimal places.
+     */
+    rating: (number) | null;
+    /**
+     * Competition rank within the requested season and division, using unrounded values.
+     */
+    rank: (number) | null;
 };
 
 export type TeamSP = {
@@ -2657,6 +2878,25 @@ export type GetKickerPaarData = {
 export type GetKickerPaarResponse = (Array<KickerPAAR>);
 
 export type GetKickerPaarError = unknown;
+
+export type GetTeamSeasonOverviewData = {
+    query: {
+        /**
+         * Team name.
+         */
+        team: string;
+        /**
+         * Season year.
+         */
+        year: number;
+    };
+};
+
+export type GetTeamSeasonOverviewResponse = (TeamSeasonOverview);
+
+export type GetTeamSeasonOverviewError = ({
+    message: string;
+} | TeamSeasonOverviewError);
 
 export type GetTeamsData = {
     query?: {
