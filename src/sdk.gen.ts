@@ -862,6 +862,7 @@ export const getCoachSeasons = <ThrowOnError extends boolean = false>(options?: 
 
 /**
  * Returns continuous head-coaching tenures and their attributed records.
+ * Requires coachId or team; year and active only filter the results.
  */
 export const getCoachTenures = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetCoachTenuresData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetCoachTenuresResponse, GetCoachTenuresError, ThrowOnError>({

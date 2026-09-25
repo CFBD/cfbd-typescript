@@ -669,6 +669,13 @@ export type ExpandedTeamSRS = {
     classification: DivisionClassification;
 };
 
+export type FieldErrors = {
+    [key: string]: {
+        value?: unknown;
+        message: string;
+    };
+};
+
 export type FieldGoalEP = {
     yardsToGoal: number;
     distance: number;
@@ -5006,6 +5013,7 @@ export type GetCoachTenuresData = {
 export type GetCoachTenuresResponse = (Array<CoachTenure>);
 
 export type GetCoachTenuresError = ({
+    details: FieldErrors;
     message: string;
 });
 
