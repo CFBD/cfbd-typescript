@@ -722,7 +722,7 @@ export const getGameSchedule = <ThrowOnError extends boolean = false>(options?: 
 };
 
 /**
- * Returns pregame team comparisons and key players. Started games return metadata only.
+ * Returns pregame team comparisons and key players. Analysis remains available until the game is completed.
  * Team statistics may use the previous season; players and context stay in the game season.
  */
 export const getGamePreview = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetGamePreviewData, ThrowOnError>) => {
@@ -733,7 +733,7 @@ export const getGamePreview = <ThrowOnError extends boolean = false>(options: Op
 };
 
 /**
- * Returns stored adjusted team and player metrics. Requires Patreon Tier 1.
+ * Returns stored adjusted team and player metrics until game completion. Requires Patreon Tier 1.
  * Team metrics may use the previous season; players remain current-season.
  */
 export const getAdjustedGamePreview = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetAdjustedGamePreviewData, ThrowOnError>) => {
