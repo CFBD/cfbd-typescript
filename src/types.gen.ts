@@ -603,6 +603,8 @@ export type DetailedCoachSeason = {
     draftFollowingSeason: ((CoachDraftContext) | null);
 };
 
+export type Division = 'fbs' | 'fcs' | 'ii' | 'ii/iii' | 'iii';
+
 export type DivisionClassification = 'fbs' | 'fcs' | 'ii' | 'ii/iii' | 'iii';
 
 export type DraftPick = {
@@ -2262,6 +2264,7 @@ export type PreviewTeamIdentity = {
 };
 
 export type PreviewTeamStatistics = {
+    statRankings?: ((TeamSeasonStatRankings) | null);
     season: number;
     isPreviousSeason: boolean;
     advanced: TeamSeasonAdvancedStats;
@@ -2295,6 +2298,32 @@ export type RecentResult = {
 };
 
 export type result = 'win' | 'loss' | 'tie' | 'unknown';
+
+/**
+ * Construct a type with a set of properties K of type T
+ */
+export type Record_StatMetricKey_TeamStatRank_or_null_ = {
+    ppa: TeamStatRank;
+    successRate: TeamStatRank;
+    explosiveness: TeamStatRank;
+    'standardDowns.successRate': TeamStatRank;
+    'passingDowns.successRate': TeamStatRank;
+    'passingPlays.ppa': TeamStatRank;
+    'rushingPlays.ppa': TeamStatRank;
+    'passingPlays.explosiveness': TeamStatRank;
+    'rushingPlays.explosiveness': TeamStatRank;
+    lineYards: TeamStatRank;
+    secondLevelYards: TeamStatRank;
+    openFieldYards: TeamStatRank;
+    stuffRate: TeamStatRank;
+    powerSuccess: TeamStatRank;
+    'havoc.total': TeamStatRank;
+    'havoc.frontSeven': TeamStatRank;
+    'havoc.db': TeamStatRank;
+    pointsPerOpportunity: TeamStatRank;
+    'fieldPosition.averageStart': TeamStatRank;
+    'fieldPosition.averagePredictedPoints': TeamStatRank;
+};
 
 export type Recruit = {
     id: string;
@@ -2904,6 +2933,7 @@ export type TeamSeasonAdvancedStats = {
         lineYards: number;
         stuffRate: number;
         powerSuccess: (number) | null;
+        powerRushAttempts?: number;
         explosiveness: (number) | null;
         successRate: number;
         totalPPA: number;
@@ -2958,6 +2988,7 @@ export type TeamSeasonAdvancedStats = {
         lineYards: number;
         stuffRate: number;
         powerSuccess: (number) | null;
+        powerRushAttempts?: number;
         explosiveness: (number) | null;
         successRate: number;
         totalPPA: number;
@@ -2975,6 +3006,7 @@ export type TeamSeasonOverview = {
     };
     passing: ((TeamPassingSeason) | null);
     rushing: ((TeamRushingSeason) | null);
+    statRankings?: ((TeamSeasonStatRankings) | null);
     /**
      * Completed games for the requested season, including postseason.
      */
@@ -3107,6 +3139,18 @@ export type TeamSeasonRankedRating = {
     rank: (number) | null;
 };
 
+export type TeamSeasonStatRankings = {
+    teamId: number;
+    season: number;
+    division: Division;
+    divisionTeamCount: number;
+    calculatedAt: string;
+    expiresAt: string;
+    sourceUpdatedAt: string;
+    offense: Record_StatMetricKey_TeamStatRank_or_null_;
+    defense: Record_StatMetricKey_TeamStatRank_or_null_;
+};
+
 export type TeamSP = {
     year: number;
     team: string;
@@ -3162,6 +3206,13 @@ export type TeamStat = {
     conference: string;
     statName: string;
     statValue: (string | number);
+};
+
+export type TeamStatRank = {
+    rank: number;
+    population: number;
+    tied: boolean;
+    percentile: number;
 };
 
 export type TeamSuccessRates = {
