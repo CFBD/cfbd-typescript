@@ -2473,6 +2473,7 @@ export type ScheduleGame = {
     playoff: ((GamePlayoff) | null);
     broadcasts: PreviewSection_PreviewBroadcast_Array_;
     odds: PreviewSection_SelectedOdds_;
+    watchabilityScore: (number) | null;
 };
 
 export type ScheduleWindow = {
@@ -5068,46 +5069,6 @@ export type GetUsageResponse = (((UserUsage) | null));
 
 export type GetUsageError = unknown;
 
-export type GetGameScheduleData = {
-    query?: {
-        /**
-         * Division of either participant. Defaults to fbs.
-         */
-        classification?: 'fbs' | 'fcs';
-        /**
-         * Conference abbreviation of either participant.
-         */
-        conference?: string;
-        seasonType?: 'regular' | 'postseason';
-        week?: number;
-        year?: number;
-    };
-};
-
-export type GetGameScheduleResponse = (GameSchedule);
-
-export type GetGameScheduleError = (GamePreviewError);
-
-export type GetGamePreviewData = {
-    path: {
-        gameId: number;
-    };
-};
-
-export type GetGamePreviewResponse = (GamePreview);
-
-export type GetGamePreviewError = (GamePreviewError);
-
-export type GetAdjustedGamePreviewData = {
-    path: {
-        gameId: number;
-    };
-};
-
-export type GetAdjustedGamePreviewResponse = (AdjustedGamePreview);
-
-export type GetAdjustedGamePreviewError = (GamePreviewError);
-
 export type GetGamesData = {
     query?: {
         /**
@@ -5320,6 +5281,46 @@ export type GetWeatherData = {
 export type GetWeatherResponse = (Array<GameWeather>);
 
 export type GetWeatherError = unknown;
+
+export type GetGameScheduleData = {
+    query?: {
+        /**
+         * Division of either participant. Defaults to fbs.
+         */
+        classification?: 'fbs' | 'fcs';
+        /**
+         * Conference abbreviation of either participant.
+         */
+        conference?: string;
+        seasonType?: 'regular' | 'postseason';
+        week?: number;
+        year?: number;
+    };
+};
+
+export type GetGameScheduleResponse = (GameSchedule);
+
+export type GetGameScheduleError = (GamePreviewError);
+
+export type GetGamePreviewData = {
+    path: {
+        gameId: number;
+    };
+};
+
+export type GetGamePreviewResponse = (GamePreview);
+
+export type GetGamePreviewError = (GamePreviewError);
+
+export type GetAdjustedGamePreviewData = {
+    path: {
+        gameId: number;
+    };
+};
+
+export type GetAdjustedGamePreviewResponse = (AdjustedGamePreview);
+
+export type GetAdjustedGamePreviewError = (GamePreviewError);
 
 export type GetRecordsData = {
     query?: {
