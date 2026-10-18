@@ -1206,6 +1206,14 @@ export type PassingPlay = {
     isSpike: boolean;
     isThrowaway: boolean;
     isIntentionalGrounding: boolean;
+    /**
+     * Estimated chance of a completion, from 0 to 1; null if unavailable.
+     */
+    completionProbability: (number) | null;
+    /**
+     * Completion over expected, in percentage points; null if unavailable.
+     */
+    cpoe: (number) | null;
     parseStatus: PassParseStatus;
     /**
      * Stored offensive PPA, including zero and negative values.
@@ -1228,7 +1236,7 @@ export type PassingPlayClock = {
 };
 
 /**
- * Defense reports opponent production allowed without inverting PPA signs.
+ * Defense reports opponent production allowed without inverting PPA or CPOE signs.
  */
 export type PassingProduction = {
     attempts: number;
@@ -1288,6 +1296,26 @@ export type PassingProduction = {
      * Successful eligible attempts with non-null PPA; explosiveness denominator.
      */
     successfulPpaAttemptsAvailable: number;
+    /**
+     * Attempts with a completion probability; denominator for CPOE metrics.
+     */
+    cpoeAttemptsAvailable: number;
+    /**
+     * Completions among attempts with a completion probability.
+     */
+    cpoeCompletions: number;
+    /**
+     * Sum of completion probabilities; null if unavailable.
+     */
+    expectedCompletions: (number) | null;
+    /**
+     * Expected completions / cpoeAttemptsAvailable; null if unavailable.
+     */
+    expectedCompletionRate: (number) | null;
+    /**
+     * Completion percentage over expected, in percentage points; null if unavailable.
+     */
+    cpoe: (number) | null;
     /**
      * Attempts eligible for advanced metrics and location analysis. Existing
      * overall production includes ineligible attempts; location buckets do not.
@@ -1470,6 +1498,26 @@ export type PlayerPassingGame = {
      */
     successfulPpaAttemptsAvailable: number;
     /**
+     * Attempts with a completion probability; denominator for CPOE metrics.
+     */
+    cpoeAttemptsAvailable: number;
+    /**
+     * Completions among attempts with a completion probability.
+     */
+    cpoeCompletions: number;
+    /**
+     * Sum of completion probabilities; null if unavailable.
+     */
+    expectedCompletions: (number) | null;
+    /**
+     * Expected completions / cpoeAttemptsAvailable; null if unavailable.
+     */
+    expectedCompletionRate: (number) | null;
+    /**
+     * Completion percentage over expected, in percentage points; null if unavailable.
+     */
+    cpoe: (number) | null;
+    /**
      * Attempts eligible for advanced metrics and location analysis. Existing
      * overall production includes ineligible attempts; location buckets do not.
      */
@@ -1552,6 +1600,26 @@ export type PlayerPassingSeason = {
      */
     successfulPpaAttemptsAvailable: number;
     /**
+     * Attempts with a completion probability; denominator for CPOE metrics.
+     */
+    cpoeAttemptsAvailable: number;
+    /**
+     * Completions among attempts with a completion probability.
+     */
+    cpoeCompletions: number;
+    /**
+     * Sum of completion probabilities; null if unavailable.
+     */
+    expectedCompletions: (number) | null;
+    /**
+     * Expected completions / cpoeAttemptsAvailable; null if unavailable.
+     */
+    expectedCompletionRate: (number) | null;
+    /**
+     * Completion percentage over expected, in percentage points; null if unavailable.
+     */
+    cpoe: (number) | null;
+    /**
      * Attempts eligible for advanced metrics and location analysis. Existing
      * overall production includes ineligible attempts; location buckets do not.
      */
@@ -1582,6 +1650,86 @@ export type PlayerPPA = {
 export type PlayerPPAChartItem = {
     playNumber: number;
     avgPPA: number;
+};
+
+/**
+ * Null when the player has no punts or returns in that role.
+ */
+export type PlayerPuntingGame = {
+    gameId: number;
+    season: number;
+    week: number;
+    seasonType: SeasonType;
+    playerId: string;
+    player: string;
+    team: string;
+    conference: (string) | null;
+    opponent: string;
+    punting: ((PlayerPuntingProduction) | null);
+    returning: ((PlayerPuntReturnProduction) | null);
+};
+
+/**
+ * Production on punts kicked by a player.
+ */
+export type PlayerPuntingProduction = {
+    punts: number;
+    /**
+     * Punts with known gross yards.
+     */
+    puntYardsAvailable: number;
+    puntYards: (number) | null;
+    yardsPerPunt: (number) | null;
+    longestPunt: (number) | null;
+    punts50Plus: number;
+    /**
+     * Punts with known net yards.
+     */
+    netPuntYardsAvailable: number;
+    netPuntYards: (number) | null;
+    netYardsPerPunt: (number) | null;
+    touchbacks: number;
+    fairCatches: number;
+    outOfBounds: number;
+    downed: number;
+    /**
+     * Punts after which the receiving team took possession inside its own 20,
+     * excluding touchbacks.
+     */
+    inside20: number;
+    blocked: number;
+};
+
+/**
+ * Null when the player has no punts or returns in that role.
+ */
+export type PlayerPuntingSeason = {
+    season: number;
+    playerId: string;
+    player: string;
+    team: string;
+    conference: (string) | null;
+    punting: ((PlayerPuntingProduction) | null);
+    returning: ((PlayerPuntReturnProduction) | null);
+};
+
+/**
+ * Production on punts fielded, returned, or blocked by a player.
+ */
+export type PlayerPuntReturnProduction = {
+    returns: number;
+    /**
+     * Returns with known yards.
+     */
+    returnYardsAvailable: number;
+    returnYards: (number) | null;
+    yardsPerReturn: (number) | null;
+    longestReturn: (number) | null;
+    returns20Plus: number;
+    returnTouchdowns: number;
+    fairCatches: number;
+    muffs: number;
+    blocks: number;
 };
 
 export type PlayerRushingGame = {
@@ -2279,6 +2427,89 @@ export type PreviewVenue = {
     state: (string) | null;
 };
 
+export type PuntingPlay = {
+    gameId: number;
+    playId: string;
+    driveId: (string) | null;
+    season: number;
+    week: number;
+    seasonType: SeasonType;
+    puntingTeamId: number;
+    puntingTeam: string;
+    puntingConference: (string) | null;
+    receivingTeamId: number;
+    receivingTeam: string;
+    receivingConference: (string) | null;
+    period: number;
+    clock: PuntingPlayClock;
+    down: number;
+    distance: (number) | null;
+    playType: string;
+    playText: (string) | null;
+    punterId: (string) | null;
+    punter: (string) | null;
+    receiverId: (string) | null;
+    receiver: (string) | null;
+    returnerId: (string) | null;
+    returner: (string) | null;
+    blockerId: (string) | null;
+    blocker: (string) | null;
+    /**
+     * Whether the play counts as a punt; null when unknown.
+     */
+    countsAsPunt: (boolean) | null;
+    /**
+     * Whether the play counts as a punt return; null when unknown.
+     */
+    countsAsReturn: (boolean) | null;
+    startYardsToGoal: (number) | null;
+    /**
+     * Gross punt yards.
+     */
+    puntYards: (number) | null;
+    /**
+     * Return yards for the receiving team.
+     */
+    returnYards: (number) | null;
+    /**
+     * Return yards credited to the returner; null when not credited individually.
+     */
+    returnerYards: (number) | null;
+    /**
+     * Gross punt yards minus return yards, less 20 yards for a touchback.
+     */
+    netPuntYards: (number) | null;
+    /**
+     * Where the kick ended, from the punting team's goal line (0) to the
+     * receiving team's goal line (100).
+     */
+    kickEndYardline: (number) | null;
+    /**
+     * Where the play ended, on the same scale as kickEndYardline.
+     */
+    endYardline: (number) | null;
+    isTouchback: (boolean) | null;
+    isFairCatch: (boolean) | null;
+    isOutOfBounds: (boolean) | null;
+    isDowned: (boolean) | null;
+    isBlocked: (boolean) | null;
+    isMuffed: (boolean) | null;
+    isReturnTouchdown: (boolean) | null;
+    /**
+     * The receiving team lost possession, such as on a muff or fumble.
+     */
+    isReceivingTeamTurnover: (boolean) | null;
+    hasPenalty: (boolean) | null;
+    parseStatus: PuntParseStatus;
+};
+
+export type PuntingPlayClock = {
+    minutes: number;
+    seconds: number;
+};
+
+export type PuntParseStatus = 'complete' | 'partial';
+
 export type RankingPoll = 'cfp';
 
 export type RecentResult = {
@@ -2777,6 +3008,70 @@ export type TeamPPA = {
     overall: StatsByQuarter;
     passing: StatsByQuarter;
     rushing: StatsByQuarter;
+};
+
+export type TeamPuntingGame = {
+    gameId: number;
+    season: number;
+    week: number;
+    seasonType: SeasonType;
+    team: string;
+    conference: (string) | null;
+    opponent: string;
+    punting: TeamPuntingProduction;
+    returning: TeamPuntingProduction;
+};
+
+/**
+ * Production on a team's punts. On the returning side, punt and net yards
+ * describe opponent punts.
+ */
+export type TeamPuntingProduction = {
+    punts: number;
+    /**
+     * Punts with known gross yards.
+     */
+    puntYardsAvailable: number;
+    puntYards: (number) | null;
+    yardsPerPunt: (number) | null;
+    longestPunt: (number) | null;
+    punts50Plus: number;
+    /**
+     * Punts with known net yards.
+     */
+    netPuntYardsAvailable: number;
+    netPuntYards: (number) | null;
+    netYardsPerPunt: (number) | null;
+    touchbacks: number;
+    fairCatches: number;
+    outOfBounds: number;
+    downed: number;
+    /**
+     * Punts after which the receiving team took possession inside its own 20,
+     * excluding touchbacks.
+     */
+    inside20: number;
+    blocked: number;
+    returns: number;
+    /**
+     * Returns with known yards.
+     */
+    returnYardsAvailable: number;
+    returnYards: (number) | null;
+    yardsPerReturn: (number) | null;
+    longestReturn: (number) | null;
+    returns20Plus: number;
+    returnTouchdowns: number;
+    muffs: number;
+    receivingTeamTurnovers: number;
+};
+
+export type TeamPuntingSeason = {
+    season: number;
+    team: string;
+    conference: (string) | null;
+    punting: TeamPuntingProduction;
+    returning: TeamPuntingProduction;
 };
 
 export type TeamRecord = {
@@ -4331,6 +4626,191 @@ export type GetRankingsResponse = (Array<PollWeek>);
 export type GetRankingsError = ({
     message: string;
 });
+
+export type GetPuntingPlaysData = {
+    query?: {
+        /**
+         * Division classification. Defaults to `fbs`.
+         */
+        classification?: DivisionClassification;
+        /**
+         * Conference name or abbreviation on either side of the punt.
+         */
+        conference?: string;
+        /**
+         * Game ID.
+         */
+        gameId?: number;
+        /**
+         * Punter athlete ID.
+         */
+        punterId?: string;
+        /**
+         * Punting team name.
+         */
+        puntingTeam?: string;
+        /**
+         * Receiving team name.
+         */
+        receivingTeam?: string;
+        /**
+         * Returner athlete ID.
+         */
+        returnerId?: string;
+        /**
+         * Season type.
+         */
+        seasonType?: SeasonType;
+        /**
+         * Team name on either side of the punt.
+         */
+        team?: string;
+        /**
+         * Week number. Either week, a team filter, punterId, or returnerId is required with year.
+         */
+        week?: number;
+        /**
+         * Season year. Required unless gameId is specified.
+         */
+        year?: number;
+    };
+};
+
+export type GetPuntingPlaysResponse = (Array<PuntingPlay>);
+
+export type GetPuntingPlaysError = unknown;
+
+export type GetPlayerPuntingBySeasonData = {
+    query: {
+        /**
+         * Division classification. Defaults to `fbs`.
+         */
+        classification?: DivisionClassification;
+        /**
+         * Conference name or abbreviation.
+         */
+        conference?: string;
+        /**
+         * Player athlete ID.
+         */
+        playerId?: string;
+        /**
+         * Season type.
+         */
+        seasonType?: SeasonType;
+        /**
+         * Team name.
+         */
+        team?: string;
+        /**
+         * Season year. Required.
+         */
+        year: number;
+    };
+};
+
+export type GetPlayerPuntingBySeasonResponse = (Array<PlayerPuntingSeason>);
+
+export type GetPlayerPuntingBySeasonError = unknown;
+
+export type GetPlayerPuntingByGameData = {
+    query: {
+        /**
+         * Division classification. Defaults to `fbs`.
+         */
+        classification?: DivisionClassification;
+        /**
+         * Conference name or abbreviation.
+         */
+        conference?: string;
+        /**
+         * Player athlete ID.
+         */
+        playerId?: string;
+        /**
+         * Season type.
+         */
+        seasonType?: SeasonType;
+        /**
+         * Team name.
+         */
+        team?: string;
+        /**
+         * Week number.
+         */
+        week?: number;
+        /**
+         * Season year. Required.
+         */
+        year: number;
+    };
+};
+
+export type GetPlayerPuntingByGameResponse = (Array<PlayerPuntingGame>);
+
+export type GetPlayerPuntingByGameError = unknown;
+
+export type GetTeamPuntingBySeasonData = {
+    query: {
+        /**
+         * Division classification. Defaults to `fbs`.
+         */
+        classification?: DivisionClassification;
+        /**
+         * Conference name or abbreviation.
+         */
+        conference?: string;
+        /**
+         * Season type.
+         */
+        seasonType?: SeasonType;
+        /**
+         * Team name.
+         */
+        team?: string;
+        /**
+         * Season year. Required.
+         */
+        year: number;
+    };
+};
+
+export type GetTeamPuntingBySeasonResponse = (Array<TeamPuntingSeason>);
+
+export type GetTeamPuntingBySeasonError = unknown;
+
+export type GetTeamPuntingByGameData = {
+    query: {
+        /**
+         * Division classification. Defaults to `fbs`.
+         */
+        classification?: DivisionClassification;
+        /**
+         * Conference name or abbreviation.
+         */
+        conference?: string;
+        /**
+         * Season type.
+         */
+        seasonType?: SeasonType;
+        /**
+         * Team name.
+         */
+        team?: string;
+        /**
+         * Week number.
+         */
+        week?: number;
+        /**
+         * Season year. Required.
+         */
+        year: number;
+    };
+};
+
+export type GetTeamPuntingByGameResponse = (Array<TeamPuntingGame>);
+
+export type GetTeamPuntingByGameError = unknown;
 
 export type GetPlaysData = {
     query: {
