@@ -108,6 +108,10 @@ export type AdvancedBoxScore = {
     };
 };
 
+export type AdvancedBoxScoreError = {
+    message: string;
+};
+
 export type AdvancedGameStat = {
     gameId: number;
     season: number;
@@ -6057,4 +6061,4 @@ export type GetAdvancedBoxScoreData = {
 
 export type GetAdvancedBoxScoreResponse = (AdvancedBoxScore);
 
-export type GetAdvancedBoxScoreError = unknown;
+export type GetAdvancedBoxScoreError = (AdvancedBoxScoreError);

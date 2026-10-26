@@ -970,7 +970,8 @@ export const getCoachTenures = <ThrowOnError extends boolean = false>(options?: 
 };
 
 /**
- * Returns an advanced box score for a game.
+ * Returns an advanced box score for a game. Games without play-by-play
+ * data, including games not yet played, return 404.
  */
 export const getAdvancedBoxScore = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetAdvancedBoxScoreData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetAdvancedBoxScoreResponse, GetAdvancedBoxScoreError, ThrowOnError>({
