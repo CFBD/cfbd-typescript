@@ -5,6 +5,9 @@ export type AdjustedGamePreview = {
     game: GamePreviewMetadata;
     availability: 'pregame' | 'metadata_only';
     reason: PreviewReason;
+    /**
+     * Null once the game is completed or when kickoff is unknown.
+     */
     analysis: ((AdjustedPreviewAnalysis) | null);
 };
 
@@ -869,6 +872,9 @@ export type GamePreview = {
     game: GamePreviewMetadata;
     availability: 'pregame' | 'metadata_only';
     reason: PreviewReason;
+    /**
+     * Null once the game is completed or when kickoff is unknown.
+     */
     analysis: ((FreePreviewAnalysis) | null);
 };
 
@@ -1657,7 +1663,9 @@ export type PlayerPPAChartItem = {
 };
 
 /**
- * Null when the player has no punts or returns in that role.
+ * Individually attributed punts and returns. Team-only and unattributed plays
+ * are excluded, so player totals may not sum to team totals. `punting` or
+ * `returning` is null when the player has no punts or returns in that role.
  */
 export type PlayerPuntingGame = {
     gameId: number;
@@ -1705,7 +1713,9 @@ export type PlayerPuntingProduction = {
 };
 
 /**
- * Null when the player has no punts or returns in that role.
+ * Individually attributed punts and returns. Team-only and unattributed plays
+ * are excluded, so player totals may not sum to team totals. `punting` or
+ * `returning` is null when the player has no punts or returns in that role.
  */
 export type PlayerPuntingSeason = {
     season: number;
@@ -1736,6 +1746,11 @@ export type PlayerPuntReturnProduction = {
     blocks: number;
 };
 
+/**
+ * Individually attributed rushing, including attributed sacks. Team-only and
+ * unattributed attempts are excluded, so player totals may not sum to team
+ * totals.
+ */
 export type PlayerRushingGame = {
     attempts: number;
     rushingYardsAvailable: number;
@@ -1778,6 +1793,11 @@ export type PlayerRushingGame = {
     opponent: string;
 };
 
+/**
+ * Individually attributed rushing, including attributed sacks. Team-only and
+ * unattributed attempts are excluded, so player totals may not sum to team
+ * totals.
+ */
 export type PlayerRushingSeason = {
     attempts: number;
     rushingYardsAvailable: number;
@@ -2199,6 +2219,10 @@ export type PregameWinProbability = {
 
 export type PreviewAdjustedTeamMetrics = {
     season: number;
+    /**
+     * True when team metrics come from the previous season. Player metrics always
+     * use the game season.
+     */
     isPreviousSeason: boolean;
     metrics: AdjustedTeamMetrics;
 };
@@ -2418,6 +2442,10 @@ export type PreviewTeamIdentity = {
 export type PreviewTeamStatistics = {
     statRankings?: ((TeamSeasonStatRankings) | null);
     season: number;
+    /**
+     * True when team statistics come from the previous season. Players and game
+     * context always use the game season.
+     */
     isPreviousSeason: boolean;
     advanced: TeamSeasonAdvancedStats;
     passing: ((TeamPassingSeason) | null);
@@ -2678,6 +2706,10 @@ export type RushingPlay = {
     isKneel: boolean;
     isTeamRush: boolean;
     attributionStatus: RushAttributionStatus;
+    /**
+     * Whether the attempt is an ordinary rush included in direction analysis.
+     * Eligible attempts can still have an unknown direction.
+     */
     directionAnalysisEligible: boolean;
     parseStatus: RushParseStatus;
     ppa: (number) | null;
@@ -3023,6 +3055,9 @@ export type TeamPuntingGame = {
     conference: (string) | null;
     opponent: string;
     punting: TeamPuntingProduction;
+    /**
+     * Opponent punts and the team's returns.
+     */
     returning: TeamPuntingProduction;
 };
 
@@ -3075,6 +3110,9 @@ export type TeamPuntingSeason = {
     team: string;
     conference: (string) | null;
     punting: TeamPuntingProduction;
+    /**
+     * Opponent punts and the team's returns.
+     */
     returning: TeamPuntingProduction;
 };
 
@@ -3118,9 +3156,15 @@ export type TeamRushingGame = {
     conference: (string) | null;
     opponent: string;
     offense: TeamRushingProduction;
+    /**
+     * Rushing production allowed.
+     */
     defense: TeamRushingProduction;
 };
 
+/**
+ * Includes sacks, kneels, team-only attempts, and unattributed attempts.
+ */
 export type TeamRushingProduction = {
     attempts: number;
     rushingYardsAvailable: number;
@@ -3161,6 +3205,9 @@ export type TeamRushingSeason = {
     team: string;
     conference: (string) | null;
     offense: TeamRushingProduction;
+    /**
+     * Rushing production allowed.
+     */
     defense: TeamRushingProduction;
 };
 
@@ -5776,8 +5823,17 @@ export type GetGameScheduleData = {
          * Conference abbreviation of either participant.
          */
         conference?: string;
+        /**
+         * Season type. Requires `year` and `week`.
+         */
         seasonType?: 'regular' | 'postseason';
+        /**
+         * Week number. Requires `year` and `seasonType`.
+         */
         week?: number;
+        /**
+         * Season year. Requires `seasonType` and `week`.
+         */
         year?: number;
     };
 };
@@ -6029,11 +6085,11 @@ export type GetCoachTenuresData = {
          */
         active?: boolean;
         /**
-         * Coach ID.
+         * Coach ID. Required unless `team` is specified.
          */
         coachId?: number;
         /**
-         * Team name.
+         * Team name. Required unless `coachId` is specified.
          */
         team?: string;
         /**

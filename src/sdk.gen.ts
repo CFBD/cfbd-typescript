@@ -46,7 +46,7 @@ export const getKickerPaar = <ThrowOnError extends boolean = false>(options?: Op
 };
 
 /**
- * Returns a stored full-season team overview, including postseason and garbage time.
+ * Returns a full-season team overview, including postseason and garbage time.
  */
 export const getTeamSeasonOverview = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetTeamSeasonOverviewData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetTeamSeasonOverviewResponse, GetTeamSeasonOverviewError, ThrowOnError>({
@@ -236,11 +236,7 @@ export const getGameHavocStats = <ThrowOnError extends boolean = false>(options?
 };
 
 /**
- * Returns enriched rushing attempts.
- *
- * Team results include sacks, kneels, team-only attempts, and unresolved
- * attribution. Direction eligibility identifies the ordinary-rush analysis
- * population; eligible attempts can still have an unknown direction.
+ * Returns enriched rushing attempts with direction and attribution.
  */
 export const getRushingPlays = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetRushingPlaysData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetRushingPlaysResponse, GetRushingPlaysError, ThrowOnError>({
@@ -250,11 +246,7 @@ export const getRushingPlays = <ThrowOnError extends boolean = false>(options?: 
 };
 
 /**
- * Returns individually attributed rusher production by season.
- *
- * Player totals include only guarded rusher attribution, including
- * individually attributed sacks. They do not include team-only or unresolved
- * attempts and therefore are not expected to sum to team totals.
+ * Returns player rushing statistics by season.
  */
 export const getPlayerRushingBySeason = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetPlayerRushingBySeasonData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlayerRushingBySeasonResponse, GetPlayerRushingBySeasonError, ThrowOnError>({
@@ -264,11 +256,7 @@ export const getPlayerRushingBySeason = <ThrowOnError extends boolean = false>(o
 };
 
 /**
- * Returns individually attributed rusher production by game.
- *
- * Player totals include only guarded rusher attribution, including
- * individually attributed sacks. They do not include team-only or unresolved
- * attempts and therefore are not expected to sum to team totals.
+ * Returns player rushing statistics by game.
  */
 export const getPlayerRushingByGame = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetPlayerRushingByGameData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlayerRushingByGameResponse, GetPlayerRushingByGameError, ThrowOnError>({
@@ -278,10 +266,7 @@ export const getPlayerRushingByGame = <ThrowOnError extends boolean = false>(opt
 };
 
 /**
- * Returns team rushing production by season.
- *
- * Team totals include sacks, kneels, team-only attempts, and unresolved
- * attribution. Defense contains rushing production allowed.
+ * Returns team rushing statistics by season.
  */
 export const getTeamRushingBySeason = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetTeamRushingBySeasonData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetTeamRushingBySeasonResponse, GetTeamRushingBySeasonError, ThrowOnError>({
@@ -291,10 +276,7 @@ export const getTeamRushingBySeason = <ThrowOnError extends boolean = false>(opt
 };
 
 /**
- * Returns team rushing production by game.
- *
- * Team totals include sacks, kneels, team-only attempts, and unresolved
- * attribution. Defense contains rushing production allowed.
+ * Returns team rushing statistics by game.
  */
 export const getTeamRushingByGame = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetTeamRushingByGameData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetTeamRushingByGameResponse, GetTeamRushingByGameError, ThrowOnError>({
@@ -335,7 +317,6 @@ export const getAggregatedTeamRecruitingRatings = <ThrowOnError extends boolean 
 
 /**
  * Returns Context & Opponent-Relative Efficiency (CORE) ratings.
- * At least one of `year` or `team` is required.
  */
 export const getCore = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetCoreData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetCoreResponse, GetCoreError, ThrowOnError>({
@@ -415,8 +396,7 @@ export const getRankings = <ThrowOnError extends boolean = false>(options: Optio
 };
 
 /**
- * Returns enriched punt plays with gross, return, and net yardage, field
- * position, and punt outcomes.
+ * Returns enriched punt plays with yardage, field position, and outcomes.
  */
 export const getPuntingPlays = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetPuntingPlaysData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPuntingPlaysResponse, GetPuntingPlaysError, ThrowOnError>({
@@ -426,11 +406,7 @@ export const getPuntingPlays = <ThrowOnError extends boolean = false>(options?: 
 };
 
 /**
- * Returns individually attributed punting and punt return production by
- * season.
- *
- * Player totals do not include team-only or unattributed punts and returns,
- * and therefore are not expected to sum to team totals.
+ * Returns player punting and punt return statistics by season.
  */
 export const getPlayerPuntingBySeason = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetPlayerPuntingBySeasonData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlayerPuntingBySeasonResponse, GetPlayerPuntingBySeasonError, ThrowOnError>({
@@ -440,11 +416,7 @@ export const getPlayerPuntingBySeason = <ThrowOnError extends boolean = false>(o
 };
 
 /**
- * Returns individually attributed punting and punt return production by
- * game.
- *
- * Player totals do not include team-only or unattributed punts and returns,
- * and therefore are not expected to sum to team totals.
+ * Returns player punting and punt return statistics by game.
  */
 export const getPlayerPuntingByGame = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetPlayerPuntingByGameData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlayerPuntingByGameResponse, GetPlayerPuntingByGameError, ThrowOnError>({
@@ -454,10 +426,7 @@ export const getPlayerPuntingByGame = <ThrowOnError extends boolean = false>(opt
 };
 
 /**
- * Returns team punting and punt return production by season.
- *
- * Punting describes the team's punts. Returning describes opponent punts and
- * the team's returns.
+ * Returns team punting and punt return statistics by season.
  */
 export const getTeamPuntingBySeason = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetTeamPuntingBySeasonData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetTeamPuntingBySeasonResponse, GetTeamPuntingBySeasonError, ThrowOnError>({
@@ -467,10 +436,7 @@ export const getTeamPuntingBySeason = <ThrowOnError extends boolean = false>(opt
 };
 
 /**
- * Returns team punting and punt return production by game.
- *
- * Punting describes the team's punts. Returning describes opponent punts and
- * the team's returns.
+ * Returns team punting and punt return statistics by game.
  */
 export const getTeamPuntingByGame = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetTeamPuntingByGameData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetTeamPuntingByGameResponse, GetTeamPuntingByGameError, ThrowOnError>({
@@ -570,8 +536,7 @@ export const getPlayerUsage = <ThrowOnError extends boolean = false>(options: Op
 };
 
 /**
- * Returns a player season overview with box score, usage, and Predicted
- * Points Added (PPA) data.
+ * Returns a player season overview with box score, usage, and PPA data.
  */
 export const getPlayerSeasonOverview = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetPlayerSeasonOverviewData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlayerSeasonOverviewResponse, GetPlayerSeasonOverviewError, ThrowOnError>({
@@ -601,7 +566,7 @@ export const getTransferPortal = <ThrowOnError extends boolean = false>(options:
 };
 
 /**
- * Returns enriched pass attempts with PPA, success, completion probability, and CPOE.
+ * Returns enriched pass attempts with completion probability and CPOE.
  */
 export const getPassingPlays = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetPassingPlaysData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPassingPlaysResponse, GetPassingPlaysError, ThrowOnError>({
@@ -611,7 +576,7 @@ export const getPassingPlays = <ThrowOnError extends boolean = false>(options: O
 };
 
 /**
- * Returns passer production, CPOE, advanced metrics, and pass-location breakdowns by season.
+ * Returns player passing statistics and CPOE by season.
  */
 export const getPlayerPassingBySeason = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetPlayerPassingBySeasonData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlayerPassingBySeasonResponse, GetPlayerPassingBySeasonError, ThrowOnError>({
@@ -621,7 +586,7 @@ export const getPlayerPassingBySeason = <ThrowOnError extends boolean = false>(o
 };
 
 /**
- * Returns passer production, CPOE, advanced metrics, and pass-location breakdowns by game.
+ * Returns player passing statistics and CPOE by game.
  */
 export const getPlayerPassingByGame = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetPlayerPassingByGameData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetPlayerPassingByGameResponse, GetPlayerPassingByGameError, ThrowOnError>({
@@ -631,8 +596,7 @@ export const getPlayerPassingByGame = <ThrowOnError extends boolean = false>(opt
 };
 
 /**
- * Returns team passing production, CPOE, advanced metrics, and pass-location
- * breakdowns by season for offense and defense.
+ * Returns team passing statistics and CPOE by season.
  */
 export const getTeamPassingBySeason = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetTeamPassingBySeasonData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetTeamPassingBySeasonResponse, GetTeamPassingBySeasonError, ThrowOnError>({
@@ -642,8 +606,7 @@ export const getTeamPassingBySeason = <ThrowOnError extends boolean = false>(opt
 };
 
 /**
- * Returns team passing production, CPOE, advanced metrics, and pass-location
- * breakdowns by game for offense and defense.
+ * Returns team passing statistics and CPOE by game.
  */
 export const getTeamPassingByGame = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetTeamPassingByGameData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetTeamPassingByGameResponse, GetTeamPassingByGameError, ThrowOnError>({
@@ -765,8 +728,8 @@ export const getUserInfo = <ThrowOnError extends boolean = false>(options?: Opti
 };
 
 /**
- * Returns recent usage for the authenticated user's shared CFB and CBB call
- * pool. Returns `null` when the request is not authenticated.
+ * Returns recent usage of the authenticated user's shared CFB and CBB quota.
+ * Returns `null` when the request is not authenticated.
  */
 export const getUsage = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetUsageData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetUsageResponse, GetUsageError, ThrowOnError>({
@@ -826,8 +789,7 @@ export const getWeather = <ThrowOnError extends boolean = false>(options?: Optio
 };
 
 /**
- * Returns the active or next calendar slate, including completed games.
- * Explicit windows require year, seasonType, and week together.
+ * Returns games for the current, next, or requested week.
  */
 export const getGameSchedule = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetGameScheduleData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetGameScheduleResponse, GetGameScheduleError, ThrowOnError>({
@@ -837,8 +799,7 @@ export const getGameSchedule = <ThrowOnError extends boolean = false>(options?: 
 };
 
 /**
- * Returns pregame team comparisons and key players. Analysis remains available until the game is completed.
- * Team statistics may use the previous season; players and context stay in the game season.
+ * Returns pregame team comparisons and key players for a game.
  */
 export const getGamePreview = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetGamePreviewData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetGamePreviewResponse, GetGamePreviewError, ThrowOnError>({
@@ -848,8 +809,8 @@ export const getGamePreview = <ThrowOnError extends boolean = false>(options: Op
 };
 
 /**
- * Returns stored adjusted team and player metrics until game completion. Requires Patreon Tier 1.
- * Team metrics may use the previous season; players remain current-season.
+ * Returns adjusted pregame team and player metrics for a game.
+ * Requires Patreon Tier 1.
  */
 export const getAdjustedGamePreview = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetAdjustedGamePreviewData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetAdjustedGamePreviewResponse, GetAdjustedGamePreviewError, ThrowOnError>({
@@ -959,8 +920,7 @@ export const getCoachSeasons = <ThrowOnError extends boolean = false>(options?: 
 };
 
 /**
- * Returns continuous head-coaching tenures and their attributed records.
- * Requires coachId or team; year and active only filter the results.
+ * Returns head coaching tenures and their records.
  */
 export const getCoachTenures = <ThrowOnError extends boolean = false>(options?: OptionsLegacyParser<GetCoachTenuresData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetCoachTenuresResponse, GetCoachTenuresError, ThrowOnError>({
@@ -970,8 +930,8 @@ export const getCoachTenures = <ThrowOnError extends boolean = false>(options?: 
 };
 
 /**
- * Returns an advanced box score for a game. Games without play-by-play
- * data, including games not yet played, return 404.
+ * Returns an advanced box score for a game.
+ * Returns 404 for games without play-by-play data.
  */
 export const getAdvancedBoxScore = <ThrowOnError extends boolean = false>(options: OptionsLegacyParser<GetAdvancedBoxScoreData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetAdvancedBoxScoreResponse, GetAdvancedBoxScoreError, ThrowOnError>({
